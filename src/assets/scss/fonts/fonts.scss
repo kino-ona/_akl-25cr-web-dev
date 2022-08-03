@@ -1,0 +1,12 @@
+@import './mixins/font-face'; // Font Face 선언
+@import './variables'; // 변수화
+@import './kind/kind'; // 폰트 종류
+@import './icon'; // 아이콘 변경사항
+@import './utilities'; // 공용 클래스
+@import './typography'; // 폰트 사용 별 정리
+
+/* font-family Default 적용 */
+* {
+  font-family: $font-family-rixsinhead-pro, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+  'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}

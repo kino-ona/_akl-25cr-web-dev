@@ -1,0 +1,8 @@
+i[class*="icon-base-"] {
+  display: inline-block;
+  line-height: 1;
+  font-size: 20px;
+  &:before {
+    margin: 0;
+  }
+}

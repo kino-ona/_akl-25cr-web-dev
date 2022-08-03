@@ -1,0 +1,6 @@
+/* Font Weight 100 ~ 900 */
+@for $i from 1 through 9 {
+  .font-weight-#{$i}00 {
+    font-weight: #{$i}00 !important;
+  }
+}

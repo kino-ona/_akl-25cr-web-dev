@@ -1,0 +1,15 @@
+// Variables
+// Font system
+
+// Path
+$default-font-path: "/assets/fonts";
+$default-icon-path: "/assets/fonts/icon";
+
+/*
+ 1. Rix 신헤드 프로
+*/
+$font-family-rixsinhead-pro: 'RixSinHead Pro';
+$font-family-rixsinhead-pro-300: "#{$default-font-path}/RixSinHead-Pro-Light";
+$font-family-rixsinhead-pro-500: "#{$default-font-path}/RixSinHead-Pro-Medium";
+$font-family-rixsinhead-pro-700: "#{$default-font-path}/RixSinHead-Pro-Bold";
+$font-family-rixsinhead-pro-800: "#{$default-font-path}/RixSinHead-Pro-ExtraBold";

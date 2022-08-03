@@ -1,0 +1,38 @@
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="87.476%" y1="97.671%" x2="16.347%" y2="14.805%" id="6kq8uf9g9a">
+            <stop stop-color="#FFF" offset="0%"/>
+            <stop stop-color="#34AFFF" offset="20.302%"/>
+            <stop stop-color="#B0E0FF" offset="82.931%"/>
+            <stop stop-color="#FFF" offset="100%"/>
+        </linearGradient>
+        <linearGradient x1="81.324%" y1="62.507%" x2="35.271%" y2="47.302%" id="ujrius6xqd">
+            <stop stop-color="#16FFD4" offset="0%"/>
+            <stop stop-color="#2F58FF" offset="100%"/>
+        </linearGradient>
+        <filter x="-8.7%" y="-8.7%" width="117.5%" height="117.5%" filterUnits="objectBoundingBox" id="phqakwpk1c">
+            <feGaussianBlur stdDeviation=".1" in="SourceAlpha" result="shadowBlurInner1"/>
+            <feOffset dx="3" dy="2" in="shadowBlurInner1" result="shadowOffsetInner1"/>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"/>
+            <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" in="shadowInnerInner1"/>
+        </filter>
+        <filter x="-3.9%" y="-8.2%" width="107.8%" height="116.4%" filterUnits="objectBoundingBox" id="my51vnwpff">
+            <feGaussianBlur stdDeviation=".2" in="SourceAlpha" result="shadowBlurInner1"/>
+            <feOffset dx=".2" dy=".6" in="shadowBlurInner1" result="shadowOffsetInner1"/>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"/>
+            <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.780208561 0" in="shadowInnerInner1"/>
+        </filter>
+        <path d="M9.166 18.333c4.435 0 8.134-3.149 8.984-7.334a9.216 9.216 0 0 0-.491-5.29A9.21 9.21 0 0 0 12.952.813 9.15 9.15 0 0 0 9.166 0a9.167 9.167 0 0 0 0 18.333z" id="2ebvw7h7eb"/>
+        <path d="M13.112 6.19c-.155-.176-.402-.038-.402.223v1.298c0 .225-.145.407-.324.407H5.948c-.179 0-.324-.182-.324-.407V6.413c0-.261-.247-.399-.402-.224L2.796 8.943a.354.354 0 0 0 0 .447l2.426 2.754c.155.175.402.038.402-.224v-1.298c0-.224.145-.407.324-.407h6.438c.179 0 .324.183.324.407v1.298c0 .262.247.4.402.224l2.426-2.754a.356.356 0 0 0 0-.447l-2.426-2.754z" id="2ydll919le"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(.833 .833)">
+            <use fill="url(#6kq8uf9g9a)" xlink:href="#2ebvw7h7eb"/>
+            <use fill="#000" filter="url(#phqakwpk1c)" xlink:href="#2ebvw7h7eb"/>
+        </g>
+        <g transform="translate(.833 .833)">
+            <use fill="url(#ujrius6xqd)" xlink:href="#2ydll919le"/>
+            <use fill="#000" filter="url(#my51vnwpff)" xlink:href="#2ydll919le"/>
+        </g>
+    </g>
+</svg>
