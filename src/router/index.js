@@ -11,9 +11,29 @@ const routes = [
     component: Home
   },
   {
-    path: '/etc',
-    name: 'etc',
-    component: () => import('@/views/etc/index.vue')
+    path: '/record-share-light',
+    name: 'record-share-light',
+    component: () => import('@/views/record-share01.vue')
+  },
+  {
+    path: '/record-share',
+    name: 'record-share',
+    component: () => import('@/views/record-share02.vue')
+  },
+  {
+    path: '/share-template',
+    name: 'share-template',
+    component: () => import('@/views/share-template.vue')
+  },
+  {
+    path: '/exercise-share',
+    name: 'exercise-share',
+    component: () => import('@/views/exercise-share.vue')
+  },
+  {
+    path: '/exercise-stats',
+    name: 'exercise-stats',
+    component: () => import('@/views/exercise-stats.vue')
   }
 ]
 

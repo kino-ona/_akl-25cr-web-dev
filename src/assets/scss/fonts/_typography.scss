@@ -28,14 +28,15 @@ h6, .h6 {
   font-weight: 500;
 }
 
-.text-16 {
-  font-size: 16px;
-  font-weight: 500;
+.text-40 {
+  font-size: 40px;
+  letter-spacing: -.87px;
 }
 
-.text-15 {
-  font-size: 15px;
-  font-weight: 500;
+.text-16 {
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -.3px;
 }
 
 .text-14 {
@@ -51,4 +52,8 @@ h6, .h6 {
 .text-12 {
   font-size: 12px;
   font-weight: 500;
+}
+
+.text-20 {
+  font-size: 20px;
 }
