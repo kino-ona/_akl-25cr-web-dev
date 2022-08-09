@@ -42,6 +42,12 @@ const term = {
     "M": "월간"
 }
 
+const iconCodeTitle = {
+    "01": "배지 획득",
+    "02": "머슬핀 달성",
+    "03": "미션 성공"
+}
+
 export default function getEnumData(enumType, value) {
     const allEnums = {
         "notiType": notiType, 
@@ -49,6 +55,7 @@ export default function getEnumData(enumType, value) {
         "classWorkoutCategoryCode": classWorkoutCategoryCode,
         "classLevelCode": classLevelCode,
         "iconCode": iconCode,
+        "iconCodeTitle": iconCodeTitle,
         "exeType": exeType,
         "term": term
     }

@@ -7,12 +7,8 @@
 <script>
 import { useRoute, useRouter } from 'vue-router'
 import { reactive, getCurrentInstance, onBeforeMount } from "vue";
-import functionComponent from "@/components/functionComponent.vue"
 
 export default {
-  components: {
-    functionComponent,
-  },
   setup () {
     const { proxy } = getCurrentInstance();
     const route = useRoute();

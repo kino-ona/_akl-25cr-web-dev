@@ -1,26 +1,35 @@
 <template>
-  <div v-if="state.result.iconCode == '01'">배지 획득</div>
-  <div v-else-if="state.result.iconCode == '02'">머슬핀 달성</div>
-  <div v-else-if="state.result.iconCode == '03'">미션 성공</div>
-  <img :src="state.result.image"/>
-  <div>{{ state.result.celebrityMessage }}</div>
-  <div>{{ state.result.title }}</div>
-  <button @click="sendCaptureImage">Image 전송</button>
-  <functionComponent></functionComponent>
+  <!-- ASH_04_03 -->
+  <section class="share-template">
+    <div class="container">
+      <header class="share-template__header">
+        <h1 class="header__title">{{getEnumData("iconCodeTitle", state.result.iconCode)}}</h1>
+        <img class="logo" :src="state.result.image" alt="로고" />
+      </header>
+
+      <div class="">
+        <figure class="share-template__img">
+          <img src="@/assets/imgs/dummy-musclepin.png" alt="마크" />
+        </figure>
+
+        <p class="share-template__text">
+          {{ state.result.celebrityMessage }}
+        </p>
+        <p class="share-template__text02">
+          {{ state.result.title }}
+        </p>
+      </div>
+    </div>
+    <button @click="sendCaptureImage">Image 전송</button>
+  </section>
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
 import { watchEffect, reactive, getCurrentInstance, onBeforeMount } from "vue";
-import functionComponent from "@/components/functionComponent.vue"
 
 export default {
-  components: {
-    functionComponent,
-  },
   setup () {
     const { proxy } = getCurrentInstance();
-    const route = useRoute();
     const state = reactive({
       result: {
         image: "",
@@ -30,7 +39,6 @@ export default {
       }
     })
 
-    // TODO - Native App 테스트 완료 시 onBeforeMount 삭제 후 functionComponent 내 주석 해제
     onBeforeMount(() => {
       let result = {
         image: window.mainData.image,
@@ -57,3 +65,50 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.share-template {
+  background: $bg-secondary url('~@/assets/imgs/bg-confetti.svg') no-repeat top center;
+  background-size: contain;
+  min-height: 100vh;
+  .share-template__header {
+    position: relative;
+    text-align: center;
+    padding: 34px 0;
+    .logo {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 76px;
+    }
+    .header__title {
+      font-size: 18px;
+      line-height: 25px;
+      letter-spacing: -.3px;
+    }
+  }
+  .share-template__img {
+    max-width: 144px;
+    margin: 0 auto 18px auto;
+    img {
+      width: 100%;
+    }
+  }
+  .share-template__text {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 36px;
+    letter-spacing: -.3px;
+    text-align: center;
+    color: $primary;
+    margin-bottom: 12px;
+  }
+  .share-template__text02 {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -.1px;
+    color: #fff;
+    text-align: center;
+  }
+}
+</style>

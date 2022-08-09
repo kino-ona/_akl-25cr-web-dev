@@ -1,38 +1,20 @@
 <template>
   <!-- TODO - 퍼블 나오면 <template>을 새롭게 제작해서 안에 값을 치환하는 식으로 제작하면 됨 -->
-  <div>{{ state.result.date }}</div>
-  <div v-if="state.result.exerciseModeCode == '02'">
-    {{ getEnumData("exerciseModeCode", state.result.exerciseModeCode) }}
-  </div>
-  <div v-if="state.result.isFree">Free 배지 노출</div>
-  <div>{{ state.result.classTitle }}</div>
-  <div v-if="state.result.exerciseModeCode != '04'">
-    <span>{{ state.result.lectureName }}</span>
-    <span>{{ getEnumData("classWorkoutCategoryCode", state.result.classWorkoutCategoryCode) }}</span>
-    <span>{{ state.result.classLevelCode }}</span>
-  </div>
-  <div v-if="state.result.exerciseModeCode != '04'">
-    <div>{{ state.result.musclePoint }}</div>
-    <div>{{ state.result.distence }}</div>
-    <div>{{ state.result.exerciseTime }}</div>
-    <div>{{ state.result.calories }}</div>
-  </div>
-  <div v-else>
-    <div>{{ state.result.distence }}</div>
-    <div>{{ state.result.exerciseTime }}</div>
-    <div>{{ state.result.calories }}</div>
-    <div>{{ state.result.avgSpeed }}</div>
-  </div>
+  <recordShare01Vue v-if="state.result.exerciseModeCode != '04'" :result="state.result"></recordShare01Vue>
+  <recordShare02Vue v-else :result="state.result"></recordShare02Vue>
   <button @click="sendCaptureImage">Image 전송</button>
 </template>
 
 <script>
 import { watchEffect, reactive, getCurrentInstance, onBeforeMount } from "vue";
-import functionComponent from "@/components/functionComponent.vue"
+import recordShare01Vue from './record-share01.vue';
+import recordShare02Vue from './record-share02.vue';
+
 
 export default {
   components: {
-    functionComponent,
+    recordShare01Vue,
+    recordShare02Vue
   },
   setup () {
     const { proxy } = getCurrentInstance();
@@ -53,7 +35,6 @@ export default {
       }
     })
 
-    // TODO - Native App 테스트 완료 시 onBeforeMount 삭제 후 functionComponent 내 주석 해제
     onBeforeMount(() => {
       let result = {
         date: window.mainData.date,

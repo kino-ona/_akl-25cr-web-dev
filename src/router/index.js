@@ -6,38 +6,6 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/record-share-light',
-    name: 'record-share-light',
-    component: () => import('@/views/share/class_exercise_history/record-share01.vue')
-  },
-  {
-    path: '/record-share',
-    name: 'record-share',
-    component: () => import('@/views/share/class_exercise_history/record-share02.vue')
-  },
-  {
-    path: '/share-template',
-    name: 'share-template',
-    component: () => import('@/views/share/get_icon/share-template.vue')
-  },
-  {
-    path: '/exercise-share',
-    name: 'exercise-share',
-    component: () => import('@/views/share/my_exercise_history/exercise-share.vue')
-  },
-  {
-    path: '/exercise-stats',
-    name: 'exercise-stats',
-    component: () => import('@/views/share/statistics/exercise-stats.vue')
-  },
-    
-  // 내가 만든 페이지
-  {
     path: "/share/loading",
     name: "Loading",
     component: () => import("@/views/share/loading/index.vue"),

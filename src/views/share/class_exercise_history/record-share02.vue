@@ -4,18 +4,18 @@
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
-          <p class="header__text">2022년 1월 10일 오후 9:30</p>
+          <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
             <!-- Todo: 재방송일 때 띄우기 -->
-            <span v-show="false" class="badge-rerun">
+            <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
               <img src="@/assets/icons/icon-rerun.png" />
               재방송
             </span>
             <span class="base-badge">FREE</span>
           </div>
-          <h1 class="header__title">스피닝 크루 파이터</h1>
+          <h1 class="header__title">{{ this.result.classTitle }}</h1>
           <p class="header__text">
-            암웨이 강사님 | 스피닝 + EMS 초급
+            {{ this.result.lectureName }} | {{ getEnumData("classWorkoutCategoryCode", this.result.classWorkoutCategoryCode) }} {{ this.result.classLevelCode }}
           </p>
         </div>
 
@@ -31,7 +31,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">2,200.5</span>
+            <span class="text-40 font-weight-700">{{this.result.musclePoint}}</span>
             <span class="text-16 font-weight-600 ml-4">점</span>
           </div>
         </div>
@@ -44,7 +44,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">5.2</span>
+                <span class="text-20 font-weight-800 text-blue">{{ this.result.distence }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">km</span>
               </div>
             </div>
@@ -57,7 +57,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">02:23:45</span>
+                <span class="text-20 font-weight-800 text-blue">{{ this.result.exerciseTime }}</span>
               </div>
             </div>
           </li>
@@ -69,7 +69,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">2,645</span>
+                <span class="text-20 font-weight-800 text-blue">{{ this.result.calories }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">kcal</span>
               </div>
             </div>
@@ -82,6 +82,23 @@
 
 <script>
 export default {
+  props: ["result"],
+  setup () {
+    const { proxy } = getCurrentInstance();
+
+    const sendCaptureImage = () => {
+      proxy.$sendCaptureImage()
+    }
+
+    const getEnumData = (enumType, value) => {
+      return proxy.$getEnumData(enumType, value)
+    }
+
+    return {
+      sendCaptureImage,
+      getEnumData
+    }
+  }
 }
 </script>
 
