@@ -3,7 +3,7 @@
 export default function sendCaptureImage() {
     if(window.isMobile.any()) {
         if(window.isMobile.Android()) {
-            Android.sendCaptureImage(window.captureData);
+            AndroidBridge.sendCaptureImage(window.captureData);
         } else if(window.isMobile.iOS()) {
             return window.captureData;
         }
