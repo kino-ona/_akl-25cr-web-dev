@@ -3,64 +3,65 @@
   <section class="share-template">
     <div class="container">
       <header class="share-template__header">
-        <h1 class="header__title">{{getEnumData("iconCodeTitle", state.result.iconCode)}}</h1>
-        <img class="logo" :src="state.result.image" alt="로고" />
+        <h1 class="header__title">{{this.getEnumData("iconCodeTitle", this.result.iconCode)}}</h1>
+        <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
 
       <div class="">
         <figure class="share-template__img">
-          <img src="@/assets/imgs/dummy-musclepin.png" alt="마크" />
+          <img :src="this.result.image" alt="마크" />
         </figure>
 
         <p class="share-template__text">
-          {{ state.result.celebrityMessage }}
+          {{ this.result.celebrityMessage }}
         </p>
         <p class="share-template__text02">
-          {{ state.result.title }}
+          {{ this.result.title }}
         </p>
       </div>
     </div>
-    <button @click="sendCaptureImage">Image 전송</button>
+    <button @click="this.sendCaptureImage()">Image 전송</button>
   </section>
 </template>
 
 <script>
-import { watchEffect, reactive, getCurrentInstance, onBeforeMount } from "vue";
-
 export default {
-  setup () {
-    const { proxy } = getCurrentInstance();
-    const state = reactive({
+  data(){
+    return {
       result: {
         image: "",
         iconCode: "", // 01: 배지 or 02: 머슬핀 or 03: 미션
         celebrityMessage: "",
         title: ""
       }
-    })
-
-    onBeforeMount(() => {
-      let result = {
-        image: window.mainData.image,
-        iconCode: window.mainData.iconCode, // 01: 배지 or 02: 머슬핀 or 03: 미션
-        celebrityMessage: window.mainData.celebrityMessage,
-        title: window.mainData.title
-      }
-      state.result = result
-    })
-
-    watchEffect(() => {
-      proxy.$windowCapture()
-      console.log("데이터 변경 체크 : ", state.result)
-    })
-
-    const sendCaptureImage = () => {
-      proxy.$sendCaptureImage()
     }
+  },
+  created(){
+    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
+    let result = {
+      image: mainData.image,
+      iconCode: mainData.iconCode, // 01: 배지 or 02: 머슬핀 or 03: 미션
+      celebrityMessage: mainData.celebrityMessage,
+      title: mainData.title
+    }
+    this.result = result
+  },
 
-    return {
-      sendCaptureImage,
-      state
+  // watch: {
+  //   // 질문이 변경될 때 마다 이 기능이 실행됩니다.
+  //   result: function () {
+  //     // TODO $windowCapture이거 실행되는지 체크
+  //     this.$windowCapture();
+  //     console.log("데이터 변경 체크 : ", this.result);
+  //   }
+  // },
+
+  methods : {
+    sendCaptureImage() {
+      this.$sendCaptureImage()
+    },
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
     }
   }
 }

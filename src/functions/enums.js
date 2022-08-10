@@ -42,6 +42,12 @@ const term = {
     "M": "월간"
 }
 
+const termType = {
+    "D": "일별",
+    "W": "주별",
+    "M": "월별"
+}
+
 const iconCodeTitle = {
     "01": "배지 획득",
     "02": "머슬핀 달성",
@@ -57,7 +63,8 @@ export default function getEnumData(enumType, value) {
         "iconCode": iconCode,
         "iconCodeTitle": iconCodeTitle,
         "exeType": exeType,
-        "term": term
+        "term": term,
+        "termType": termType
     }
     if (allEnums[enumType][value]){
         return allEnums[enumType][value]

@@ -66,26 +66,20 @@
         </ul>
       </div>
     </div>
+    <button @click="this.sendCaptureImage()">Image 전송</button>
   </div>
 </template>
 
 <script>
 export default {
   props: ["result"],
-  setup () {
-    const { proxy } = getCurrentInstance();
 
-    const sendCaptureImage = () => {
-      proxy.$sendCaptureImage()
-    }
-
-    const getEnumData = (enumType, value) => {
-      return proxy.$getEnumData(enumType, value)
-    }
-
-    return {
-      sendCaptureImage,
-      getEnumData
+  methods : {
+    sendCaptureImage() {
+      this.$sendCaptureImage()
+    },
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
     }
   }
 }

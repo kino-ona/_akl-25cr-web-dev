@@ -2,7 +2,7 @@
   <section class="exercise-share">
     <div class="container">
       <header class="exercise-share__header">
-        <h2 class="header__title">{{ state.result.date }}</h2>
+        <h2 class="header__title">{{ this.result.date }}</h2>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
 
@@ -13,7 +13,7 @@
             <span>총 머슬 포인트</span>
           </h1>
           <div class="exercise-share__point">
-            <span class="point__value">{{ state.result.totMusclePoint }}</span>
+            <span class="point__value">{{ this.result.totMusclePoint }}</span>
             <span class="point__unit">점</span>
           </div>
 
@@ -22,7 +22,7 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 머슬 포인트</h2>
                 <div class="panel__point text-primary">
-                  <span class="point__value">{{ state.result.maxMusclePoint }}</span>
+                  <span class="point__value">{{ this.result.maxMusclePoint }}</span>
                   <span class="point__unit">점</span>
                 </div>
               </div>
@@ -31,14 +31,14 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">{{ state.result.maxRpm }}</span>
+                  <span class="point__value">{{ this.result.maxRpm }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
               <div class="record__panel">
                 <h2 class="panel__title">평균 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">{{ state.result.avgRpm }}</span>
+                  <span class="point__value">{{ this.result.avgRpm }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">{{ state.result.totCalories }}</span>
+                  <span class="text-20 font-weight-800">{{ this.result.totCalories }}</span>
                   <span class="text-14 font-weight-800 ml-4">kcal</span>
                 </div>
               </div>
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">{{ state.result.totDistance }}</span>
+                  <span class="text-20 font-weight-800">{{ this.result.totDistance }}</span>
                   <span class="text-14 font-weight-800 ml-4">km/h</span>
                 </div>
               </div>
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">{{ state.result.totExerciseTime }}</span>
+                  <span class="text-20 font-weight-800">{{ this.result.totExerciseTime }}</span>
                 </div>
               </div>
             </li>
@@ -91,11 +91,9 @@
             합산 운동 이력입니다.
           </p>
         </section>
-        
-        <!--    TODO 아래 내용은 어떤 거지...?    -->
         <section class="exercise-share__section">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <div v-if="false" class="exercise-share__empty-data">
+          <div v-if="!this.result.recentlyVod && !this.result.recentlyLive" class="exercise-share__empty-data">
             클럽타올라 기록이 없습니다.
           </div>
           <ul v-else class="exercise-share__record-box list-style-none">
@@ -104,12 +102,12 @@
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-live.png" class="w-34" />
                   <div class="line-height-1">
-                    <h3 class="detail__title">스피닝 크루 파이터</h3>
-                    <span class="detail__text">암웨이 강사님</span>
+                    <h3 class="detail__title">{{this.result.recentlyVod.classNm}}</h3>
+                    <span class="detail__text">{{this.result.recentlyVod.lectureName}}</span>
                   </div>
                 </div>
                 <div class="record__point">
-                  <span class="point__value">325</span>
+                  <span class="point__value">{{this.result.recentlyVod.calories}}</span>
                   <span class="point__unit">kcal</span>
                 </div>
               </div>
@@ -119,17 +117,17 @@
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-vod.svg" class="w-34" />
                   <div class="line-height-1">
-                    <h3 class="detail__title">스피닝 크루 파이터</h3>
-                    <span class="detail__text">암웨이 강사님</span>
+                    <h3 class="detail__title">{{this.result.recentlyLive.classNm}}</h3>
+                    <span class="detail__text">{{this.result.recentlyLive.lectureName}}</span>
                   </div>
                 </div>
                 <div class="record__point">
-                  <span class="point__value">100</span>
+                  <span class="point__value">{{this.result.recentlyLive.calories}}</span>
                   <span class="point__unit">kcal</span>
                 </div>
               </div>
             </li>
-            <li>
+            <li v-if="false">
               <div class="record__item">
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-light-mode.svg" class="w-34" />
@@ -145,7 +143,7 @@
             </li>
           </ul>
         </section>
-        <section class="exercise-share__section">
+        <section class="exercise-share__section" v-if="false">
           <h2 class="section__title">
             클럽타올라 배지
             <span>15</span>
@@ -168,17 +166,14 @@
         </section>
       </div>
     </div>
-    <button @click="sendCaptureImage">Image 전송</button>
+    <button @click="this.sendCaptureImage()">Image 전송</button>
   </section>
 </template>
 
 <script>
-import { watchEffect, reactive, getCurrentInstance, onBeforeMount } from "vue";
-
 export default {
-  setup () {
-    const { proxy } = getCurrentInstance();
-    const state = reactive({
+  data(){
+    return {
       result: {
         date: "",
         totMusclePoint: "",
@@ -188,46 +183,45 @@ export default {
         totCalories: "",
         totDistance: 0,
         totExerciseTime: "",
-        // recentlyVod:[],
-        // recentlyLive: [],
+        recentlyVod: "",
+        recentlyLive: "",
         // calDataInfoList: []
       }
-    })
-
-    onBeforeMount(() => {
-      let result = {
-        date: window.mainData.date,
-        totMusclePoint: window.mainData.totMusclePoint,
-        maxMusclePoint: window.mainData.maxMusclePoint,
-        maxRpm: window.mainData.maxRpm,
-        avgRpm: window.mainData.avgRpm,
-        totCalories: window.mainData.totCalories,
-        totDistance: window.mainData.totDistance,
-        totExerciseTime: window.mainData.totExerciseTime,
-        // recentlyVod: window.mainData.recentlyVod,
-        // recentlyLive: window.mainData.recentlyLive,
-        // calDataInfoList: window.mainData.calDataInfoList
-      }
-      state.result = result
-    })
-
-    watchEffect(() => {
-      proxy.$windowCapture()
-      console.log("데이터 변경 체크 : ", state.result)
-    })
-
-    const sendCaptureImage = () => {
-      proxy.$sendCaptureImage()
     }
-
-    const getEnumData = (enumType, value) => {
-      return proxy.$getEnumData(enumType, value)
+  },
+  created(){
+    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
+    console.log("mainData ::::::::::::::::::::: ", mainData);
+    let result = {
+      date: mainData.date,
+      totMusclePoint: mainData.totMusclePoint,
+      maxMusclePoint: mainData.maxMusclePoint,
+      maxRpm: mainData.maxRpm,
+      avgRpm: mainData.avgRpm,
+      totCalories: mainData.totCalories,
+      totDistance: mainData.totDistance,
+      totExerciseTime: mainData.totExerciseTime,
+      recentlyVod: mainData.recentlyVod,
+      recentlyLive: mainData.recentlyLive,
+      // calDataInfoList: mainData.calDataInfoList
     }
+    this.result = result
+  },
 
-    return {
-      sendCaptureImage,
-      getEnumData,
-      state
+  // watch: {
+  //   // 질문이 변경될 때 마다 이 기능이 실행됩니다.
+  //   result: function () {
+  //     // TODO $windowCapture이거 실행되는지 체크
+  //     this.$windowCapture();
+  //     console.log("데이터 변경 체크 : ", this.result);
+  //   }
+  // },
+  methods : {
+    sendCaptureImage() {
+      this.$sendCaptureImage()
+    },
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
     }
   }
 }

@@ -6,12 +6,11 @@
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
-            <!-- Todo: 재방송일 때 띄우기 -->
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
               <img src="@/assets/icons/icon-rerun.png" />
               재방송
             </span>
-            <span class="base-badge">FREE</span>
+            <span class="base-badge" v-if="this.result.isFree == true">FREE</span>
           </div>
           <h1 class="header__title">{{ this.result.classTitle }}</h1>
           <p class="header__text">
@@ -77,26 +76,20 @@
         </ul>
       </div>
     </div>
+    <button @click="this.sendCaptureImage()">Image 전송</button>
   </div>
 </template>
 
 <script>
 export default {
   props: ["result"],
-  setup () {
-    const { proxy } = getCurrentInstance();
 
-    const sendCaptureImage = () => {
-      proxy.$sendCaptureImage()
-    }
-
-    const getEnumData = (enumType, value) => {
-      return proxy.$getEnumData(enumType, value)
-    }
-
-    return {
-      sendCaptureImage,
-      getEnumData
+  methods : {
+    sendCaptureImage() {
+      this.$sendCaptureImage()
+    },
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
     }
   }
 }

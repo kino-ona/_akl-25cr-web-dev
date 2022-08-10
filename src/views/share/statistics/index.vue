@@ -3,10 +3,10 @@
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
-          <p class="header__text">2022년 1월 10일 오후 9:30</p>
-          <h2 class="header__title">일간 머슬 포인트</h2>
+          <p class="header__text">{{ this.result.date }}</p>
+          <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} &nbsp; {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
-            <span class="point__value">2,033</span>
+            <span class="point__value">{{ this.clickValue }}</span>
             <span class="point__unit">점</span>
           </div>
           <img class="logo" src="@/assets/logo.png" alt="로고" />
@@ -28,7 +28,7 @@
       </section>
 
       <section class="exercise-share__section">
-        <h2 class="section__title">최근 일별 머슬 포인트</h2>
+        <h2 class="section__title">최근 {{ this.getEnumData("termType", this.result.term) }} &nbsp; {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
         <ul class="exercise-share__record-box list-style-none">
           <li>
             <div class="record__item">
@@ -39,7 +39,7 @@
                 </div>
               </div>
               <div class="record__point text-blue">
-                <span class="point__value">1,000</span>
+                <span class="point__value">{{ this.result.avgData }}</span>
                 <span class="point__unit">점</span>
               </div>
             </div>
@@ -53,7 +53,7 @@
                 </div>
               </div>
               <div class="record__point text-blue">
-                <span class="point__value">2,033</span>
+                <span class="point__value">{{ this.result.maxData }}</span>
                 <span class="point__unit">점</span>
               </div>
             </div>
@@ -61,17 +61,8 @@
         </ul>
       </section>
     </div>
+    <button @click="this.sendCaptureImage()">Image 전송</button>
   </section>
-  <div>{{ state.result.date }}</div>
-  <div>{{ getEnumData("term", state.result.term) }} | {{ getEnumData("exeType", state.result.exeType) }} </div>
-  <div>{{ state.clickValue }}</div>
-  <span v-for="statistics in state.result.dataList" :key="statistics" @click="setClickValue(statistics.data)">
-    {{ statistics.data }} {{ statistics.date }} &nbsp;&nbsp;
-  </span>
-  <div>최근 일별 머슬 포인트</div>
-  <div>{{ state.result.avgData }}</div>
-  <div>{{ state.result.maxData }}</div>
-  <button @click="sendCaptureImage">Image 전송</button>
 </template>
 
 <script>
@@ -104,16 +95,16 @@ export default {
       clickValue: 100,
       chartData: {
         labels: [
-          ['1월', '6일'],
-          ['1월', '7일'],
-          ['1월', '8일'],
-          ['1월', '9일'],
-          ['1월', '10일'],
-          ['1월', '11일'],
-          ['1월', '12일'],
-          ['1월', '13일'],
-          ['1월', '14일'],
-          ['1월', '15일'],
+          // ['1월', '6일'],
+          // ['1월', '7일'],
+          // ['1월', '8일'],
+          // ['1월', '9일'],
+          // ['1월', '10일'],
+          // ['1월', '11일'],
+          // ['1월', '12일'],
+          // ['1월', '13일'],
+          // ['1월', '14일'],
+          // ['1월', '15일'],
         ],
         datasets: [
           {
@@ -121,28 +112,28 @@ export default {
             borderRadius: 6,
             borderSkipped: false,
             backgroundColor: [
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA16',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA16',
             ],
             data: [
-              1402,
-              1702,
-              1202,
-              2202,
-              2100,
-              1600,
-              1734,
-              2041,
-              1600,
-              2033,
+              // 1402,
+              // 1702,
+              // 1202,
+              // 2202,
+              // 2100,
+              // 1600,
+              // 1734,
+              // 2041,
+              // 1600,
+              // 2033,
             ]
           }
         ]
@@ -192,16 +183,16 @@ export default {
             // 하단 날짜
             ticks: {
               color: [
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA16',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA16',
               ],
               autoSkip: false,
               maxRotation: 0,
@@ -216,25 +207,58 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
+    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
     let result = {
-      date: window.mainData.date,
-      term: window.mainData.term,
-      exeType: window.mainData.exeType,
-      dataList: window.mainData.dataList,
-      avgData: window.mainData.avgData,
-      maxData: window.mainData.maxData
+      date: mainData.date,
+      term: mainData.term,
+      exeType: mainData.exeType,
+      dataList: mainData.dataList,
+      avgData: mainData.avgData,
+      maxData: mainData.maxData
     }
     this.result = result;
+    
+    // Label 만들기
+    let labels = []
+    let colors = []
+    let datas = []
+    for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
+      let exeData = this.result.dataList[exeIndex]
+      let dateData = exeData.date.split(" ")
+      
+      // 라벨 선정
+      labels.push(dateData)
+
+      // 색 선정
+      if(exeData.isSelected){
+        colors.push('#AEEA16');
+      } else {
+        colors.push('#AEEA164C');
+      }
+
+      // Data 선정
+      datas.push(exeData.data)
+    }
+
+    // Chart에 반영
+    this.chartData.labels = labels;
+    this.chartData.datasets[0].backgroundColor = colors;
+    this.chartData.datasets[0].data = datas;
+    this.chartOptions.scales.x.ticks.color = colors;
   },
 
-  watch: {
-    // 질문이 변경될 때 마다 이 기능이 실행됩니다.
-    result: function () {
-      // TODO $windowCapture이거 실행되는지 체크
-      this.$windowCapture();
-      console.log("데이터 변경 체크 : ", state.result);
+  mounted(){
   },
+
+  // watch: {
+  //   // 질문이 변경될 때 마다 이 기능이 실행됩니다.
+  //   result: function () {
+  //     // TODO $windowCapture이거 실행되는지 체크
+  //     this.$windowCapture();
+  //     console.log("데이터 변경 체크 : ", this.result);
+  //   }
+  // },
 
   methods: {
     sendCaptureImage(){
@@ -242,10 +266,10 @@ export default {
       this.$sendCaptureImage()
     },
     setClickValue(value){
-      state.clickValue = value
+      this.clickValue = value
     },
     getEnumData(enumType, value) {
-      return proxy.$getEnumData(enumType, value)
+      return this.$getEnumData(enumType, value)
     }
   }
 }
