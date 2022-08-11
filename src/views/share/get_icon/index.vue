@@ -20,7 +20,7 @@
         </p>
       </div>
     </div>
-    <button @click="this.sendCaptureImage()">Image 전송</button>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </section>
 </template>
 
@@ -33,7 +33,8 @@ export default {
         iconCode: "", // 01: 배지 or 02: 머슬핀 or 03: 미션
         celebrityMessage: "",
         title: ""
-      }
+      },
+      isMobile: window.isMobile.any()
     }
   },
   created(){
@@ -47,19 +48,14 @@ export default {
     this.result = result
   },
 
-  // watch: {
-  //   // 질문이 변경될 때 마다 이 기능이 실행됩니다.
-  //   result: function () {
-  //     // TODO $windowCapture이거 실행되는지 체크
-  //     this.$windowCapture();
-  //     console.log("데이터 변경 체크 : ", this.result);
-  //   }
-  // },
+  watch: {
+    result: function () {
+      this.$windowCapture();
+      console.log("데이터 변경 체크 : ", this.result);
+    }
+  },
 
   methods : {
-    sendCaptureImage() {
-      this.$sendCaptureImage()
-    },
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }

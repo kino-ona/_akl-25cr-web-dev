@@ -7,6 +7,9 @@ export default function sendCaptureImage() {
         } else if(window.isMobile.iOS()) {
             return window.captureData;
         }
+    } else {
+        console.log("SendCapture Image :::::::: ", window.captureData);
+        return window.captureData;  
     }
 }
 

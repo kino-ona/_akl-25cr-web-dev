@@ -61,7 +61,7 @@
         </ul>
       </section>
     </div>
-    <button @click="this.sendCaptureImage()">Image 전송</button>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </section>
 </template>
 
@@ -92,6 +92,7 @@ export default {
         avgData: 0,
         maxData: 0
       },
+      isMobile: window.isMobile.any(),
       clickValue: 100,
       chartData: {
         labels: [
@@ -251,20 +252,14 @@ export default {
   mounted(){
   },
 
-  // watch: {
-  //   // 질문이 변경될 때 마다 이 기능이 실행됩니다.
-  //   result: function () {
-  //     // TODO $windowCapture이거 실행되는지 체크
-  //     this.$windowCapture();
-  //     console.log("데이터 변경 체크 : ", this.result);
-  //   }
-  // },
+  watch: {
+    result: function () {
+      this.$windowCapture();
+      console.log("데이터 변경 체크 : ", this.result);
+    }
+  },
 
   methods: {
-    sendCaptureImage(){
-      // TODO $sendCaptureImage이거 실행되는지 체크
-      this.$sendCaptureImage()
-    },
     setClickValue(value){
       this.clickValue = value
     },

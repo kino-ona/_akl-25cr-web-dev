@@ -76,7 +76,7 @@
         </ul>
       </div>
     </div>
-    <button @click="this.sendCaptureImage()">Image 전송</button>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </div>
 </template>
 
@@ -84,10 +84,13 @@
 export default {
   props: ["result"],
 
+  data(){
+    return {
+      isMobile: window.isMobile.any()
+    }
+  },
+
   methods : {
-    sendCaptureImage() {
-      this.$sendCaptureImage()
-    },
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }
