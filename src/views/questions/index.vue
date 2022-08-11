@@ -2,12 +2,12 @@
   <section>
     <!-- TODO - 퍼블 나오면 <template>을 새롭게 제작해서 안에 값을 치환하는 식으로 제작하면 됨 -->
     <div>자주 묻는 질문</div>
-    <span v-for="cate in this.result.questionCateList" :key="cate" @click="this.selectCate(cate.dtlCd)">
-      <span v-if="cate.dtlCd == this.nowCateCode" style="color: rgb(174, 234, 22);">{{ cate.dtlCdNm }}</span>
+    <span v-for="cate in result.questionCateList" @click="selectCate(cate.dtlCd)">
+      <span v-if="cate.dtlCd == nowCateCode" style="color: rgb(174, 234, 22);">{{ cate.dtlCdNm }}</span>
       <span v-else>{{ cate.dtlCdNm }}</span> &nbsp;
     </span>
-    <div>
-      <div v-for="question in this.result.questionList" :key="question" @click="this.toggleQuestion(question)">
+    <div v-if="result.questionList">
+      <div v-for="question in result.questionList" @click="toggleQuestion(question)">
         <div>{{ question.askContents }}</div>
         <div>{{ question.createDatetime }}</div>
         <div :id="question.askId" v-if="question.isSelected">{{ question.ansContents }}</div>
@@ -25,23 +25,23 @@ export default {
         questionList: [],
         questionCateList: []
       },
-      nowCateCode: 1,
+      nowCateCode:"01" ,
       nowPage: 0,
       isBottom: false,
     }
   },
+
   created() {
-    console.log("??????????? : ", route.query.questionTypeCode)
     let params = {
-      questionTypeCode: route.query.questionTypeCode,
+      questionTypeCode: this.$route.query.questionTypeCode,
       pagingStart: 0
     }
-    getData(params)
-    window.addEventListener('scroll', handleNotificationListScroll)
+    this.getData(params)
+    window.addEventListener('scroll', this.handleNotificationListScroll())
   },
 
   destroyed() {
-    window.removeEventListener('scroll', handleNotificationListScroll)
+    window.removeEventListener('scroll', this.handleNotificationListScroll())
   },
 
   methods:{
@@ -78,10 +78,11 @@ export default {
     },
 
     getData(params) {
-      proxy.$http.post("guest/questions?questionTypeCode=" + params.questionTypeCode + "&pagingStart=" + params.pagingStart)
+      let _this = this;
+      this.$http.post("guest/questions?questionTypeCode=" + params.questionTypeCode + "&pagingStart=" + params.pagingStart)
           .then((response) => {
-            this.result.questionList = this.result.questionList.concat(response.data.result.questionList);
-            this.result.questionCateList = response.data.result.questionCateList;
+            _this.result.questionList = _this.result.questionList.concat(response.data.result.questionList);
+            _this.result.questionCateList = response.data.result.questionCateList;
           })
           .catch((error) => {
             console.log("Error Check >>>>>>>>>> ", error);

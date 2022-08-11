@@ -3,14 +3,14 @@
     <!-- TODO - 퍼블 나오면 <template>을 새롭게 제작해서 안에 값을 치환하는 식으로 제작하면 됨 -->
     <div>이용 약관 상세</div>
     <div>
-      {{ this.result.termsTitle }}
+      {{ result.termsTitle }}
       <span>
-        <select v-model="this.nowVersion">
-            <option v-for="version in this.versionList" :key="version" selected>{{ version }}</option>
+        <select v-model="nowVersion">
+            <option v-for="version in versionList" selected>{{ version }}</option>
         </select>
       </span>
     </div>
-    <div>{{ this.result.termsContents }}</div>
+    <div>{{ result.termsContents }}</div>
   </section>
 </template>
 

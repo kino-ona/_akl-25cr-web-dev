@@ -3,7 +3,7 @@
     <div>공지사항</div>
 
     <!-- TOP -->
-    <div v-for="notice in this.result.topList" :key="notice" @click="toggleQuestion(notice)">
+    <div v-for="notice in this.result.topList" @click="toggleQuestion(notice)">
       <div>############### {{ notice.notiTitle }} ###############</div>
       <div>
         <span> {{ notice.notiDatatime }} </span> |
@@ -14,7 +14,7 @@
     </div>
 
     <!-- SUB -->
-    <div v-for="notice in this.result.noticeList" :key="notice" @click="toggleQuestion(notice)">
+    <div v-for="notice in this.result.noticeList" @click="toggleQuestion(notice)">
       <div>{{ notice.notiTitle }}</div>
       <div>
         <span>{{ notice.notiDatatime }} </span> |
@@ -43,11 +43,11 @@ export default {
       "pagingStart": 0
     }
     this.getData(params)
-    window.addEventListener('scroll', handleNotificationListScroll)
+    window.addEventListener('scroll', this.handleNotificationListScroll())
   },
 
   destroyed() {
-    window.removeEventListener('scroll', handleNotificationListScroll)
+    window.removeEventListener('scroll', this.handleNotificationListScroll())
   },
 
   watch: {
