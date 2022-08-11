@@ -1,0 +1,21 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - echo start branch
+      - echo start [Production branch]
+      - echo Insatlling NPM Packages and wget Enviorment File
+      - npm install -g yarn
+  pre_build:
+    commands:
+      - yarn install
+  build:
+    commands:
+      - echo yarn build start `date`
+      - yarn build:prod
+  post_build:
+    commands:
+      - echo Copy Web View Build File
+      - aws s3 cp --recursive dist/ s3://25cr.amway.co.kr
+      - echo Build completed on `date`
