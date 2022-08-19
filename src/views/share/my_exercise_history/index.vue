@@ -212,6 +212,13 @@ export default {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }
+  },
+
+  watch: {
+    result: function () {
+      this.$windowCapture();
+      console.log("데이터 변경 체크 : ", this.result);
+    }
   }
 }
 </script>
