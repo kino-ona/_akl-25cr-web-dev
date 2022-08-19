@@ -45,7 +45,7 @@ export default {
 
     // 페이지 처음 접근하는 거면 제일 최신 약관이 나오도록 설정
     newestVersion() {
-      if (this.nowVersion == ""){
+      if (!this.nowVersion){
         for(var val=0; val < this.versionList.length; val++){
           if (this.versionList[val] > this.nowVersion){
             this.nowVersion = this.versionList[val]
@@ -57,16 +57,16 @@ export default {
     // API 서버로부터 데이터 요청
     getData(params) {
       console.log("요청 URL : ", "front/getTermsDetail?termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
+      let _this = this;
       this.$http.post("front/getTermsDetail?termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
         .then((response) => {
-          this.result = response.data.result[0];
-          this.versionList = this.result.versionList.split(',');
-          this.newestVersion();
+          _this.result = response.data.result[0];
+          _this.versionList = _this.result.versionList.split(',');
+          _this.newestVersion();
         })
         .catch((error) => {
             console.log(error);
         })
-        console.log("nowVersion : ", this.nowVersion)
     }
   }
 }

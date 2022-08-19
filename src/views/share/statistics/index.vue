@@ -33,7 +33,7 @@
           <li>
             <div class="record__item">
               <div class="record__detail">
-                <img src="@/assets/icons/icon-avg.svg" class="w-20" />
+                <img src="@/assets/icons/icon-avg.svg" class="w-20" alt="클럽타올라 아이콘"/>
                 <div class="line-height-1">
                   <h3 class="detail__title">평균</h3>
                 </div>
@@ -47,7 +47,7 @@
           <li>
             <div class="record__item">
               <div class="record__detail">
-                <img src="@/assets/icons/icon-best.svg" class="w-20" />
+                <img src="@/assets/icons/icon-best.svg" class="w-20" alt="최대 머슬포인트 아이콘"/>
                 <div class="line-height-1">
                   <h3 class="detail__title">최고</h3>
                 </div>
@@ -209,16 +209,9 @@ export default {
   },
 
   created() {
-    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
-    let result = {
-      date: mainData.date,
-      term: mainData.term,
-      exeType: mainData.exeType,
-      dataList: mainData.dataList,
-      avgData: mainData.avgData,
-      maxData: mainData.maxData
-    }
-    this.result = result;
+    // 기본데이터 설정
+    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    console.log("mainData ::::::::::::::::::::: ", this.result);
     
     // Label 만들기
     let labels = []
@@ -260,9 +253,6 @@ export default {
   },
 
   methods: {
-    setClickValue(value){
-      this.clickValue = value
-    },
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }

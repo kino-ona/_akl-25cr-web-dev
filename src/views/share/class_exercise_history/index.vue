@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO - 퍼블 나오면 <template>을 새롭게 제작해서 안에 값을 치환하는 식으로 제작하면 됨 -->
   <recordShare01Vue v-if="this.result.exerciseModeCode != '04'" :result="this.result"></recordShare01Vue>
   <recordShare02Vue v-else :result="this.result"></recordShare02Vue>
 </template>
@@ -33,22 +32,9 @@ export default {
     }
   },
   created(){
-    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
-    let result = {
-      date: mainData.date,
-      classTitle: mainData.classTitle,
-      lectureName: mainData.lectureName,
-      exerciseModeCode: mainData.exerciseModeCode, // 01: 라이브, 02: 재방송, 03: VOD, 04: 라이트모드
-      isFree: true, // 라이브, 재방송, 라이트모드는 모두 false가 Default
-      classWorkoutCategoryCode: mainData.classWorkoutCategoryCode, // 01: 스피닝, 02: EMS, 03: 스피닝+EMS
-      classLevelCode: mainData.classLevelCode,
-      musclePoint: mainData.musclePoint,
-      distence: mainData.distence,
-      exerciseTime: mainData.exerciseTime,
-      calories: mainData.calories,
-      avgSpeed: mainData.avgSpeed
-    }
-    this.result = result
+    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    this.result.isFree = true;
+    console.log("mainData ::::::::::::::::::::: ", this.result);
   },
 
   watch: {

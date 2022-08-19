@@ -9,7 +9,7 @@
       <div class="exercise-share__body">
         <section class="exercise-share__section">
           <h1 class="exercise-share__title">
-            <img src="@/assets/icons/icon-coin.svg" class="w-26" />
+            <img src="@/assets/icons/icon-coin.svg" class="w-26" alt="총 머슬 포인트 아이콘" />
             <span>총 머슬 포인트</span>
           </h1>
           <div class="exercise-share__point">
@@ -49,7 +49,7 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-fire.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-fire.svg" class="w-34 mr-10" alt="소모칼로리 아이콘"/>
                   <span class="text-16 font-weight-800">소모 칼로리</span>
                 </div>
 
@@ -62,7 +62,7 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-exercise-distance.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-exercise-distance.svg" class="w-34 mr-10" alt="운동 거리 아이콘" />
                   <span class="text-16 font-weight-800">운동 거리</span>
                 </div>
 
@@ -75,7 +75,7 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-exercise-time.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-exercise-time.svg" class="w-34 mr-10" alt="운동 시간 아이콘" />
                   <span class="text-16 font-weight-800">운동 시간</span>
                 </div>
 
@@ -100,7 +100,7 @@
             <li>
               <div class="record__item">
                 <div class="record__detail">
-                  <img src="@/assets/icons/icon-live.png" class="w-34" />
+                  <img src="@/assets/icons/icon-live.png" class="w-34" alt="라이브 아이콘" />
                   <div class="line-height-1">
                     <h3 class="detail__title">{{this.result.recentlyVod.classNm}}</h3>
                     <span class="detail__text">{{this.result.recentlyVod.lectureName}}</span>
@@ -115,7 +115,7 @@
             <li>
               <div class="record__item">
                 <div class="record__detail">
-                  <img src="@/assets/icons/icon-vod.svg" class="w-34" />
+                  <img src="@/assets/icons/icon-vod.svg" class="w-34" alt="VOD 아이콘" />
                   <div class="line-height-1">
                     <h3 class="detail__title">{{this.result.recentlyLive.classNm}}</h3>
                     <span class="detail__text">{{this.result.recentlyLive.lectureName}}</span>
@@ -130,7 +130,7 @@
             <li v-if="false">
               <div class="record__item">
                 <div class="record__detail">
-                  <img src="@/assets/icons/icon-light-mode.svg" class="w-34" />
+                  <img src="@/assets/icons/icon-light-mode.svg" class="w-34" alt="라이트모드 아이콘" />
                   <div class="line-height-1">
                     <h3 class="detail__title">라이트 모드</h3>
                   </div>
@@ -184,29 +184,14 @@ export default {
         totDistance: 0,
         totExerciseTime: "",
         recentlyVod: "",
-        recentlyLive: "",
-        // calDataInfoList: []
+        recentlyLive: ""
       },
       isMobile: window.isMobile.any()
     }
   },
   created(){
-    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
-    console.log("mainData ::::::::::::::::::::: ", mainData);
-    let result = {
-      date: mainData.date,
-      totMusclePoint: mainData.totMusclePoint,
-      maxMusclePoint: mainData.maxMusclePoint,
-      maxRpm: mainData.maxRpm,
-      avgRpm: mainData.avgRpm,
-      totCalories: mainData.totCalories,
-      totDistance: mainData.totDistance,
-      totExerciseTime: mainData.totExerciseTime,
-      recentlyVod: mainData.recentlyVod,
-      recentlyLive: mainData.recentlyLive,
-      // calDataInfoList: mainData.calDataInfoList
-    }
-    this.result = result
+    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    console.log("mainData ::::::::::::::::::::: ", this.result);
   },
   methods : {
     getEnumData(enumType, value) {

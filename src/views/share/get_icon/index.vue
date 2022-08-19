@@ -38,14 +38,8 @@ export default {
     }
   },
   created(){
-    let mainData = JSON.parse(sessionStorage.getItem("mainData"));
-    let result = {
-      image: mainData.image,
-      iconCode: mainData.iconCode, // 01: 배지 or 02: 머슬핀 or 03: 미션
-      celebrityMessage: mainData.celebrityMessage,
-      title: mainData.title
-    }
-    this.result = result
+    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    console.log("mainData ::::::::::::::::::::: ", this.result);
   },
 
   watch: {

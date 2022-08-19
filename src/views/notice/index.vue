@@ -78,10 +78,11 @@ export default {
     },
 
     getData(params) {
+      let _this = this;
       this.$http.post("guest/notice?pagingStart=" + params.pagingStart)
           .then((response) => {
-            this.result.topList = response.data.result.topList
-            this.result.noticeList = this.result.noticeList.concat(response.data.result.noticeList)
+            _this.result.topList = response.data.result.topList
+            _this.result.noticeList = _this.result.noticeList.concat(response.data.result.noticeList)
           })
           .catch((error) => {
             console.log(error);
