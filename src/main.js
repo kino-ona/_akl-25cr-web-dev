@@ -23,6 +23,7 @@ Vue.prototype.$windowCapture = windowCapture;
 window.sendCaptureImage = sendCaptureImage;
 window.setData = setData;
 window.getData = getData;
+window.windowCapture = windowCapture;
 
 new Vue({
   router,

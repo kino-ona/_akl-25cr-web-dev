@@ -93,7 +93,7 @@ export default {
         maxData: 0
       },
       isMobile: window.isMobile.any(),
-      clickValue: 100,
+      clickValue: 0,
       chartData: {
         labels: [
           // ['1월', '6일'],
@@ -227,6 +227,7 @@ export default {
       // 색 선정
       if(exeData.isSelected){
         colors.push('#AEEA16');
+        this.clickValue = exeData.data;
       } else {
         colors.push('#AEEA164C');
       }
@@ -240,9 +241,6 @@ export default {
     this.chartData.datasets[0].backgroundColor = colors;
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
-  },
-
-  mounted(){
   },
 
   watch: {
