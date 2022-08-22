@@ -1,28 +1,30 @@
 <template>
   <section>
     <div>공지사항</div>
-
-    <!-- TOP -->
-    <div v-for="notice in this.result.topList" @click="toggleQuestion(notice)">
-      <div>############### {{ notice.notiTitle }} ###############</div>
-      <div>
-        <span> {{ notice.notiDatatime }} </span> |
-        <span v-if="notice.notiType == 'N'">공지</span>
-        <span v-else-if="notice.notiType == 'E'">이벤트</span>
+    <section v-if="this.isNone">공지사항이 없습니다</section>
+    <section v-else>
+      <!-- TOP -->
+      <div v-for="notice in this.result.topList" @click="toggleQuestion(notice)">
+        <div>############### {{ notice.notiTitle }} ###############</div>
+        <div>
+          <span> {{ notice.notiDatatime }} </span> |
+          <span v-if="notice.notiType == 'N'">공지</span>
+          <span v-else-if="notice.notiType == 'E'">이벤트</span>
+        </div>
+        <div :id="notice.notiId" v-if="notice.isSelected">{{ notice.contents }}</div>
       </div>
-      <div :id="notice.notiId" v-if="notice.isSelected">{{ notice.contents }}</div>
-    </div>
 
-    <!-- SUB -->
-    <div v-for="notice in this.result.noticeList" @click="toggleQuestion(notice)">
-      <div>{{ notice.notiTitle }}</div>
-      <div>
-        <span>{{ notice.notiDatatime }} </span> |
-        <span v-if="notice.notiType == 'N'">공지</span>
-        <span v-else-if="notice.notiType == 'E'">이벤트</span>
+      <!-- SUB -->
+      <div v-for="notice in this.result.noticeList" @click="toggleQuestion(notice)">
+        <div>{{ notice.notiTitle }}</div>
+        <div>
+          <span>{{ notice.notiDatatime }} </span> |
+          <span v-if="notice.notiType == 'N'">공지</span>
+          <span v-else-if="notice.notiType == 'E'">이벤트</span>
+        </div>
+        <div :id="notice.notiId" v-if="notice.isSelected">{{ notice.contents }}</div>
       </div>
-      <div :id="notice.notiId" v-if="notice.isSelected">{{ notice.contents }}</div>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -36,6 +38,7 @@ export default {
       },
       nowPage: 0,
       isBottom: false,
+      isNone: true
     }
   },
   created(){
@@ -83,6 +86,7 @@ export default {
           .then((response) => {
             _this.result.topList = response.data.result.topList
             _this.result.noticeList = _this.result.noticeList.concat(response.data.result.noticeList)
+            _this.isNone = (!_this.result.topList || !_this.result.topList)
           })
           .catch((error) => {
             console.log(error);
