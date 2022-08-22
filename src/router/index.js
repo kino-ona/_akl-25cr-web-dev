@@ -44,6 +44,16 @@ const routes = [
     path: '/notice',
     name: 'notice',
     component: () => import('@/views/notice.vue')
+  },
+  {
+    path: '/policy-list',
+    name: 'policy-list',
+    component: () => import('@/views/policy-list.vue')
+  },
+  {
+    path: '/policy-detail',
+    name: 'policy-detail',
+    component: () => import('@/views/policy-detail.vue')
   }
 ]
 
