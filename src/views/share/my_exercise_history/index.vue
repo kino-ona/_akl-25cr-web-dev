@@ -97,7 +97,7 @@
             클럽타올라 기록이 없습니다.
           </div>
           <ul v-else class="exercise-share__record-box list-style-none">
-            <li>
+            <li v-if="this.result.recentlyVod.classNm">
               <div class="record__item">
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-live.png" class="w-34" alt="라이브 아이콘" />
@@ -112,7 +112,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li v-if="this.result.recentlyLive.classNm">
               <div class="record__item">
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-vod.svg" class="w-34" alt="VOD 아이콘" />
@@ -127,6 +127,7 @@
                 </div>
               </div>
             </li>
+            <!-- TODO 추후 라이트모드에 대한 데이터를 API에서 내려주게 될 경우 추가 -->
             <li v-if="false">
               <div class="record__item">
                 <div class="record__detail">
