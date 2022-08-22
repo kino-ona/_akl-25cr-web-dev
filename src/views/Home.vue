@@ -19,6 +19,9 @@
       <li>
         <router-link to="/faq">자주하는 질문</router-link>
       </li>
+      <li>
+        <router-link to="/notice">공지사항</router-link>
+      </li>
     </ul>
   </div>
 </template>

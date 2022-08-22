@@ -31,14 +31,16 @@
                 @leave="leave"
               >
                 <div class="faq__answer" v-show="selectedMenu === index" :key="index">
-                  <div class="answer__cont">
-                    <p class="answer__cont-text mb-0">
-                      따로 또 같이, 친구와 가족이 함께 스피닝으로
-                      건강자산을 만들 수 있는 매일 5km 스피닝 미션이
-                      1월에도 진행됩니다. 하루 10~15분 부담 없는
-                      라이딩으로 당신의 평생 건강에 플러스가 될 건강
-                      루틴을 함께 만들어가보세요!
-                    </p>
+                  <div class="faq__answer-wrap">
+                    <div class="answer__cont">
+                      <p class="answer__cont-text mb-0">
+                        따로 또 같이, 친구와 가족이 함께 스피닝으로
+                        건강자산을 만들 수 있는 매일 5km 스피닝 미션이
+                        1월에도 진행됩니다. 하루 10~15분 부담 없는
+                        라이딩으로 당신의 평생 건강에 플러스가 될 건강
+                        루틴을 함께 만들어가보세요!
+                      </p>
+                    </div>
                   </div>
                 </div>
               </transition>
@@ -65,14 +67,16 @@
                 @leave="leave"
               >
                 <div class="faq__answer" v-show="selectedMenu === index" :key="index">
-                  <div class="answer__cont">
-                    <p class="answer__cont-text mb-0">
-                      따로 또 같이, 친구와 가족이 함께 스피닝으로
-                      건강자산을 만들 수 있는 매일 5km 스피닝 미션이
-                      1월에도 진행됩니다. 하루 10~15분 부담 없는
-                      라이딩으로 당신의 평생 건강에 플러스가 될 건강
-                      루틴을 함께 만들어가보세요!
-                    </p>
+                  <div class="faq__answer-wrap">
+                    <div class="answer__cont">
+                      <p class="answer__cont-text mb-0">
+                        따로 또 같이, 친구와 가족이 함께 스피닝으로
+                        건강자산을 만들 수 있는 매일 5km 스피닝 미션이
+                        1월에도 진행됩니다. 하루 10~15분 부담 없는
+                        라이딩으로 당신의 평생 건강에 플러스가 될 건강
+                        루틴을 함께 만들어가보세요!
+                      </p>
+                    </div>
                   </div>
                 </div>
               </transition>
@@ -99,14 +103,16 @@
                 @leave="leave"
               >
                 <div class="faq__answer" v-show="selectedMenu === index" :key="index">
-                  <div class="answer__cont">
-                    <p class="answer__cont-text mb-0">
-                      따로 또 같이, 친구와 가족이 함께 스피닝으로
-                      건강자산을 만들 수 있는 매일 5km 스피닝 미션이
-                      1월에도 진행됩니다. 하루 10~15분 부담 없는
-                      라이딩으로 당신의 평생 건강에 플러스가 될 건강
-                      루틴을 함께 만들어가보세요!
-                    </p>
+                  <div class="faq__answer-wrap">
+                    <div class="answer__cont">
+                      <p class="answer__cont-text mb-0">
+                        따로 또 같이, 친구와 가족이 함께 스피닝으로
+                        건강자산을 만들 수 있는 매일 5km 스피닝 미션이
+                        1월에도 진행됩니다. 하루 10~15분 부담 없는
+                        라이딩으로 당신의 평생 건강에 플러스가 될 건강
+                        루틴을 함께 만들어가보세요!
+                      </p>
+                    </div>
                   </div>
                 </div>
               </transition>
@@ -133,14 +139,16 @@
                 @leave="leave"
               >
                 <div class="faq__answer" v-show="selectedMenu === index" :key="index">
-                  <div class="answer__cont">
-                    <p class="answer__cont-text mb-0">
-                      따로 또 같이, 친구와 가족이 함께 스피닝으로
-                      건강자산을 만들 수 있는 매일 5km 스피닝 미션이
-                      1월에도 진행됩니다. 하루 10~15분 부담 없는
-                      라이딩으로 당신의 평생 건강에 플러스가 될 건강
-                      루틴을 함께 만들어가보세요!
-                    </p>
+                  <div class="faq__answer-wrap">
+                    <div class="answer__cont">
+                      <p class="answer__cont-text mb-0">
+                        따로 또 같이, 친구와 가족이 함께 스피닝으로
+                        건강자산을 만들 수 있는 매일 5km 스피닝 미션이
+                        1월에도 진행됩니다. 하루 10~15분 부담 없는
+                        라이딩으로 당신의 평생 건강에 플러스가 될 건강
+                        루틴을 함께 만들어가보세요!
+                      </p>
+                    </div>
                   </div>
                 </div>
               </transition>
@@ -252,8 +260,10 @@
     transition: 0.3s ease-out;
     overflow: hidden;
   }
-  .answer__cont {
+  .faq__answer-wrap {
     padding-top: 20px;
+  }
+  .answer__cont {
     max-height: 320px;
     overflow-y: scroll;
   }
