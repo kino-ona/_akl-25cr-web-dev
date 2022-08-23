@@ -23,6 +23,18 @@
       <li>
         <router-link to="/exercise-stats">운동 통계</router-link>
       </li>
+      <li>
+        <router-link to="/faq">자주하는 질문</router-link>
+      </li>
+      <li>
+        <router-link to="/notice">공지사항</router-link>
+      </li>
+      <li>
+        <router-link to="/policy-list">이용약관</router-link>
+      </li>
+      <li>
+        <router-link to="/policy-detail">이용약관상세</router-link>
+      </li>
     </ul>
   </div>
 </template>

@@ -8,6 +8,9 @@
   padding: 0 5px;
   max-width: 375px;
   margin: 0 auto;
+  &.p14 {
+    padding: 0 14px;
+  }
 }
 
 #app {
@@ -102,3 +105,34 @@
   color: $gray02;
   margin-top: 12px;
 }
+
+/* nodata scss */
+.no-data {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .no-data__wrap {
+    text-align: center;
+  }
+  .empty__icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-empty {
+    width: 88px;
+    height: 88px;
+    display: block;
+    background: url("~@/assets/icons/icon-empty.png") no-repeat center;
+    background-size: cover;
+  }
+  .empty__text-wrap {
+    padding-top: 10px;
+  }
+  .empty-text {
+    font-size: 18px;
+    color: #9ea2ab;
+  }
+}
+
