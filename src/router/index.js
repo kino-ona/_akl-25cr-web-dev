@@ -33,35 +33,22 @@ const routes = [
   {
     path: "/terms",
     name: "Terms",
-    component: () => import("@/views/terms/index.vue"),
+    component: () => import("@/views/terms/detail-index.vue"),
+  },
+  {
+    path: "/terms/list",
+    name: "TermsList",
+    component: () => import("@/views/terms/list-index.vue"),
   },
   {
     path: "/notice",
     name: "Notice",
-    component: () => import("@/views/questions"),
+    component: () => import("@/views/notice/index.vue"),
   },
   {
     path: "/questions",
     name: "Questions",
     component: () => import("@/views/questions/index.vue"),
-  },
-
-
-  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  {
-    path: '/notice',
-    name: 'notice',
-    component: () => import('@/views/notice.vue')
-  },
-  {
-    path: '/policy-list',
-    name: 'policy-list',
-    component: () => import('@/views/policy-list.vue')
-  },
-  {
-    path: '/policy-detail/:pid',
-    name: 'policy-detail',
-    component: () => import('@/views/policy-detail.vue')
   }
 ]
 
