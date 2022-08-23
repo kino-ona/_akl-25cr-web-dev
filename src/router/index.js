@@ -31,7 +31,6 @@ const routes = [
     component: () => import("@/views/share/statistics/index.vue"),
   },
   {
-<<<<<<< HEAD
     path: "/terms",
     name: "Terms",
     component: () => import("@/views/terms/index.vue"),
@@ -45,7 +44,11 @@ const routes = [
     path: "/questions",
     name: "Questions",
     component: () => import("@/views/questions/index.vue"),
-=======
+  },
+
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  {
     path: '/exercise-stats',
     name: 'exercise-stats',
     component: () => import('@/views/exercise-stats.vue')
@@ -69,7 +72,6 @@ const routes = [
     path: '/policy-detail/:pid',
     name: 'policy-detail',
     component: () => import('@/views/policy-detail.vue')
->>>>>>> publishing
   }
 ]
 
