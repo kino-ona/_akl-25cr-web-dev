@@ -47,7 +47,7 @@
       <div class="container p14">
         <div class="notice__accordion-wrap">
           <ul class="notice__list list-style-none">
-            <li class="notice__cont" v-for="index in 20" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(index)">
+            <li class="notice__cont" v-for="index in 10" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(index)">
               <div class="notice__question">
                 <div class="notice__question-wrap">
                   <p class="notice__title mb-0">12월 24일 앱 업데이트 안내</p>
@@ -152,7 +152,7 @@ export default {
   align-items: flex-start;
 }
 .notice-fixed {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
