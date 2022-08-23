@@ -51,7 +51,7 @@ const routes = [
     component: () => import('@/views/policy-list.vue')
   },
   {
-    path: '/policy-detail',
+    path: '/policy-detail/:pid',
     name: 'policy-detail',
     component: () => import('@/views/policy-detail.vue')
   }
