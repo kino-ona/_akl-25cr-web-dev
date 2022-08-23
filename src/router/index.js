@@ -38,7 +38,7 @@ const routes = [
   {
     path: "/notice",
     name: "Notice",
-    component: () => import("@/views/notice/index.vue"),
+    component: () => import("@/views/questions"),
   },
   {
     path: "/questions",
@@ -48,16 +48,6 @@ const routes = [
 
 
   // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  {
-    path: '/exercise-stats',
-    name: 'exercise-stats',
-    component: () => import('@/views/exercise-stats.vue')
-  },
-  {
-    path: '/faq',
-    name: 'faq',
-    component: () => import('@/views/faq.vue')
-  },
   {
     path: '/notice',
     name: 'notice',
