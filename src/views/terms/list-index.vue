@@ -108,3 +108,20 @@ export default {
   }
 }
 </style>
+
+
+{
+  "versionList": "1.0,1.5,1.7",
+  "termsId": "1",
+  "termsType": "string",
+  "termsTitle": "string",
+  "termsContents": "string",
+  "necessaryYn": "string",
+  "applyStartDate": "2022-08-23T07:59:12.765Z",
+  "applyEndDate": "2022-08-23T07:59:12.765Z",
+  "termsVersion": "string",
+  "modId": "string",
+  "modDatetime": "string",
+  "createId": "string",
+  "createDatetime": "string"
+}
