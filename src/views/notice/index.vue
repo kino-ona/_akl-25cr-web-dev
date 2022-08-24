@@ -11,7 +11,7 @@
                   <div class="notice__question-wrap">
                     <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
-                    <div class="notice__text-wrap new">
+                    <div class="notice__text-wrap "> <!--new-->
                       <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
@@ -29,7 +29,7 @@
                 >
                   <div class="notice__answer" v-show="selectedMenu === index" :key="index">
                     <div class="answer__cont">
-<!--                      <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>-->
+                      <!--                      <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>-->
                       <p class="answer__cont-text mb-0">
                         {{ notice.contents }}
                       </p>
@@ -44,11 +44,11 @@
       <div class="container p14">
         <div class="notice__accordion-wrap">
           <ul class="notice__list list-style-none">
-            <li class="notice__cont" v-for="(notice, index) in this.result.noticeList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(index)">
+            <li class="notice__cont" v-for="(notice, index) in this.result.noticeList" :class="{open: handleMenuNormal === index}" :key="index" @click="handleMenuNormal(index)">
               <div class="notice__question">
                 <div class="notice__question-wrap">
                   <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
-                  <div class="notice__text-wrap">
+                  <div class="notice__text-wrap" :class="{'new':  noticeSize - maxSize > index  }">
                     <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                     <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                     <span class="notice-bar"></span>
@@ -64,9 +64,9 @@
                   @before-leave="beforeLeave"
                   @leave="leave"
               >
-                <div class="notice__answer" v-show="selectedMenu === index" :key="index">
+                <div class="notice__answer" v-show="selectedMenuNormal === index" :key="index">
                   <div class="answer__cont">
-<!--                    <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>-->
+                    <!--                    <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>-->
                     <p class="answer__cont-text mb-0">
                       {{ notice.contents }}
                     </p>
@@ -104,7 +104,10 @@ export default {
       isNone: true,
       currentTab: 0,
       selectedMenu: 0,
+      selectedMenuNormal: 0,
       isNotice: true,
+      maxSize: this.$route.query.maxSize,
+      noticeSize: 0,
     }
   },
   created(){
@@ -128,10 +131,19 @@ export default {
   },
   methods: {
     handleMenu(index) {
+      this.selectedMenuNormal = null;
       if(this.selectedMenu === index) {
         this.selectedMenu = null;
       } else {
         this.selectedMenu = index;
+      }
+    },
+    handleMenuNormal (index) {
+      this.selectedMenu = null;
+      if(this.selectedMenuNormal === index) {
+        this.selectedMenuNormal = null;
+      } else {
+        this.selectedMenuNormal = index;
       }
     },
     beforeEnter(el) {
@@ -176,6 +188,7 @@ export default {
             console.log("Response Noti::::::::::::::::::", response.data.result.noticeList)
             _this.result.topList = response.data.result.topList
             _this.result.noticeList = _this.result.noticeList.concat(response.data.result.noticeList)
+            this.noticeSize =  response.data.result.noticeList.length;
             _this.isNone = (!_this.result.topList || !_this.result.topList)
           })
           .catch((error) => {
@@ -208,7 +221,7 @@ export default {
   align-items: flex-start;
 }
 .notice-fixed {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
