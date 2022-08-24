@@ -47,7 +47,7 @@
       <div class="container p14">
         <div class="notice__accordion-wrap">
           <ul class="notice__list list-style-none">
-            <li class="notice__cont" v-for="index in 10" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(index)">
+            <li class="notice__cont" v-for="index in 10" :class="{open: selectedMenuNormal === index}" :key="index" @click="handleMenuNormal(index)">
               <div class="notice__question">
                 <div class="notice__question-wrap">
                   <p class="notice__title mb-0">12월 24일 앱 업데이트 안내</p>
@@ -66,7 +66,7 @@
                 @before-leave="beforeLeave"
                 @leave="leave"
               >
-                <div class="notice__answer" v-show="selectedMenu === index" :key="index">
+                <div class="notice__answer" v-show="selectedMenuNormal === index" :key="index">
                   <div class="answer__cont">
                     <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>
                     <p class="answer__cont-text mb-0">
@@ -103,15 +103,25 @@ export default {
     return {
       currentTab: 0,
       selectedMenu: 0,
+      selectedMenuNormal: 0,
       isNotice: true,
     }
   },
   methods: {
     handleMenu(index) {
+      this.selectedMenuNormal = null;
       if(this.selectedMenu === index) {
         this.selectedMenu = null;
       } else {
         this.selectedMenu = index;
+      }
+    },
+    handleMenuNormal (index) {
+      this.selectedMenu = null;
+      if(this.selectedMenuNormal === index) {
+        this.selectedMenuNormal = null;
+      } else {
+        this.selectedMenuNormal = index;
       }
     },
     beforeEnter(el) {
