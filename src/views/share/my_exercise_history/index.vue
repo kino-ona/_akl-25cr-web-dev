@@ -7,7 +7,7 @@
       </header>
 
       <div class="exercise-share__body">
-        <section class="exercise-share__section">
+        <section v-if="(this.result.shareType != 3)" class="exercise-share__section">
           <h1 class="exercise-share__title">
             <img src="@/assets/icons/icon-coin.svg" class="w-26" alt="총 머슬 포인트 아이콘" />
             <span>총 머슬 포인트</span>
@@ -93,10 +93,7 @@
         </section>
         <section class="exercise-share__section">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <div v-if="!this.result.recentlyVod && !this.result.recentlyLive" class="exercise-share__empty-data">
-            클럽타올라 기록이 없습니다.
-          </div>
-          <ul v-else class="exercise-share__record-box list-style-none">
+          <ul  v-if="(this.result.shareType != 2)" class="exercise-share__record-box list-style-none">
             <li v-if="this.result.recentlyVod.classNm">
               <div class="record__item">
                 <div class="record__detail">
@@ -143,6 +140,9 @@
               </div>
             </li>
           </ul>
+          <div v-else class="exercise-share__empty-data">
+            클럽타올라 기록이 없습니다.
+          </div>
         </section>
         <section class="exercise-share__section" v-if="false">
           <h2 class="section__title">
@@ -177,17 +177,18 @@ export default {
     return {
       result: {
         date: "",
-        totMusclePoint: "",
-        maxMusclePoint: "",
-        maxRpm: "",
-        avgRpm: "",
-        totCalories: "",
+        totMusclePoint: 0,
+        maxMusclePoint: 0,
+        maxRpm: 0,
+        avgRpm: 0,
+        totCalories: 0,
         totDistance: 0,
         totExerciseTime: "",
         recentlyVod: "",
-        recentlyLive: ""
+        recentlyLive: "",
+
       },
-      isMobile: window.isMobile.any()
+      isMobile: window.isMobile.any(),
     }
   },
   created(){
