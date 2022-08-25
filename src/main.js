@@ -6,6 +6,7 @@ import isMobile from './functions/isMobile'
 import sendCaptureImage from "./functions/sendCaptureImage"
 import getEnumData from './functions/enums'
 import http from './functions/http'
+import getNoticeLastIndex from './functions/getNoticeLastIndex'
 import windowCapture from './functions/windowCapture'
 import setData from './functions/setData'
 import getData from './functions/getData'
@@ -24,6 +25,7 @@ window.sendCaptureImage = sendCaptureImage;
 window.setData = setData;
 window.getData = getData;
 window.windowCapture = windowCapture;
+window.getNoticeLastIndex = getNoticeLastIndex;
 
 new Vue({
   router,

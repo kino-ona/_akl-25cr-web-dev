@@ -243,13 +243,6 @@ export default {
     this.chartOptions.scales.x.ticks.color = colors;
   },
 
-  watch: {
-    result: function () {
-      this.$windowCapture();
-      console.log("데이터 변경 체크 : ", this.result);
-    }
-  },
-
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
