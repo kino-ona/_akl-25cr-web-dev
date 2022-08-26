@@ -6,12 +6,12 @@
         <div class="container p14">
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
-              <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(index)">
+              <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
                   <div class="notice__question-wrap">
                     <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
-                    <div class="notice__text-wrap "> <!--new-->
+                    <div class="notice__text-wrap ">
                       <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
@@ -44,11 +44,11 @@
       <div class="container p14">
         <div class="notice__accordion-wrap">
           <ul class="notice__list list-style-none">
-            <li class="notice__cont" v-for="(notice, index) in this.result.noticeList" :class="{open: handleMenuNormal === index}" :key="index" @click="handleMenuNormal(index)">
+            <li class="notice__cont" v-for="(notice, index) in this.result.noticeList" :class="{open: handleMenuNormal === index}" :key="index" @click="handleMenuNormal(notice.notiId, index)">
               <div class="notice__question">
                 <div class="notice__question-wrap">
                   <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
-                  <div class="notice__text-wrap" :class="{'new':  noticeSize - maxSize > index  }">
+                  <div class="notice__text-wrap" :class="{'new':  notice.isNew  }">
                     <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                     <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                     <span class="notice-bar"></span>
@@ -108,6 +108,7 @@ export default {
       isNotice: true,
       maxSize: this.$route.query.maxSize,
       noticeSize: 0,
+      profileId: ""
     }
   },
   created(){
@@ -116,6 +117,8 @@ export default {
     }
     this.getData(params)
     window.addEventListener('scroll', this.handleNotificationListScroll())
+    this.profileId = this.$route.query.profileId;
+    this.expiredTimeCheck();
   },
 
   destroyed() {
@@ -130,21 +133,23 @@ export default {
     }
   },
   methods: {
-    handleMenu(index) {
+    handleMenu(notiId, index) {
       this.selectedMenuNormal = null;
       if(this.selectedMenu === index) {
         this.selectedMenu = null;
       } else {
         this.selectedMenu = index;
       }
+      this.saveWatchedNotification(notiId)
     },
-    handleMenuNormal (index) {
+    handleMenuNormal (notiId, index) {
       this.selectedMenu = null;
       if(this.selectedMenuNormal === index) {
         this.selectedMenuNormal = null;
       } else {
         this.selectedMenuNormal = index;
       }
+      this.saveWatchedNotification(notiId)
     },
     beforeEnter(el) {
       el.style.height = 0;
@@ -159,9 +164,6 @@ export default {
       el.style.height = 0;
     },
 
-    /////////////////////////////////////////////////////////
-
-
     // 무한 스크롤
     handleNotificationListScroll() {
       const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
@@ -171,6 +173,7 @@ export default {
       }
     },
 
+    // 스크롤 내릴 때 데이터 조회
     handleLoadMore(newPage) {
       let params = {
         "pagingStart": newPage
@@ -180,15 +183,111 @@ export default {
       this.isBottom = false;
     },
 
+    // localStorage 내 조회 이력 저장
+    saveWatchedNotification(notificationId){
+      // 만료일 생성
+      const today = new Date()
+      const tomorrow = new Date(today)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+
+      // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
+      let dicString = window.localStorage.getItem(this.profileId);
+      let dic = {}
+      if(dicString) {
+        dic = JSON.parse(dicString)
+      }
+
+      // 각 공지사항별 시청 이력 저장하기
+      const keyValue = "notificationId_" + notificationId;
+      dic[keyValue] = tomorrow
+
+      // 객체를 JSON 문자열로 변환
+      const objString = JSON.stringify(dic);
+
+      // 업데이트된 오브젝트로 기존 값 치환
+      window.localStorage.setItem(this.profileId, objString);
+    },
+
+    expiredTimeCheck(){
+      // 날짜 비교를 위한 값 세팅
+      const today = new Date()
+      const compareDate = new Date(today)
+      compareDate.setDate(compareDate.getDate())
+      let expiredDate = ""
+
+      // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
+      let dicString = window.localStorage.getItem(this.profileId);
+      let dic = {}
+
+      // 값이 존재하지 않는다면 비교하지 않고 리턴
+      if(dicString) {
+        dic = JSON.parse(dicString)
+        for (const [key, value] of Object.entries(dic)) {
+          if(value){
+            expiredDate = new Date(value)
+
+            // 날짜 비교 진행
+            if (expiredDate < compareDate){
+              delete dic[key]
+            }
+          }
+        }
+      } else {
+        return
+      }
+
+      // 업데이트한 객체를 JSON 문자열로 변환
+      const objString = JSON.stringify(dic)
+
+      // 업데이트된 오브젝트로 기존 값 치환
+      window.localStorage.setItem(this.profileId, objString);
+      console.log("expiredTimeCheck End >>>>>> ", window.localStorage.getItem(this.profileId));
+    },
+
+    pushIsNew(notiList){
+      for (const [key, value] of Object.entries(notiList)) {
+        value.isNew = false
+
+        // 날짜 비교를 위한 값 세팅
+        const today = new Date()
+        const compareDate = new Date(today)
+        compareDate.setDate(compareDate.getDate())
+        let dateTime = ""
+        dateTime = new Date(value.notiDatatime)
+
+        // 날짜 비교 진행
+        if (dateTime >= compareDate){
+          if(!this.isInLocalStorage(value.notiId)){
+            value.isNew = true
+          }
+        }
+      }
+    },
+
+    isInLocalStorage(notiId){
+      let dicString = window.localStorage.getItem(this.profileId);
+      let dic = {}
+      if(dicString){
+        dic = JSON.parse(dicString)
+      } else {
+        return false
+      }
+      if(dic[notiId]){
+        return true
+      }
+      return false
+    },
+
     getData(params) {
       let _this = this;
       this.$http.post("guest/notice?pagingStart=" + params.pagingStart)
           .then((response) => {
-            console.log("Response ::::::::::::::::::", response.data.result.topList)
-            console.log("Response Noti::::::::::::::::::", response.data.result.noticeList)
             _this.result.topList = response.data.result.topList
             _this.result.noticeList = _this.result.noticeList.concat(response.data.result.noticeList)
-            this.noticeSize =  response.data.result.noticeList.length;
+            this.pushIsNew(_this.result.topList);
+            this.pushIsNew(_this.result.noticeList);
+
+            _this.noticeSize =  response.data.result.noticeList.length;
             _this.isNone = (!_this.result.topList || !_this.result.topList)
           })
           .catch((error) => {
