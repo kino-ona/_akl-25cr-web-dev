@@ -140,7 +140,7 @@
               </div>
             </li>
           </ul>
-          <div v-if="(!this.isInClubTaolaData)" class="exercise-share__empty-data">
+          <div v-if="(this.result.recentlyVod.classNm || this.result.recentlyLive.classNm)" class="exercise-share__empty-data">
             클럽타올라 기록이 없습니다.
           </div>
         </section>
