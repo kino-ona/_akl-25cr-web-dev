@@ -6,7 +6,7 @@
           <p class="header__text">{{ this.result.date }}</p>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} &nbsp; {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
-            <span class="point__value">{{ this.clickValue }}</span>
+            <span class="point__value">{{ this.totalAvgData }}</span>
             <span class="point__unit">점</span>
           </div>
           <img class="logo" src="@/assets/logo.png" alt="로고" />
@@ -84,6 +84,8 @@ export default {
   components: { Bar },
   data() {
     return {
+      totalAvgData: 0,
+      totalData: 0,
       result: {
         date: "",
         term: "",
@@ -218,24 +220,28 @@ export default {
     let labels = []
     let colors = []
     let datas = []
+
+    console.log("Langth ::::::::::: ", this.result.dataList.length)
     for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
       let exeData = this.result.dataList[exeIndex]
       let dateData = exeData.date.split(" ")
       
-      // 라벨 선정
       labels.push(dateData)
 
-      // 색 선정
-      this.chartOptionsLabel = typeof(exeData.isSelected);
+      this.totalData = this.totalData + exeData.data;
       if(exeData.isSelected){
         colors.push('#AEEA16');
-        this.clickValue = exeData.data;
+        this.totalAvgData = exeData.data;
       } else {
         colors.push('#AEEA164C');
       }
 
       // Data 선정
       datas.push(exeData.data)
+    }
+    this.chartOptionsLabel = this.result.dataList.length;
+    if(this.totalAvgData == 0 && this.result.dataList.length != 0){
+      this.totalAvgData = (this.totalData / this.result.dataList.length)
     }
 
     // Chart에 반영
