@@ -37,7 +37,7 @@ export default {
       isMobile: window.isMobile.any()
     }
   },
-  created(){
+  mounted(){
     this.result = JSON.parse(sessionStorage.getItem("mainData"));
     console.log("mainData ::::::::::::::::::::: ", this.result);
   },

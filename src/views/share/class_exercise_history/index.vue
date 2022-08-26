@@ -31,7 +31,7 @@ export default {
       }
     }
   },
-  created(){
+  mounted(){
     this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result.isFree = true;
     console.log("mainData ::::::::::::::::::::: ", this.result);

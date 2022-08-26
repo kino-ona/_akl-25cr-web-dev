@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  created() {
+  mounted() {
     let result = {
       path: this.$route.query.path,
     }

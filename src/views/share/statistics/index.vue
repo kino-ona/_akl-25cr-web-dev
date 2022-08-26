@@ -208,7 +208,7 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     // 기본데이터 설정
     this.result = JSON.parse(sessionStorage.getItem("mainData"));
     console.log("mainData ::::::::::::::::::::: ", this.result);
