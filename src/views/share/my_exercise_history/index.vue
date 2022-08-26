@@ -5,7 +5,7 @@
         <h2 class="header__title">{{ this.result.date }}</h2>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
-
+      {{ this.isInClubTaolaData }}
       <div class="exercise-share__body">
         <section v-if="(this.result.shareType != 3)" class="exercise-share__section">
           <h1 class="exercise-share__title">
@@ -93,7 +93,7 @@
         </section>
         <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <ul  class="exercise-share__record-box list-style-none">
+          <ul  v-if="this.isInClubTaolaData" class="exercise-share__record-box list-style-none">
             <li v-if="this.result.recentlyVod.classNm">
               <div class="record__item">
                 <div class="record__detail">
@@ -140,7 +140,7 @@
               </div>
             </li>
           </ul>
-          <div v-if="(this.result.recentlyVod.classNm || this.result.recentlyLive.classNm)" class="exercise-share__empty-data">
+          <div v-else class="exercise-share__empty-data">
             클럽타올라 기록이 없습니다.
           </div>
         </section>
