@@ -220,13 +220,13 @@ export default {
     let datas = []
     for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
       let exeData = this.result.dataList[exeIndex]
-      this.chartOptionsLabel = exeData;
       let dateData = exeData.date.split(" ")
       
       // 라벨 선정
       labels.push(dateData)
 
       // 색 선정
+      this.chartOptionsLabel = typeof(exeData.isSelected);
       if(exeData.isSelected){
         colors.push('#AEEA16');
         this.clickValue = exeData.data;
