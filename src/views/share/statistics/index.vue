@@ -244,6 +244,10 @@ export default {
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
     this.chartOptionsLabel = 2;
+
+    setTimeout(function(){
+      console.log("데이터 로딩 시간")
+    }, 3000)
   },
 
   methods: {
