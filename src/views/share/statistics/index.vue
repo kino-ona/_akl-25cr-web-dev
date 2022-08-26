@@ -13,7 +13,7 @@
         </div>
         <hr class="hr" />
       </header>
-
+      {{ this.chartOptionsLabel }}
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
@@ -139,6 +139,7 @@ export default {
           }
         ]
       },
+      chartOptionsLabel: "",
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -237,17 +238,26 @@ export default {
     }
 
     // Chart에 반영
+    this.chartOptionsLabel = 1;
     this.chartData.labels = labels;
     this.chartData.datasets[0].backgroundColor = colors;
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
+    this.chartOptionsLabel = 2;
   },
 
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }
-  }
+  },
+
+  // watch: {
+  //   chartOptionsLabel: function () {
+  //
+  //   }
+  // },
+
 }
 </script>
 
