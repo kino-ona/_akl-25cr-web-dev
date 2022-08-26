@@ -93,7 +93,7 @@
         </section>
         <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <ul  v-if="this.isInClubTaolaData" class="exercise-share__record-box list-style-none">
+          <ul  v-if="this.isInClubTaolaData != 0" class="exercise-share__record-box list-style-none">
             <li v-if="this.result.recentlyVod.classNm">
               <div class="record__item">
                 <div class="record__detail">
