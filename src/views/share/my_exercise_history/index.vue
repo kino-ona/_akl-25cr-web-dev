@@ -5,7 +5,6 @@
         <h2 class="header__title">{{ this.result.date }}</h2>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
-      {{ this.isInClubTaolaData }}
       <div class="exercise-share__body">
         <section v-if="(this.result.shareType != 3)" class="exercise-share__section">
           <h1 class="exercise-share__title">
