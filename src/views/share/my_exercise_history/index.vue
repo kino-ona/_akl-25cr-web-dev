@@ -140,7 +140,7 @@
               </div>
             </li>
           </ul>
-          <div v-else class="exercise-share__empty-data">
+          <div v-else-if="(this.result.shareType == 2)" class="exercise-share__empty-data">
             클럽타올라 기록이 없습니다.
           </div>
         </section>
