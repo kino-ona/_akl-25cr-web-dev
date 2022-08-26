@@ -220,6 +220,7 @@ export default {
     let datas = []
     for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
       let exeData = this.result.dataList[exeIndex]
+      this.chartOptionsLabel = exeData;
       let dateData = exeData.date.split(" ")
       
       // 라벨 선정
@@ -238,12 +239,10 @@ export default {
     }
 
     // Chart에 반영
-    this.chartOptionsLabel = 1;
     this.chartData.labels = labels;
     this.chartData.datasets[0].backgroundColor = colors;
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
-    this.chartOptionsLabel = 2;
 
     setTimeout(function(){
       console.log("데이터 로딩 시간")
