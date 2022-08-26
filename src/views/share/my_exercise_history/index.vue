@@ -93,8 +93,8 @@
         </section>
         <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <ul v-if="(this.result.shareType != 2)" class="exercise-share__record-box list-style-none">
-            <li v-if="this.isInClubTaolaData">
+          <ul  class="exercise-share__record-box list-style-none">
+            <li v-if="this.result.recentlyVod.classNm">
               <div class="record__item">
                 <div class="record__detail">
                   <img src="@/assets/icons/icon-live.png" class="w-34" alt="라이브 아이콘" />
@@ -194,7 +194,7 @@ export default {
   mounted(){
     this.result = JSON.parse(sessionStorage.getItem("mainData"));
     console.log("mainData ::::::::::::::::::::: ", this.result);
-    this.isInClubTaolaData = (this.result.recentlyLive || this.result.recentlyVod)
+    this.isInClubTaolaData = (this.result.recentlyLive.classId || this.result.recentlyVod.classId)
   },
   methods : {
     getEnumData(enumType, value) {
