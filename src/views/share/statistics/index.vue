@@ -13,7 +13,6 @@
         </div>
         <hr class="hr" />
       </header>
-      {{ this.chartOptionsLabel }}
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
@@ -221,7 +220,6 @@ export default {
     let colors = []
     let datas = []
 
-    console.log("Langth ::::::::::: ", this.result.dataList.length)
     for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
       let exeData = this.result.dataList[exeIndex]
       let dateData = exeData.date.split(" ")
@@ -231,7 +229,7 @@ export default {
       this.totalData = this.totalData + exeData.data;
       if(exeData.isSelected){
         colors.push('#AEEA16');
-        this.totalAvgData = exeData.data;
+        this.totalAvgData = parseFloat(exeData.data).toFixed(1);
       } else {
         colors.push('#AEEA164C');
       }
@@ -239,9 +237,10 @@ export default {
       // Data 선정
       datas.push(exeData.data)
     }
+
     this.chartOptionsLabel = this.result.dataList.length;
     if(this.totalAvgData == 0 && this.result.dataList.length != 0){
-      this.totalAvgData = (this.totalData / this.result.dataList.length)
+      this.totalAvgData = parseFloat(this.totalData / this.result.dataList.length).toFixed(1)
     }
 
     // Chart에 반영
