@@ -12,7 +12,7 @@
                 </div>
 <!--                <router-link class="detail-link" to="/policy-detail">-->
 
-                  <div v-if="!isMobile" class="cont-detail" @click="webTestGoDetail(term.termsType, term.termsVersion)">
+                  <div v-if="!isMobile" class="cont-detail" @click="goDetail(term.termsType, term.termsVersion)">
                     <p class="detail-text mb-0">
                       Web에서 상세 보기 테스트
                     </p>
@@ -68,16 +68,18 @@ export default {
             console.log(error);
           })
     },
-    webTestGoDetail(termsType, termsVersion){
-      let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
-      this.$router.push({
-        path: url
-      })
-    },
     goDetail(termType, termsVersion){
-      // let url = process.env.VUE_APP_WEB_VIEW_BASE_URL + "terms?termsType=" + termType + "&termsVersion=" + termsVersion
-      // window.location.href = url
-      window.location.href = "webToApp://detail"
+      if(window.isMobile.Android()){
+        let url = process.env.VUE_APP_WEB_VIEW_BASE_URL + "terms?termsType=" + termType + "&termsVersion=" + termsVersion
+        window.location.href = url
+      } else if (window.isMobile.iOS()){
+        window.location.href = "webToApp://detail"
+      } else {
+        let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
+        this.$router.push({
+          path: url
+        })
+      }
     }
   }
 }
