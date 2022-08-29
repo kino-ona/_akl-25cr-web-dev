@@ -20,7 +20,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
@@ -29,7 +28,9 @@ export default {
     return {
       result: {},
       onePick : "",
-      versionList: []
+      versionList: [],
+      termsContents: "",
+      termsTitle: ""
     }
   },
   created() {
