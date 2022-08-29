@@ -11,7 +11,13 @@
                   <p class="item-text sub">{{ term.applyStartDate }}</p>
                 </div>
 <!--                <router-link class="detail-link" to="/policy-detail">-->
-                  <div class="cont-detail" @click="goDetail(term.termsType, term.termsVersion)">
+
+                  <div v-if="!isMobile" class="cont-detail" @click="webTestGoDetail(term.termsType, term.termsVersion)">
+                    <p class="detail-text mb-0">
+                      Web에서 상세 보기 테스트
+                    </p>
+                  </div>
+                  <div v-else class="cont-detail" @click="goDetail(term.termsType, term.termsVersion)">
                     <p class="detail-text mb-0">
                       보기
                     </p>
@@ -40,7 +46,8 @@ export default {
   data() {
     return {
       isList: true,
-      result: []
+      result: [],
+      isMobile: window.isMobile.any(),
     }
   },
   created() {
@@ -61,11 +68,16 @@ export default {
             console.log(error);
           })
     },
-    goDetail(termType, termsVersion){
-      let url = "/terms?termsType=" + termType + "&termsVersion=" + termsVersion
+    webTestGoDetail(termsType, termsVersion){
+      let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
       this.$router.push({
         path: url
       })
+    },
+    goDetail(termType, termsVersion){
+      // let url = process.env.VUE_APP_WEB_VIEW_BASE_URL + "terms?termsType=" + termType + "&termsVersion=" + termsVersion
+      // window.location.href = url
+      window.location.href = "webToApp://detail"
     }
   }
 }
