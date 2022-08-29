@@ -16,7 +16,7 @@
       </header>
       <div class="policy-detail__content">
         <div class="detail__content-wrap">
-          <p class="detail__content-text mb-0">{{ result.termsContents }}</p>
+          <p class="detail__content-text mb-0" v-html="result.termsContents"></p>
         </div>
       </div>
     </div>

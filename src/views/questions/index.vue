@@ -33,8 +33,7 @@
                 <div class="faq__answer" v-show="selectedMenu === index" :key="index">
                   <div class="faq__answer-wrap">
                     <div class="answer__cont">
-                      <p class="answer__cont-text mb-0">
-                        {{ question.ansContents }}
+                      <p class="answer__cont-text mb-0" v-html="question.ansContents">
                       </p>
                     </div>
                   </div>

@@ -30,8 +30,7 @@
                   <div class="notice__answer" v-show="selectedMenu === index" :key="index">
                     <div class="answer__cont">
                       <!--                      <p class="answer__title notice__title">스피닝 [신년에도 다타러 가즈아~~~!] 미션..</p>-->
-                      <p class="answer__cont-text mb-0">
-                        {{ notice.contents }}
+                      <p class="answer__cont-text mb-0" v-html="notice.contents">
                       </p>
                     </div>
                   </div>
