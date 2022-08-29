@@ -3,7 +3,7 @@
     <div class="container p14">
       <div class="faq__menu">
         <ul class="faq__menu-tab list-style-none">
-          <li class="tab-list" v-for="(list, index) in 4" :key="index" :class="{active:currentTab === index}">
+          <li class="tab-list" v-for="(list, index) in 8" :key="index" :class="{active:currentTab === index}">
               <div class="tab-contents">
                   <p class="tab__menu-title">
                     <a class="tab-link" href="#" @click.prevent="currentTab = index">클래스</a>
@@ -193,18 +193,28 @@
 </script>
 
 <style lang="scss">
+  .faq__menu {
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
   .faq__menu-tab {
     display: flex;
     align-items: center;
     padding: 20px 0;
   }
   .tab-list {
-    padding-right: 18px;
     &.active {
       .tab-link {
         color: $primary;
       }
     }
+  }
+  .tab-list + .tab-list {
+    margin-left: 18px;
   }
   .tab-link {
     font-size: 20px;
@@ -212,6 +222,7 @@
     color: #6d7381;
     display: block;
     text-decoration: none;
+    white-space: nowrap;
   }
   .faq__cont {
     padding: 18px 0;
