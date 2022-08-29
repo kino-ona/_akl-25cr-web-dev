@@ -239,8 +239,11 @@ export default {
     }
 
     this.chartOptionsLabel = this.result.dataList.length;
+    this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
+    this.chartOptions.plugins.annotation.annotations.line1.yMax = this.result.avgData
+
     if(this.totalAvgData == 0 && this.result.dataList.length != 0){
-      this.totalAvgData = parseFloat(this.totalData / this.result.dataList.length).toFixed(1)
+      this.totalAvgData = this.result.avgData
     }
 
     // Chart에 반영
