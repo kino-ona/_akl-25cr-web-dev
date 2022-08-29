@@ -26,6 +26,7 @@ window.setData = setData;
 window.getData = getData;
 window.windowCapture = windowCapture;
 window.getNoticeLastIndex = getNoticeLastIndex;
+window.setTimeout = setTimeout;
 
 new Vue({
   router,
