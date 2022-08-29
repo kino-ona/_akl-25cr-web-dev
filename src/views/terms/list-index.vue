@@ -69,14 +69,14 @@ export default {
           })
     },
     goDetail(termsType, termsVersion){
-      if (window.isMobile.iOS()){
-        window.location.href = "webtoapp://detail"
-      } else {
-        let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
-        this.$router.push({
-          path: url
-        })
+      if (window.isMobile.any()){
+        let webToAppUrl = {'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}
+        window.getData(webToAppUrl);
       }
+      let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
+      this.$router.push({
+        path: url
+      })
     }
   }
 }
