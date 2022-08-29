@@ -34,6 +34,26 @@ const routes = [
     path: '/exercise-stats',
     name: 'exercise-stats',
     component: () => import('@/views/exercise-stats.vue')
+  },
+  {
+    path: '/faq',
+    name: 'faq',
+    component: () => import('@/views/faq.vue')
+  },
+  {
+    path: '/notice',
+    name: 'notice',
+    component: () => import('@/views/notice.vue')
+  },
+  {
+    path: '/policy-list',
+    name: 'policy-list',
+    component: () => import('@/views/policy-list.vue')
+  },
+  {
+    path: '/policy-detail/:pid',
+    name: 'policy-detail',
+    component: () => import('@/views/policy-detail.vue')
   }
 ]
 
