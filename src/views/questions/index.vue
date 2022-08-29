@@ -63,8 +63,12 @@
       }
     },
     created() {
+      let questionTypeCode = this.$route.query.questionTypeCode;
+      if (!questionTypeCode){
+        questionTypeCode = "01"
+      }
       let params = {
-        questionTypeCode: this.$route.query.questionTypeCode,
+        questionTypeCode: questionTypeCode,
         pagingStart: 0
       }
       this.getData(params)
