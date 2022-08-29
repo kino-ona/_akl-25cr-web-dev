@@ -68,11 +68,8 @@ export default {
             console.log(error);
           })
     },
-    goDetail(termType, termsVersion){
-      if(window.isMobile.Android()){
-        let url = process.env.VUE_APP_WEB_VIEW_BASE_URL + "terms?termsType=" + termType + "&termsVersion=" + termsVersion
-        window.location.href = url
-      } else if (window.isMobile.iOS()){
+    goDetail(termsType, termsVersion){
+      if (window.isMobile.iOS()){
         window.location.href = "webtoapp://detail"
       } else {
         let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion
