@@ -141,8 +141,8 @@ export default {
             annotations: {
               line1: {
                 type: 'line',
-                yMin: 1000,
-                yMax: 1000,
+                yMin: 400,
+                yMax: 400,
                 borderColor: '#aeea16',
                 borderWidth: 1,
                 borderDash: [2,2]
