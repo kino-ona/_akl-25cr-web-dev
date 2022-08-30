@@ -159,6 +159,9 @@ export default {
           width: 4px;
           background: #6d7381;
         }
+        &.ps--active-y > .ps__rail-y {
+          background-color: transparent !important;
+        }
       }
       .list__item {
         font-size: 14px;
