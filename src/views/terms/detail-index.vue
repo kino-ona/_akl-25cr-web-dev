@@ -2,21 +2,21 @@
   <div class="policy-detail">
     <div class="container p14">
       <header class="policy-detail__header">
-        <h1 class="mb-0 policy-detail__title">
-          {{ result.termsTitle }}
+        <h1 class="mb-0 policy-detail__title" v-if="!this.isProfile">
+          {{ this.result.termsTitle }}
         </h1>
-        <div class="policy-detail__select">
-          <p class="policy-detail__title">이용약관</p>
+        <div class="policy-detail__select" v-else>
+          <p class="policy-detail__title">{{ this.result.termsTitle }}</p>
           <div class="detail__select-box">
             <select class="select-box" v-model="onePick">
-              <option v-for="value in versionList" :value="value">{{ value }}</option>
+              <option v-for="value in this.versionList" :value="value">V{{value}}</option>
             </select>
           </div>
         </div>
       </header>
       <div class="policy-detail__content">
         <div class="detail__content-wrap">
-          <p class="detail__content-text mb-0" v-html="result.termsContents"></p>
+          <p class="detail__content-text mb-0" v-html="this.result.termsContents"></p>
         </div>
       </div>
     </div>
@@ -30,13 +30,19 @@ export default {
       onePick : "",
       versionList: [],
       termsContents: "",
-      termsTitle: ""
+      termsTitle: "",
+      isProfile: false
     }
   },
   created() {
     let result = {
       termsType: this.$route.query.termsType,
       termsVersion: this.$route.query.termsVersion
+    }
+    const isProfile = this.$route.query.isProfile
+    console.log("isProfile ::::::::::::: ", isProfile)
+    if (isProfile){
+      this.isProfile = true
     }
     this.getData(result)
   },
