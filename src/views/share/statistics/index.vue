@@ -4,7 +4,7 @@
       <header class="exercise-stats__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
-          <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} &nbsp; {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
+          <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
             <span class="point__value">{{ this.totalAvgData }}</span>
             <span class="point__unit">점</span>
@@ -27,7 +27,7 @@
       </section>
 
       <section class="exercise-share__section">
-        <h2 class="section__title">최근 {{ this.getEnumData("termType", this.result.term) }} &nbsp; {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
+        <h2 class="section__title">최근 {{ this.getEnumData("termType", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
         <ul class="exercise-share__record-box list-style-none">
           <li>
             <div class="record__item">
@@ -229,7 +229,10 @@ export default {
       this.totalData = this.totalData + exeData.data;
       if(exeData.isSelected){
         colors.push('#AEEA16');
-        this.totalAvgData = parseFloat(exeData.data).toFixed(1);
+        console.log("??????????????")
+        if(this.result.exeType != 'K'){
+          this.totalAvgData = parseFloat(exeData.data).toFixed(1);
+        }
       } else {
         colors.push('#AEEA164C');
       }
@@ -246,6 +249,9 @@ export default {
       this.totalAvgData = this.result.avgData
     }
 
+    this.totalAvgData = this.setComma(this.totalAvgData)
+    this.result.avgData = this.setComma(this.result.avgData)
+    this.result.maxData = this.setComma(this.result.maxData)
     // Chart에 반영
     this.chartData.labels = labels;
     this.chartData.datasets[0].backgroundColor = colors;
@@ -260,6 +266,9 @@ export default {
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
+    },
+    setComma(numVal){
+      return numVal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   },
 
