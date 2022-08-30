@@ -7,11 +7,21 @@
         </h1>
         <div class="policy-detail__select" v-else>
           <p class="policy-detail__title">{{ this.result.termsTitle }}</p>
-          <div class="detail__select-box">
-            <select class="select-box" v-model="onePick">
-              <option v-for="value in this.versionList" :value="value">V{{value}}</option>
-            </select>
+          <!-- 변경 -->
+          <div class="detail__select-box" :class="{open: this.isSelectOpen}">
+            <div class="detail__select-value" @click="handleSelect">V{{ this.onePick }}</div>
+            <div class="detail__select-box--list">
+              <perfect-scrollbar>
+                <div class="list__item"
+                     :class="{active: list === onePick}"
+                     v-for="(list, index) in this.versionList"
+                     @click="handleVersion(index)"
+                >V{{list}}</div>
+              </perfect-scrollbar>
+            </div>
+            <div v-if="isSelectOpen" @click="isSelectOpen = false" class="detail__select-box--backdrop"></div>
           </div>
+          <!-- 변경 -->
         </div>
       </header>
       <div class="policy-detail__content">
@@ -26,6 +36,7 @@
 export default {
   data() {
     return {
+      isSelectOpen: false,
       result: {},
       onePick : "",
       versionList: [],
@@ -53,6 +64,13 @@ export default {
     }
   },
   methods : {
+    handleSelect() {
+      this.isSelectOpen = !this.isSelectOpen;
+    },
+    handleVersion(index) {
+      this.isSelectOpen = false;
+      this.onePick = this.versionList[index];
+    },
     // 버전 변경 요청 시 해당 버전 데이터 조회
     versionChange() {
       this.result.termsVersion = this.onePick
@@ -103,7 +121,60 @@ export default {
     align-items: center;
   }
   .detail__select-box {
+    position: relative;
     margin-left: 10px;
+    &.open {
+      .detail__select-value {
+        background: url('~@/assets/icons/icon-dropdown-up.svg') no-repeat right center;
+      }
+      .detail__select-box--list {
+        display: block;
+      }
+    }
+    .detail__select-value {
+      font-size: 22px;
+      padding-right: 24px;
+      background: url('~@/assets/icons/icon-dropdown.svg') no-repeat right center;
+      background-size: 20px;
+    }
+    .detail__select-box--list {
+      position: absolute;
+      width: 100%;
+      bottom: -4px;
+      left: 50%;
+      z-index: 10;
+      transform: translate(-50%, 100%);
+      display: none;
+      background: #30394d;
+      border-radius: 12px;
+      padding: 15px 0;
+      .ps {
+        max-height: 208px;
+        padding: 0 30px;
+        .ps__thumb-y {
+          width: 4px;
+          background: #6d7381;
+        }
+      }
+      .list__item {
+        font-size: 14px;
+        color: #6d7381;
+        text-align: center;
+        &.active {
+          color: #fff;
+        }
+      }
+      .list__item + .list__item {
+        margin-top: 14px;
+      }
+    }
+    .detail__select-box--backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+    }
   }
   .policy-detail__content {
     padding-top: 30px;
