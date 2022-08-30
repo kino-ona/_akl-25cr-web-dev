@@ -144,7 +144,6 @@ export default {
     }
     .detail__select-box--list {
       position: absolute;
-      width: 100%;
       bottom: -4px;
       left: 50%;
       z-index: 10;
