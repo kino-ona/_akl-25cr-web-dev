@@ -69,8 +69,11 @@ export default {
           })
     },
     goDetail(termsType, termsVersion){
-      if (window.isMobile.any()){
+      if (window.isMobile.iOS()){
         let webToAppUrl = {'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}
+        window.getData(webToAppUrl);
+      } else if (window.isMobile.Android()){
+        let webToAppUrl = "{'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}"
         window.getData(webToAppUrl);
       }
       let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
