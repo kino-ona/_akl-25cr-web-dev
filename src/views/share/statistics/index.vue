@@ -209,11 +209,6 @@ export default {
       }
     }
   },
-  created(){
-    this.result = JSON.parse(sessionStorage.getItem("mainData"))
-    let str_result = "" + JSON.stringify(this.result)
-    alert(str_result)
-  },
 
   mounted() {
     // 기본데이터 설정
