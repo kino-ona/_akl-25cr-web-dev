@@ -213,7 +213,7 @@ export default {
   mounted() {
     // 기본데이터 설정
     this.result = JSON.parse(sessionStorage.getItem("mainData"));
-    console.log("mainData ::::::::::::::::::::: ", this.result);
+    alert("mainData ::::::::::::::::::::: ", this.result);
     
     // Label 만들기
     let labels = []
@@ -229,7 +229,6 @@ export default {
       this.totalData = this.totalData + exeData.data;
       if(exeData.isSelected){
         colors.push('#AEEA16');
-        console.log("??????????????")
         if(this.result.exeType != 'K'){
           this.totalAvgData = parseFloat(exeData.data).toFixed(1);
         }
@@ -271,13 +270,6 @@ export default {
       return numVal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   },
-
-  // watch: {
-  //   chartOptionsLabel: function () {
-  //
-  //   }
-  // },
-
 }
 </script>
 
