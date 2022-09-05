@@ -32,7 +32,9 @@ export default {
       }
       this.$router.push({
         path: result.path
-      })
+      }).catch(()=>{
+        console.log("페이지 이동에 실패했습니다.")
+      });
     }
   }
 }
