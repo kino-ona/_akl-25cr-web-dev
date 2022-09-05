@@ -209,11 +209,15 @@ export default {
       }
     }
   },
+  created(){
+    this.result = JSON.parse(sessionStorage.getItem("mainData"))
+    let str_result = "" + JSON.stringify(this.result)
+    alert(str_result)
+  },
 
   mounted() {
     // 기본데이터 설정
-    this.result = JSON.parse(sessionStorage.getItem("mainData"));
-    alert("mainData ::::::::::::::::::::: ", this.result);
+    this.result = JSON.parse(sessionStorage.getItem("mainData"))
     
     // Label 만들기
     let labels = []
