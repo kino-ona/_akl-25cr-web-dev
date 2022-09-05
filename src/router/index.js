@@ -50,7 +50,7 @@ const routes = [
     component: () => import("@/views/questions/index.vue"),
   },
   {
-    path: "/:pathMatch(.*)*",
+    path: "/*",
     name: "not-found",
     component: () => import("@/views/not-found/index.vue"),
   },
