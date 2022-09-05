@@ -24,6 +24,7 @@ export default {
         console.log("Mobile로 접근 성공")
         let url = {'func' : 'setData','callback' : 'setData','param' : 'null'};
         window.getData(url);
+        this.statusVal = '데이터는 가져왔어 이제 라우팅해보자잇'
       } else {
         // Web상에서 테스트 하는 경우
         console.log("Web 상에서 Test 진행 :::::::::::: ", this.result);
@@ -32,8 +33,9 @@ export default {
       }
       this.$router.push({
         path: result.path
-      }).catch(()=>{
+      }).catch((reason)=>{
         console.log("페이지 이동에 실패했습니다.")
+        this.statusVal = '라우팅 도중에 에러가 발생했어 체크해볼래?\n' + reason
       });
     }
   }
