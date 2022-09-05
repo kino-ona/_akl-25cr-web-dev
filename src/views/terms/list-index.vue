@@ -79,7 +79,9 @@ export default {
       let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
       this.$router.push({
         path: url
-      })
+      }).catch(()=>{
+        console.log("페이지 이동에 실패했습니다.")
+      });
     }
   }
 }
