@@ -49,11 +49,11 @@ const routes = [
     name: "Questions",
     component: () => import("@/views/questions/index.vue"),
   },
-  {
-    path: "/*",
-    name: "not-found",
-    component: () => import("@/views/not-found/index.vue"),
-  },
+  // {
+  //   path: "/*",
+  //   name: "not-found",
+  //   component: () => import("@/views/not-found/index.vue"),
+  // },
 ]
 
 const router = new VueRouter({
