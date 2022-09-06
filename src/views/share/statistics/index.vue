@@ -15,10 +15,7 @@
       </header>
       <section class="exercise-stats__section">
         <div> 테스트용
-          {{ this.chartData }}
-        </div>
-        <div> 테스트용
-          {{ this.chartOptions }}
+          {{ this.result.dataList }}
         </div>
         <div class="exercise-stats__chart">
           <Bar
