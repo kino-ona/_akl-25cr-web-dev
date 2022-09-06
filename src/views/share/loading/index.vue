@@ -1,6 +1,7 @@
 <template>
   <section>
     {{ this.statusVal }}
+    {{ this.mainData }}
   </section>
 </template>
 
@@ -9,6 +10,7 @@ export default {
   data() {
     return {
       statusVal: "로딩중입니다",
+      mainData: ""
     }
   },
   mounted() {
@@ -33,7 +35,7 @@ export default {
       }
 
       console.log("이동할 경로 정보입니다. ::::::::::: ", result.path)
-      console.log(JSON.parse(sessionStorage.getItem("mainData")))
+      this.mainData = JSON.parse(sessionStorage.getItem("mainData"))
       // this.$router.push({
       //   path: result.path
       // }).catch((reason)=>{
