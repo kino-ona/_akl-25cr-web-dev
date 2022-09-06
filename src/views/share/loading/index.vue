@@ -42,7 +42,7 @@ export default {
 
       console.log("이동할 경로 정보입니다. ::::::::::: ", result.path)
       this.screenData = "기본________" + window.mainData
-      setTimeout(this.setPageData(), 1000);
+      await setTimeout(this.setPageData(), 1000);
       // this.$router.push({
       //   path: result.path
       // }).catch((reason)=>{
