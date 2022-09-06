@@ -14,6 +14,12 @@
         <hr class="hr" />
       </header>
       <section class="exercise-stats__section">
+        <div> 테스트용
+          {{ this.chartData }}
+        </div>
+        <div> 테스트용
+          {{ this.chartOptions }}
+        </div>
         <div class="exercise-stats__chart">
           <Bar
             :chart-options="chartOptions"
@@ -209,7 +215,6 @@ export default {
       }
     }
   },
-
   mounted() {
     // 기본데이터 설정
     // this.result = JSON.parse(sessionStorage.getItem("mainData"))
@@ -258,7 +263,6 @@ export default {
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
   },
-
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
