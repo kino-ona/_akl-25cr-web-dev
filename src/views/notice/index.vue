@@ -11,7 +11,7 @@
                   <div class="notice__question-wrap">
                     <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
-                    <div class="notice__text-wrap ">
+                    <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
                       <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
@@ -47,7 +47,7 @@
               <div class="notice__question">
                 <div class="notice__question-wrap">
                   <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
-                  <div class="notice__text-wrap" :class="{'new':  notice.isNew  }">
+                  <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
                     <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                     <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                     <span class="notice-bar"></span>
@@ -298,6 +298,7 @@ export default {
 }
 </script>
 
+
 <style lang="scss">
 .notice__cont {
   padding: 18px 0;
@@ -320,12 +321,8 @@ export default {
   align-items: flex-start;
 }
 .notice-fixed {
-  position: sticky;
-  top: 0;
-  left: 0;
   width: 100%;
   background-color: #0c172e;
-  z-index: 100;
 }
 .notice__question-wrap {
   width: calc(100% - 40px);

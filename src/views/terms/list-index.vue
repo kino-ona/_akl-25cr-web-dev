@@ -86,11 +86,12 @@ export default {
   }
 }
 </script>
+
 <style lang="scss">
 .policy-list {
   .list-cont {
     padding: 18px 0;
-    border-bottom: 1px solid #535d6d;
+    border-bottom: 1px solid rgba(83, 93, 109, 0.2);
   }
   .cont-item {
     display: flex;
@@ -106,6 +107,7 @@ export default {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin-bottom: 5px;
   }
   .item-text {
     font-size: 14px;
@@ -116,28 +118,13 @@ export default {
     width: 50px;
     text-align: right;
   }
+  .detail-link {
+    text-decoration: none;
+  }
   .detail-text {
     font-size: 14px;
     line-height: 21px;
     color: #9ea2ab;
-    text-decoration: none;
   }
 }
 </style>
-
-
-{
-  "versionList": "1.0,1.5,1.7",
-  "termsId": "1",
-  "termsType": "string",
-  "termsTitle": "string",
-  "termsContents": "string",
-  "necessaryYn": "string",
-  "applyStartDate": "2022-08-23T07:59:12.765Z",
-  "applyEndDate": "2022-08-23T07:59:12.765Z",
-  "termsVersion": "string",
-  "modId": "string",
-  "modDatetime": "string",
-  "createId": "string",
-  "createDatetime": "string"
-}
