@@ -38,7 +38,8 @@ export default {
     }
   },
   mounted(){
-    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    // this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
   },
 

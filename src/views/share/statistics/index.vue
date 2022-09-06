@@ -212,8 +212,9 @@ export default {
 
   mounted() {
     // 기본데이터 설정
-    this.result = JSON.parse(sessionStorage.getItem("mainData"))
-    
+    // this.result = JSON.parse(sessionStorage.getItem("mainData"))
+    this.result = this.$store.state.mainData;
+
     // Label 만들기
     let labels = []
     let colors = []
