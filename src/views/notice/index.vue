@@ -141,6 +141,7 @@ export default {
         this.selectedMenu = index;
       }
       this.saveWatchedNotification(notiId)
+      this.pushIsNew(this.result.topList)
     },
     handleMenuNormal (notiId, index) {
       this.selectedMenu = null;
@@ -150,6 +151,7 @@ export default {
         this.selectedMenuNormal = index;
       }
       this.saveWatchedNotification(notiId)
+      this.pushIsNew(this.result.noticeList)
     },
     beforeEnter(el) {
       el.style.height = 0;
@@ -255,12 +257,9 @@ export default {
         let dateTime = new Date(value.notiDatatime)
         dateTime = new Date(dateTime.setDate(dateTime.getDate() + 1));	// 어제
 
-
         // 날짜 비교 진행
         if (dateTime >= compareDate){
-          if(!this.isInLocalStorage(value.notiId)){
-            value.isNew = true
-          }
+          value.isNew = (!this.isInLocalStorage(value.notiId))
         }
       }
     },
@@ -273,7 +272,8 @@ export default {
       } else {
         return false
       }
-      if(dic[notiId]){
+      let searchNotiId = 'notificationId_' + notiId
+      if(dic[searchNotiId]){
         return true
       }
       return false

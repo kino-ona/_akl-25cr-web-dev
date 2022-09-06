@@ -210,7 +210,7 @@ export default {
     }
   },
 
-  mounted() {
+  created() {
     // 기본데이터 설정
     this.result = JSON.parse(sessionStorage.getItem("mainData"))
     
