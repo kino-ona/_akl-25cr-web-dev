@@ -1,8 +1,18 @@
 <template>
   <section>
-    {{ this.statusVal }}
-    {{ this.mainData }}
-    {{ this.screenData }}
+    <div>
+      {{ this.statusVal }}
+    </div>
+    <div>
+      {{ this.mainData }}
+    </div>
+    <div>
+      {{ this.screenData }}
+    </div>
+    <div>
+      {{ this.mainData }}
+    </div>
+
     {{ this.test }}
   </section>
 </template>
@@ -14,7 +24,8 @@ export default {
       statusVal: "로딩중입니다",
       mainData: "!!!!!!!!!!!!",
       screenData: "#########",
-      test: "????????"
+      test: "????????",
+      interval1 : null
     }
   },
   mounted() {
@@ -47,7 +58,9 @@ export default {
       console.log("이동할 경로 정보입니다. ::::::::::: ", result.path)
       this.screenData = "기본________" + window.mainData
       console.log("ScreenData ::::::::::::: ", this.screenData)
-      setTimeout(this.setPageData(), 5000);
+      this.interval1 = setTimeout(()=>{
+        this.setPageData()
+      }, 5000)
       // this.$router.push({
       //   path: result.path
       // }).catch((reason)=>{
