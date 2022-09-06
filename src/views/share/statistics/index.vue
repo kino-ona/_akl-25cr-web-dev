@@ -255,10 +255,6 @@ export default {
     this.chartData.datasets[0].backgroundColor = colors;
     this.chartData.datasets[0].data = datas;
     this.chartOptions.scales.x.ticks.color = colors;
-
-    setTimeout(function(){
-      console.log("데이터 로딩 시간")
-    }, 3000)
   },
 
   methods: {
@@ -266,7 +262,7 @@ export default {
       return this.$getEnumData(enumType, value)
     },
     setComma(numVal){
-      return numVal.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
   },
 }
