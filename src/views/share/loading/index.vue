@@ -1,7 +1,7 @@
 <template>
   <section>
     {{ this.statusVal }}
-    {{ this.mainData }}
+    {{ this.screenData }}
   </section>
 </template>
 
@@ -10,7 +10,8 @@ export default {
   data() {
     return {
       statusVal: "로딩중입니다",
-      mainData: ""
+      mainData: "",
+      screenData: ""
     }
   },
   mounted() {
@@ -20,6 +21,11 @@ export default {
     this.getData(result)
   },
   methods : {
+    setPageData(){
+      this.mainData = window.mainData
+      sessionStorage.setItem("mainData", this.mainData)
+      this.screenData = sessionStorage.getItem("mainData")
+    },
     async getData(result){
       if(window.isMobile.any()) {
         // 휴대폰을 이용해 접근한 경우
@@ -35,8 +41,8 @@ export default {
       }
 
       console.log("이동할 경로 정보입니다. ::::::::::: ", result.path)
-      this.mainData = "기본________" + window.mainData
-      sessionStorage.setItem("mainData", this.mainData)
+      this.screenData = "기본________" + window.mainData
+      setTimeout(this.setPageData(), 1000);
       // this.$router.push({
       //   path: result.path
       // }).catch((reason)=>{
