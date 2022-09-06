@@ -1,6 +1,7 @@
 <template>
   <section>
     {{ this.statusVal }}
+    {{ this.mainData }}
     {{ this.screenData }}
     {{ this.test }}
   </section>
@@ -11,9 +12,9 @@ export default {
   data() {
     return {
       statusVal: "로딩중입니다",
-      mainData: "",
-      screenData: "",
-      test: ""
+      mainData: "!!!!!!!!!!!!",
+      screenData: "#########",
+      test: "????????"
     }
   },
   mounted() {
