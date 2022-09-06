@@ -2,8 +2,8 @@
 export default function setData(data) {
     // 데이터는 Key, Value 형식의 데이터로 전달 필요(ex. JSON)
     if(typeof(data) == 'string'){
-        sessionStorage.setItem("mainData", decodeURIComponent(data))
+        window.mainData = decodeURIComponent(data)
     } else {
-        sessionStorage.setItem("mainData", data)
+        window.mainData = data
     }
 }
