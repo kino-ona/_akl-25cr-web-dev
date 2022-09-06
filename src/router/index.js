@@ -59,11 +59,11 @@ const routes = [
     name: "Questions",
     component: Questions,
   },
-  {
-    path: "/*",
-    name: "NotFound",
-    component: NotFound,
-  },
+  // {
+  //   path: "/*",
+  //   name: "NotFound",
+  //   component: NotFound,
+  // },
 ]
 
 const router = new VueRouter({
