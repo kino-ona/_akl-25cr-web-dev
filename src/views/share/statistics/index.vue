@@ -267,6 +267,16 @@ export default {
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
   },
+
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
+    }
+  },
 }
 </script>
 

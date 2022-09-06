@@ -17,5 +17,10 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+  },
+  getters: {
+    getMainData (state) {
+      return state.mainData
+    }
   }
 })

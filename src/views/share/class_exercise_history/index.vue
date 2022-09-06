@@ -37,11 +37,13 @@ export default {
     this.result.isFree = true;
     console.log("mainData ::::::::::::::::::::: ", this.result);
   },
-
-  watch: {
-    result: function () {
-      this.$windowCapture();
-      console.log("데이터 변경 체크 : ", this.result);
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
     }
   },
 

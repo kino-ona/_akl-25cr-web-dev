@@ -201,6 +201,15 @@ export default {
       return this.$getEnumData(enumType, value)
     }
   },
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
+    }
+  },
 }
 </script>
 

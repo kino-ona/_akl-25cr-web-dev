@@ -42,19 +42,20 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
   },
-
-  watch: {
-    result: function () {
-      this.$windowCapture();
-      console.log("데이터 변경 체크 : ", this.result);
-    }
-  },
-
   methods : {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     }
-  }
+  },
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
+    }
+  },
 }
 </script>
 
