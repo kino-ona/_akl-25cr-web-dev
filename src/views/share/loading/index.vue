@@ -33,12 +33,13 @@ export default {
       }
 
       console.log("이동할 경로 정보입니다. ::::::::::: ", result.path)
-      this.$router.push({
-        path: result.path
-      }).catch((reason)=>{
-        console.log("페이지 이동에 실패했습니다.")
-        this.statusVal = '라우팅 도중에 에러가 발생했어 체크해볼래?\n' + reason
-      });
+      console.log(JSON.parse(sessionStorage.getItem("mainData")))
+      // this.$router.push({
+      //   path: result.path
+      // }).catch((reason)=>{
+      //   console.log("페이지 이동에 실패했습니다.")
+      //   this.statusVal = '라우팅 도중에 에러가 발생했어 체크해볼래?\n' + reason
+      // });
     }
   }
 }
