@@ -1,5 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Loading from "@/views/share/loading/index.vue"
+import GetIcon from "@/views/share/get_icon/index.vue"
+import MyExerciseHistory from "@/views/share/my_exercise_history/index.vue"
+import ClassExerciseHistory from "@/views/share/class_exercise_history/index.vue"
+import Statistics from "@/views/share/statistics/index.vue"
+import Terms from "@/views/terms/detail-index.vue"
+import TermsList from "@/views/terms/list-index.vue"
+import Notice from "@/views/notice/index.vue"
+import Questions from "@/views/questions/index.vue"
+import NotFound from "@/views/not-found/index.vue"
 
 Vue.use(VueRouter)
 
@@ -7,53 +17,53 @@ const routes = [
   {
     path: "/share/loading",
     name: "Loading",
-    component: () => import("@/views/share/loading/index.vue"),
+    component: Loading,
   },
   {
     path: "/share/get-icon",
     name: "GetIcon",
-    component: () => import("@/views/share/get_icon/index.vue"),
+    component: GetIcon,
   },
   {
     path: "/share/exercise/my-exercise-history",
     name: "MyExerciseHistory",
-    component: () => import("@/views/share/my_exercise_history/index.vue"),
+    component: MyExerciseHistory,
   },
   {
     path: "/share/exercise/class-exercise-history",
     name: "ClassExerciseHistory",
-    component: () => import("@/views/share/class_exercise_history/index.vue"),
+    component: ClassExerciseHistory,
   },
   {
     path: "/share/exercise/statistics",
     name: "Statistics",
-    component: () => import("@/views/share/statistics/index.vue"),
+    component: Statistics,
   },
   {
     path: "/terms",
     name: "Terms",
-    component: () => import("@/views/terms/detail-index.vue"),
+    component: Terms,
   },
   {
     path: "/terms/list",
     name: "TermsList",
-    component: () => import("@/views/terms/list-index.vue"),
+    component: TermsList,
   },
   {
     path: "/notice",
     name: "Notice",
-    component: () => import("@/views/notice/index.vue"),
+    component: Notice,
   },
   {
     path: "/questions",
     name: "Questions",
-    component: () => import("@/views/questions/index.vue"),
+    component: Questions,
   },
-  // {
-  //   path: "/*",
-  //   name: "not-found",
-  //   component: () => import("@/views/not-found/index.vue"),
-  // },
+  {
+    path: "/*",
+    name: "NotFound",
+    component: NotFound,
+  },
 ]
 
 const router = new VueRouter({
