@@ -191,7 +191,8 @@ export default {
     }
   },
   mounted(){
-    this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    // this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     this.isInClubTaolaData = (this.result.recentlyLive.classId || this.result.recentlyVod.classId)
   },
@@ -200,13 +201,6 @@ export default {
       return this.$getEnumData(enumType, value)
     }
   },
-
-  watch: {
-    result: function () {
-      this.$windowCapture();
-      console.log("데이터 변경 체크 : ", this.result);
-    }
-  }
 }
 </script>
 
