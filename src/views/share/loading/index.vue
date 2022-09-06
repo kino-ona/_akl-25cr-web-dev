@@ -2,6 +2,7 @@
   <section>
     {{ this.statusVal }}
     {{ this.screenData }}
+    {{ this.test }}
   </section>
 </template>
 
