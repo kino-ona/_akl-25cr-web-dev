@@ -97,16 +97,16 @@ export default {
       clickValue: 0,
       chartData: {
         labels: [
-          ['1월', '66일'],
-          ['1월', '77일'],
-          ['1월', '88일'],
-          ['1월', '99일'],
-          ['1월', '100일'],
-          ['1월', '111일'],
-          ['1월', '122일'],
-          ['1월', '133일'],
-          ['1월', '144일'],
-          ['1월', '155일'],
+          // ['1월', '66일'],
+          // ['1월', '77일'],
+          // ['1월', '88일'],
+          // ['1월', '99일'],
+          // ['1월', '100일'],
+          // ['1월', '111일'],
+          // ['1월', '122일'],
+          // ['1월', '133일'],
+          // ['1월', '144일'],
+          // ['1월', '155일'],
         ],
         datasets: [
           {
@@ -114,28 +114,28 @@ export default {
             borderRadius: 6,
             borderSkipped: false,
             backgroundColor: [
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA164C',
-              '#AEEA16',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA16',
             ],
             data: [
-              1402,
-              1702,
-              1202,
-              2202,
-              2100,
-              1600,
-              1734,
-              2041,
-              1600,
-              2033,
+              // 1402,
+              // 1702,
+              // 1202,
+              // 2202,
+              // 2100,
+              // 1600,
+              // 1734,
+              // 2041,
+              // 1600,
+              // 2033,
             ]
           }
         ]
@@ -186,16 +186,16 @@ export default {
             // 하단 날짜
             ticks: {
               color: [
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA164C',
-                '#AEEA16',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA16',
               ],
               autoSkip: false,
               maxRotation: 0,
@@ -214,6 +214,7 @@ export default {
     // 기본데이터 설정
     // this.result = JSON.parse(sessionStorage.getItem("mainData"))
     this.result = this.$store.state.mainData;
+    console.log("mainData ::::::::::::::::::::: ", this.result);
 
     // Label 만들기
     let labels = []
