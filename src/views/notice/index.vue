@@ -113,6 +113,8 @@ export default {
     let params = {
       "pagingStart": 0
     }
+    this.selectedMenuNormal = null;
+    this.selectedMenu = null;
     this.getData(params)
     window.addEventListener('scroll', this.handleNotificationListScroll())
     this.profileId = this.$route.query.profileId;

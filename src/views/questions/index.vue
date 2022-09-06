@@ -71,6 +71,7 @@
         questionTypeCode: questionTypeCode,
         pagingStart: 0
       }
+      this.selectedMenu = null;
       this.getData(params)
       // TODO 만약 무한 스크롤 기능이 구현되어 있지 않을 시 아래 이벤트리스너 주석 2개 해제
       // window.addEventListener('scroll', this.handleNotificationListScroll())
@@ -122,7 +123,7 @@
 
       // 자주묻는질문 카테고리 클릭 시 데이터 조회
       selectCate(cateCode) {
-        this.selectedMenu = 0;
+        //this.selectedMenu = 0;
         this.nowCateCode = cateCode
         let params = {
           "questionTypeCode": cateCode,
