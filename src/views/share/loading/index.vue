@@ -45,7 +45,7 @@ export default {
       }
       this.interval1 = setTimeout(()=>{
         this.setPageData(result)
-      }, 1000)
+      }, 2000)
     }
   }
 }
