@@ -13,10 +13,11 @@
         </div>
         <hr class="hr" />
       </header>
+      <div>
+        음????????
+        {{ this.testData }}
+      </div>
       <section class="exercise-stats__section">
-        <div>
-          {{ this.testData }}
-        </div>
         <div class="exercise-stats__chart">
           <Bar
             :chart-options="chartOptions"
