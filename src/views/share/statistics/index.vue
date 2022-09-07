@@ -91,12 +91,12 @@ export default {
       totalAvgData: 0,
       totalData: 0,
       result: {
-        date: "",
-        term: "",
-        exeType: "",
-        dataList: [],
-        avgData: 0,
-        maxData: 0
+        date: this.$store.getters.getMainData.date,
+        term: this.$store.getters.getMainData.term,
+        exeType:  this.$store.getters.getMainData.exeType,
+        dataList:  this.$store.getters.getMainData.dataList,
+        avgData:  this.$store.getters.getMainData.avgData,
+        maxData:  this.$store.getters.getMainData.maxData
       },
       isMobile: window.isMobile.any(),
       clickValue: 0,
@@ -274,7 +274,7 @@ export default {
   // setData를 통한 데이터 변화 감지
   computed:{
     getMainData(){
-      this.result = this.$store.getters.getMainData
+      // this.result = this.$store.getters.getMainData
     }
   },
   watch:{
