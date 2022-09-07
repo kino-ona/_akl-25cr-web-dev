@@ -13,10 +13,6 @@
         </div>
         <hr class="hr" />
       </header>
-      <div>
-        음????????
-        {{ this.testData }}
-      </div>
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
@@ -87,7 +83,6 @@ export default {
   components: { Bar },
   data() {
     return {
-      testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
       result: {
