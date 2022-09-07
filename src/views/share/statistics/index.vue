@@ -13,6 +13,10 @@
         </div>
         <hr class="hr" />
       </header>
+      <div>
+        음????????
+        {{ this.testData }}
+      </div>
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
@@ -83,15 +87,16 @@ export default {
   components: { Bar },
   data() {
     return {
+      testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
       result: {
-        date: this.$store.getters.getMainData.date,
-        term: this.$store.getters.getMainData.term,
-        exeType:  this.$store.getters.getMainData.exeType,
-        dataList:  this.$store.getters.getMainData.dataList,
-        avgData:  this.$store.getters.getMainData.avgData,
-        maxData:  this.$store.getters.getMainData.maxData
+        date: "",
+        term: "",
+        exeType: "",
+        dataList: [],
+        avgData: 0,
+        maxData: 0
       },
       isMobile: window.isMobile.any(),
       clickValue: 0,
@@ -269,7 +274,11 @@ export default {
   // setData를 통한 데이터 변화 감지
   computed:{
     getMainData(){
-      // this.result = this.$store.getters.getMainData
+      if (this.result.date && !this.chartOptionsLabel){
+        this.setResult()
+      } else {
+        this.result = this.$store.getters.getMainData
+      }
     }
   },
   watch:{
