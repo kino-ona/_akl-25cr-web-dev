@@ -13,10 +13,6 @@
         </div>
         <hr class="hr" />
       </header>
-      <div>
-        음????????
-        {{ this.testData }}
-      </div>
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
@@ -279,7 +275,7 @@ export default {
   computed:{
     getMainData(){
       this.result = this.$store.getters.getMainData
-      this.setResult()
+      // this.setResult()
     }
   },
   watch:{
