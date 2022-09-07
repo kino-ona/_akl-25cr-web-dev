@@ -87,6 +87,7 @@ export default {
   components: { Bar },
   data() {
     return {
+      isRendering: false,
       testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
@@ -225,13 +226,18 @@ export default {
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     },
     setResult(){
-      console.log("setResult :::::::::::: ", this.result)
+      if(this.isRendering){
+        return
+      }
       // Label 만들기
       let labels = []
       let colors = []
       let datas = []
 
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
+        if(this.result.date){
+          this.isRendering = true
+        }
         let exeData = this.result.dataList[exeIndex]
         let dateData = []
         dateData = exeData.date.split(" \n")
@@ -247,7 +253,6 @@ export default {
         } else {
           colors.push('#AEEA164C');
         }
-
         // Data 선정
         datas.push(exeData.data)
       }
@@ -255,14 +260,13 @@ export default {
       this.chartOptionsLabel = this.result.dataList.length;
       this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
       this.chartOptions.plugins.annotation.annotations.line1.yMax = this.result.avgData
-
       if(this.totalAvgData == 0 && this.result.dataList.length != 0){
         this.totalAvgData = this.result.avgData
       }
-
       this.totalAvgData = this.setComma(this.totalAvgData)
       this.result.avgData = this.setComma(this.result.avgData)
       this.result.maxData = this.setComma(this.result.maxData)
+
       // Chart에 반영
       this.chartData.labels = labels;
       this.chartData.datasets[0].backgroundColor = colors;
@@ -274,11 +278,8 @@ export default {
   // setData를 통한 데이터 변화 감지
   computed:{
     getMainData(){
-      if (this.result.date && !this.chartOptionsLabel){
-        this.setResult()
-      } else {
-        this.result = this.$store.getters.getMainData
-      }
+      this.result = this.$store.getters.getMainData
+      this.setResult()
     }
   },
   watch:{
