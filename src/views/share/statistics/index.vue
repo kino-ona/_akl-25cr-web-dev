@@ -14,6 +14,9 @@
         <hr class="hr" />
       </header>
       <section class="exercise-stats__section">
+        <div>
+          {{ this.testData }}
+        </div>
         <div class="exercise-stats__chart">
           <Bar
             :chart-options="chartOptions"
@@ -83,6 +86,7 @@ export default {
   components: { Bar },
   data() {
     return {
+      testData: "",
       totalAvgData: 0,
       totalData: 0,
       result: {
@@ -220,10 +224,17 @@ export default {
     let colors = []
     let datas = []
 
+    this.testData = this.result
+
     for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
       let exeData = this.result.dataList[exeIndex]
-      let dateData = exeData.date.split(" ")
-      
+      let dateData = []
+      if (exeData.date.includes(" ")){
+        dateData = exeData.date.split(" ")
+      } else {
+        dateData = exeData.date.split("\n")
+      }
+
       labels.push(dateData)
 
       this.totalData = this.totalData + exeData.data;
