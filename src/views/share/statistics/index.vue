@@ -14,9 +14,6 @@
         <hr class="hr" />
       </header>
       <section class="exercise-stats__section">
-        <div> 테스트용
-          {{ this.result.dataList }}
-        </div>
         <div class="exercise-stats__chart">
           <Bar
             :chart-options="chartOptions"
