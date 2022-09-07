@@ -87,7 +87,7 @@ export default {
   components: { Bar },
   data() {
     return {
-      testData: "",
+      testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
       result: {
@@ -215,59 +215,7 @@ export default {
     }
   },
   mounted() {
-    // 기본데이터 설정
-    // this.result = JSON.parse(sessionStorage.getItem("mainData"))
-    this.result = this.$store.state.mainData;
-    console.log("mainData ::::::::::::::::::::: ", this.result);
-
-    // Label 만들기
-    let labels = []
-    let colors = []
-    let datas = []
-
-    this.testData = this.result
-
-    for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
-      let exeData = this.result.dataList[exeIndex]
-      let dateData = []
-      if (exeData.date.includes(" ")){
-        dateData = exeData.date.split(" ")
-      } else {
-        dateData = exeData.date.split("\n")
-      }
-
-      labels.push(dateData)
-
-      this.totalData = this.totalData + exeData.data;
-      if(exeData.isSelected){
-        colors.push('#AEEA16');
-        if(this.result.exeType != 'K'){
-          this.totalAvgData = parseFloat(exeData.data).toFixed(1);
-        }
-      } else {
-        colors.push('#AEEA164C');
-      }
-
-      // Data 선정
-      datas.push(exeData.data)
-    }
-
-    this.chartOptionsLabel = this.result.dataList.length;
-    this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
-    this.chartOptions.plugins.annotation.annotations.line1.yMax = this.result.avgData
-
-    if(this.totalAvgData == 0 && this.result.dataList.length != 0){
-      this.totalAvgData = this.result.avgData
-    }
-
-    this.totalAvgData = this.setComma(this.totalAvgData)
-    this.result.avgData = this.setComma(this.result.avgData)
-    this.result.maxData = this.setComma(this.result.maxData)
-    // Chart에 반영
-    this.chartData.labels = labels;
-    this.chartData.datasets[0].backgroundColor = colors;
-    this.chartData.datasets[0].data = datas;
-    this.chartOptions.scales.x.ticks.color = colors;
+    this.setResult()
   },
   methods: {
     getEnumData(enumType, value) {
@@ -275,16 +223,62 @@ export default {
     },
     setComma(numVal){
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    },
+    setResult(){
+      console.log("setResult :::::::::::: ", this.result)
+      // Label 만들기
+      let labels = []
+      let colors = []
+      let datas = []
+
+      for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
+        let exeData = this.result.dataList[exeIndex]
+        let dateData = []
+        dateData = exeData.date.split(" \n")
+
+        labels.push(dateData)
+
+        this.totalData = this.totalData + exeData.data;
+        if(exeData.isSelected){
+          colors.push('#AEEA16');
+          if(this.result.exeType != 'K'){
+            this.totalAvgData = parseFloat(exeData.data).toFixed(1);
+          }
+        } else {
+          colors.push('#AEEA164C');
+        }
+
+        // Data 선정
+        datas.push(exeData.data)
+      }
+
+      this.chartOptionsLabel = this.result.dataList.length;
+      this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
+      this.chartOptions.plugins.annotation.annotations.line1.yMax = this.result.avgData
+
+      if(this.totalAvgData == 0 && this.result.dataList.length != 0){
+        this.totalAvgData = this.result.avgData
+      }
+
+      this.totalAvgData = this.setComma(this.totalAvgData)
+      this.result.avgData = this.setComma(this.result.avgData)
+      this.result.maxData = this.setComma(this.result.maxData)
+      // Chart에 반영
+      this.chartData.labels = labels;
+      this.chartData.datasets[0].backgroundColor = colors;
+      this.chartData.datasets[0].data = datas;
+      this.chartOptions.scales.x.ticks.color = colors;
     }
   },
 
   // setData를 통한 데이터 변화 감지
   computed:{
-    getMainData(){return this.$store.getters.getMainData}
+    getMainData(){
+      this.result = this.$store.getters.getMainData
+    }
   },
   watch:{
     getMainData(val){
-      this.result = val
     }
   },
 }
