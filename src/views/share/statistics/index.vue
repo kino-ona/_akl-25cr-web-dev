@@ -16,6 +16,7 @@
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
+            v-model="chartOptions"
             :chart-options="chartOptions"
             :chart-data="chartData"
             chart-id="bar-chart"
