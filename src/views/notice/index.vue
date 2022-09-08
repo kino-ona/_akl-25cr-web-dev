@@ -15,7 +15,7 @@
                       <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
-                      <span class="notice__text sub">{{ notice.notiDatatime }}</span>
+                      <span class="notice__text sub">{{ getTime(notice.notiDatatime) }}</span>
                     </div>
                   </div>
                   <i class="icon-dropdown"></i>
@@ -51,7 +51,7 @@
                     <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                     <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                     <span class="notice-bar"></span>
-                    <span class="notice__text sub">{{ notice.notiDatatime }}</span>
+                    <span class="notice__text sub">{{ getTime(notice.notiDatatime) }}</span>
                   </div>
                 </div>
                 <i class="icon-dropdown"></i>
@@ -294,6 +294,17 @@ export default {
           .catch((error) => {
             console.log(error);
           })
+    },
+
+    getTime(timeValue){
+      let date = new Date(timeValue);
+      return date.getFullYear() + "년 "
+          + this.setTime(date.getMonth()) + "월 "
+          + this.setTime(date.getDate()) + "일 "
+          + this.setTime(date.getHours()) + ":" + this.setTime(date.getMinutes())
+    },
+    setTime(timeValue){
+      return timeValue >= 10 ? timeValue : ("0" + timeValue)
     }
   }
 }
