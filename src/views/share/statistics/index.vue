@@ -1,5 +1,5 @@
 <template>
-  <section class="exercise-stats">
+  <section class="exercise-stats" v-if="this.isRenderingCheck">
     {{ this.isRenderingCheck }}
     {{ this.isRenderingIndex }}
     <div class="container">
@@ -213,9 +213,6 @@ export default {
       }
     }
   },
-  // mounted() {
-    // this.setResult()
-  // },
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
@@ -233,9 +230,6 @@ export default {
       let colors = []
       let datas = []
 
-      // TODO 아래 내용 지우기
-      this.isRenderingIndex = 1
-      this.isRenderingCheck = this.result.dataList.length
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
         let exeData = this.result.dataList[exeIndex]
         let dateData = []
@@ -255,9 +249,6 @@ export default {
         // Data 선정
         datas.push(exeData.data)
       }
-      // TODO 아래 내용 지우기
-      this.isRenderingIndex = 2
-      this.isRenderingCheck = this.result.avgData
 
       this.chartOptionsLabel = this.result.dataList.length;
       this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
@@ -269,10 +260,6 @@ export default {
       this.result.avgData = this.setComma(this.result.avgData)
       this.result.maxData = this.setComma(this.result.maxData)
 
-      // TODO 아래 내용 지우기
-      this.isRenderingIndex = 3
-      this.isRenderingCheck = this.result.maxData
-
       // Chart에 반영
       this.chartData.labels = labels;
       this.chartData.datasets[0].backgroundColor = colors;
@@ -280,7 +267,6 @@ export default {
       this.chartOptions.scales.x.ticks.color = colors;
 
       // TODO 아래 내용 지우기
-      this.isRenderingIndex = 4
       this.isRenderingCheck = true
     }
   },
@@ -290,7 +276,6 @@ export default {
     getMainData(){
       this.result = this.$store.getters.getMainData
       this.isRenderingIndex = 100
-      this.isRenderingCheck = this.result
       if(this.result){
         this.setResult()
       }
