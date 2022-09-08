@@ -19,7 +19,7 @@
               <div class="faq__question">
                 <div class="faq__question-wrap">
                   <p class="faq__title mb-0">{{ question.askContents }}</p>
-                  <p class="faq__text sub mb-0">{{ question.createDatetime }}</p>
+<!--                  <p class="faq__text sub mb-0">{{ question.createDatetime }}</p>-->
                 </div>
                 <i class="icon-dropdown"></i>
               </div>

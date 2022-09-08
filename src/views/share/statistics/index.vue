@@ -275,7 +275,7 @@ export default {
       this.isRenderingCheck = true
     },
     getHourMin(secondData){
-      var date = new Date(0)
+      const date = new Date(0)
       date.setSeconds(secondData)
       return date.toISOString().substring(11, 16)
     }
