@@ -16,7 +16,7 @@
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
-            v-model="chartOptions"
+            v-if="isRendering"
             :chart-options="chartOptions"
             :chart-data="chartData"
             chart-id="bar-chart"
@@ -223,18 +223,12 @@ export default {
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     },
     setResult(){
-      if(this.isRendering){
-        return
-      }
       // Label 만들기
       let labels = []
       let colors = []
       let datas = []
 
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
-        if(this.result.date){
-          this.isRendering = true
-        }
         let exeData = this.result.dataList[exeIndex]
         let dateData = []
         dateData = exeData.date.split(" \n")
@@ -269,6 +263,7 @@ export default {
       this.chartData.datasets[0].backgroundColor = colors;
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
+      this.isRendering = true
     }
   },
 
