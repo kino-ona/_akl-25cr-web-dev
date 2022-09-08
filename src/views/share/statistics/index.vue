@@ -1,7 +1,5 @@
 <template>
   <section class="exercise-stats" v-if="this.isRenderingCheck">
-    {{ this.isRenderingCheck }}
-    {{ this.isRenderingIndex }}
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
@@ -9,7 +7,7 @@
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
             <span class="point__value">{{ this.totalAvgData }}</span>
-            <span class="point__unit">점</span>
+            <span class="point__unit">{{ this.getEnumData("exeTypeUnit", this.result.exeType) }}</span>
           </div>
           <img class="logo" src="@/assets/logo.png" alt="로고" />
         </div>
@@ -41,7 +39,7 @@
               </div>
               <div class="record__point text-blue">
                 <span class="point__value">{{ this.result.avgData }}</span>
-                <span class="point__unit">점</span>
+                <span class="point__unit">{{ this.getEnumData("exeTypeUnit", this.result.exeType) }}</span>
               </div>
             </div>
           </li>
@@ -55,7 +53,7 @@
               </div>
               <div class="record__point text-blue">
                 <span class="point__value">{{ this.result.maxData }}</span>
-                <span class="point__unit">점</span>
+                <span class="point__unit">{{ this.getEnumData("exeTypeUnit", this.result.exeType) }}</span>
               </div>
             </div>
           </li>
@@ -86,7 +84,6 @@ export default {
   data() {
     return {
       isRenderingCheck: false,
-      isRenderingIndex: 0,
       totalAvgData: 0,
       totalData: 0,
       result: {
@@ -240,8 +237,10 @@ export default {
         this.totalData = this.totalData + exeData.data;
         if(exeData.isSelected){
           colors.push('#AEEA16');
-          if(this.result.exeType != 'K'){
+          if(this.result.exeType != 'K' && this.result.exeType != 'T'){
             this.totalAvgData = parseFloat(exeData.data).toFixed(1);
+          } else {
+            this.totalAvgData = parseInt(this.totalAvgData)
           }
         } else {
           colors.push('#AEEA164C');
@@ -256,9 +255,16 @@ export default {
       if(this.totalAvgData == 0 && this.result.dataList.length != 0){
         this.totalAvgData = this.result.avgData
       }
-      this.totalAvgData = this.setComma(this.totalAvgData)
-      this.result.avgData = this.setComma(this.result.avgData)
-      this.result.maxData = this.setComma(this.result.maxData)
+
+      if(this.result.exeType == "T") {
+        this.totalAvgData = this.getHourMin(this.totalAvgData)
+        this.result.avgData = this.getHourMin(this.result.avgData)
+        this.result.maxData = this.getHourMin(this.result.maxData)
+      } else {
+        this.totalAvgData = this.setComma(this.totalAvgData)
+        this.result.avgData = this.setComma(this.result.avgData)
+        this.result.maxData = this.setComma(this.result.maxData)
+      }
 
       // Chart에 반영
       this.chartData.labels = labels;
@@ -266,8 +272,12 @@ export default {
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
 
-      // TODO 아래 내용 지우기
       this.isRenderingCheck = true
+    },
+    getHourMin(secondData){
+      var date = new Date(0)
+      date.setSeconds(secondData)
+      return date.toISOString().substring(14, 19)
     }
   },
 
@@ -275,7 +285,6 @@ export default {
   computed:{
     getMainData(){
       this.result = this.$store.getters.getMainData
-      this.isRenderingIndex = 100
       if(this.result){
         this.setResult()
       }

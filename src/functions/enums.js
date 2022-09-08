@@ -36,6 +36,14 @@ const exeType = {
     "D": "운동 거리"
 }
 
+const exeTypeUnit = {
+    "M": "점",
+    "K": "rpm",
+    "C": "kcal",
+    "T": "",
+    "D": "km"
+}
+
 const term = {
     "D": "일간", 
     "W": "주간", 
@@ -63,6 +71,7 @@ export default function getEnumData(enumType, value) {
         "iconCode": iconCode,
         "iconCodeTitle": iconCodeTitle,
         "exeType": exeType,
+        "exeTypeUnit": exeTypeUnit,
         "term": term,
         "termType": termType
     }
