@@ -240,7 +240,7 @@ export default {
           if(this.result.exeType != 'K' && this.result.exeType != 'T'){
             this.totalAvgData = parseFloat(exeData.data).toFixed(1);
           } else {
-            this.totalAvgData = parseInt(this.totalAvgData)
+            this.totalAvgData = parseInt(exeData.data)
           }
         } else {
           colors.push('#AEEA164C');
@@ -277,7 +277,7 @@ export default {
     getHourMin(secondData){
       var date = new Date(0)
       date.setSeconds(secondData)
-      return date.toISOString().substring(14, 19)
+      return date.toISOString().substring(11, 16)
     }
   },
 
