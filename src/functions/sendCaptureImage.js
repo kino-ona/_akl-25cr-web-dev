@@ -1,6 +1,5 @@
 export default function sendCaptureImage() {
     window.windowCapture();
-    // setTimeout(function() {
     if(window.isMobile.any()) {
         if(window.isMobile.Android()) {
             AndroidBridge.sendCaptureImage(window.captureData);
@@ -12,5 +11,4 @@ export default function sendCaptureImage() {
         console.log("Web Capture Image Data :::::::: ", window.captureData);
         return window.captureData;
     }
-    // }, 1000)
 }
