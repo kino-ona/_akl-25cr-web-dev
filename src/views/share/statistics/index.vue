@@ -87,7 +87,6 @@ export default {
     return {
       isRenderingCheck: false,
       isRenderingIndex: 0,
-      testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
       result: {
@@ -214,9 +213,9 @@ export default {
       }
     }
   },
-  mounted() {
-    this.setResult()
-  },
+  // mounted() {
+    // this.setResult()
+  // },
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
@@ -225,10 +224,16 @@ export default {
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     },
     setResult(){
+      if (this.isRenderingCheck){
+        return
+      }
+
       // Label 만들기
       let labels = []
       let colors = []
       let datas = []
+
+      // TODO 아래 내용 지우기
       this.isRenderingIndex = 1
       this.isRenderingCheck = this.result.dataList.length
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
@@ -250,6 +255,7 @@ export default {
         // Data 선정
         datas.push(exeData.data)
       }
+      // TODO 아래 내용 지우기
       this.isRenderingIndex = 2
       this.isRenderingCheck = this.result.avgData
 
@@ -263,6 +269,7 @@ export default {
       this.result.avgData = this.setComma(this.result.avgData)
       this.result.maxData = this.setComma(this.result.maxData)
 
+      // TODO 아래 내용 지우기
       this.isRenderingIndex = 3
       this.isRenderingCheck = this.result.maxData
 
@@ -272,6 +279,7 @@ export default {
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
 
+      // TODO 아래 내용 지우기
       this.isRenderingIndex = 4
       this.isRenderingCheck = true
     }
@@ -281,7 +289,7 @@ export default {
   computed:{
     getMainData(){
       this.result = this.$store.getters.getMainData
-      // this.setResult()
+      this.setResult()
     }
   },
   watch:{
