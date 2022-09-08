@@ -90,10 +90,10 @@ export default {
       totalAvgData: 0,
       totalData: 0,
       result: {
-        date: "",
-        term: "",
-        exeType: "",
-        dataList: [],
+        date: "123",
+        term: "123",
+        exeType: "123",
+        dataList: ["123"],
         avgData: 0,
         maxData: 0
       },
@@ -289,7 +289,11 @@ export default {
   computed:{
     getMainData(){
       this.result = this.$store.getters.getMainData
-      this.setResult()
+      this.isRenderingIndex = 100
+      this.isRenderingCheck = this.result
+      if(this.result){
+        this.setResult()
+      }
     }
   },
   watch:{
