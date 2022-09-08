@@ -13,10 +13,11 @@
         </div>
         <hr class="hr" />
       </header>
+      {{ this.isRenderingCheck }}
+      {{ this.isRenderingIndex }}
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
-            v-if="isRendering"
             :chart-options="chartOptions"
             :chart-data="chartData"
             chart-id="bar-chart"
@@ -84,7 +85,8 @@ export default {
   components: { Bar },
   data() {
     return {
-      isRendering: false,
+      isRenderingCheck: false,
+      isRenderingIndex: 0,
       testData: "초기값",
       totalAvgData: 0,
       totalData: 0,
@@ -227,7 +229,8 @@ export default {
       let labels = []
       let colors = []
       let datas = []
-
+      this.isRenderingIndex = 1
+      this.isRenderingCheck = this.result.dataList.length
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
         let exeData = this.result.dataList[exeIndex]
         let dateData = []
@@ -247,6 +250,8 @@ export default {
         // Data 선정
         datas.push(exeData.data)
       }
+      this.isRenderingIndex = 2
+      this.isRenderingCheck = this.result.avgData
 
       this.chartOptionsLabel = this.result.dataList.length;
       this.chartOptions.plugins.annotation.annotations.line1.yMin = this.result.avgData
@@ -258,12 +263,17 @@ export default {
       this.result.avgData = this.setComma(this.result.avgData)
       this.result.maxData = this.setComma(this.result.maxData)
 
+      this.isRenderingIndex = 3
+      this.isRenderingCheck = this.result.maxData
+
       // Chart에 반영
       this.chartData.labels = labels;
       this.chartData.datasets[0].backgroundColor = colors;
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
-      this.isRendering = true
+
+      this.isRenderingIndex = 4
+      this.isRenderingCheck = true
     }
   },
 
