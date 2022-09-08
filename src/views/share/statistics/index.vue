@@ -1,5 +1,7 @@
 <template>
   <section class="exercise-stats">
+    {{ this.isRenderingCheck }}
+    {{ this.isRenderingIndex }}
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
@@ -13,13 +15,11 @@
         </div>
         <hr class="hr" />
       </header>
-      {{ this.isRenderingCheck }}
-      {{ this.isRenderingIndex }}
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
           <Bar
-            :chart-options="chartOptions"
-            :chart-data="chartData"
+            :chart-options="this.chartOptions"
+            :chart-data="this.chartData"
             chart-id="bar-chart"
             dataset-id-key="label"
             :width="300"
