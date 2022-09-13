@@ -235,11 +235,11 @@ export default {
         let exeData = this.result.dataList[exeIndex]
 
         let dateData = []
-        if(exeData.date.contains(" \n")){
+        if(exeData.date.includes(" \n")){
           dateData = exeData.date.split(" \n")
-        } else if(exeData.date.contains(" ")){
+        } else if(exeData.date.includes(" ")){
           dateData = exeData.date.split(" ")
-        } else if(exeData.date.contains("\n")){
+        } else if(exeData.date.includes("\n")){
           dateData = exeData.date.split("\n")
         }
 
