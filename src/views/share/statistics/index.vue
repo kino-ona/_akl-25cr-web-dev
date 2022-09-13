@@ -1,5 +1,8 @@
 <template>
   <section class="exercise-stats" v-if="this.isRenderingCheck">
+    <div>
+      {{ this.checkData }}
+    </div>
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
@@ -83,6 +86,7 @@ export default {
   components: { Bar },
   data() {
     return {
+      checkData: "",
       isRenderingCheck: false,
       totalAvgData: 0,
       totalData: 0,
@@ -231,7 +235,7 @@ export default {
         let exeData = this.result.dataList[exeIndex]
         let dateData = []
         dateData = exeData.date.split(" \n")
-
+        this.checkData = dateData
         labels.push(dateData)
 
         this.totalData = this.totalData + exeData.data;
