@@ -4,9 +4,6 @@
       <header class="exercise-stats__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
-          <div>
-            {{ this.checkData }}
-          </div>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
             <span class="point__value">{{ this.totalAvgData }}</span>
