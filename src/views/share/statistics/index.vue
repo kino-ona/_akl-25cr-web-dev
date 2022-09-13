@@ -233,8 +233,7 @@ export default {
 
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
         let exeData = this.result.dataList[exeIndex]
-        let dateData = []
-        dateData = exeData.date.split(" \n")
+        let dateData = exeData.date.split(" \n")
         this.checkData = dateData
         labels.push(dateData)
 
