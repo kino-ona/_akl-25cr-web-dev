@@ -72,7 +72,7 @@
         pagingStart: 0
       }
       this.selectedMenu = null;
-      this.getData(params)
+      this.getFirstData(params)
       // TODO 만약 무한 스크롤 기능이 구현되어 있지 않을 시 아래 이벤트리스너 주석 2개 해제
       // window.addEventListener('scroll', this.handleNotificationListScroll())
     },
@@ -123,14 +123,27 @@
 
       // 자주묻는질문 카테고리 클릭 시 데이터 조회
       selectCate(cateCode) {
+        this.result.questionList = []
         //this.selectedMenu = 0;
         this.nowCateCode = cateCode
         let params = {
           "questionTypeCode": cateCode,
           "pagingStart": 0
         }
-        this.result.questionList = []
-        this.getData(params)
+        this.getFirstData(params)
+      },
+
+      // 서버로 부터 데이터 수신
+      getFirstData(params) {
+        let _this = this;
+        this.$http.post("guest/questions?questionTypeCode=" + params.questionTypeCode + "&pagingStart=" + params.pagingStart)
+            .then((response) => {
+              _this.result.questionList = response.data.result.questionList;
+              _this.result.questionCateList = response.data.result.questionCateList;
+            })
+            .catch((error) => {
+              console.log("Error Check >>>>>>>>>> ", error);
+            })
       },
 
       // 서버로 부터 데이터 수신

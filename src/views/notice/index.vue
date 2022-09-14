@@ -272,14 +272,16 @@ export default {
     isInLocalStorage(notiId){
       this.beforeNotiList = this.profileId
       let dicString = window.localStorage.getItem(this.profileId);
-      let dic = {}
+      let dicValue = {}
+      this.beforeNotiList = dicString
       if(dicString){
-        dic = JSON.parse(dicString)
+        dicValue = JSON.parse(dicString)
       } else {
         return false
       }
+      this.beforeNotiList = this.profileId
       let searchNotiId = 'notificationId_' + notiId
-      if(dic[searchNotiId]){
+      if(dicValue[searchNotiId]){
         return true
       }
       return false
