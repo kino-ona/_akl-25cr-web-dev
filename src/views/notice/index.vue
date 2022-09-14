@@ -6,10 +6,12 @@
         <div class="container p14">
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
+              <div>
+                {{ this.beforeNotiList }} |||||||||||||| {{ this.notiList }}
+              </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
                   <div class="notice__question-wrap">
-                    {{ this.beforeNotiList }} |||||||||||||| {{ this.notiList }}
                     <p class="notice__title mb-0">{{ notice.notiTitle }} |||||||| {{ notice.isNew }} |||| {{ notice.notiType }} </p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
                     <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
