@@ -270,21 +270,23 @@ export default {
     },
 
     isInLocalStorage(notiId){
-      this.beforeNotiList = this.profileId
-      let dicString = window.localStorage.getItem(this.profileId);
-      let dicValue = {}
-      this.beforeNotiList = dicString
-      if(dicString){
-        dicValue = JSON.parse(dicString)
-      } else {
+      try {
+        let dicString = window.localStorage.getItem(this.profileId);
+        let dicValue = {}
+        if(dicString){
+          dicValue = JSON.parse(dicString)
+        } else {
+          return false
+        }
+        let searchNotiId = 'notificationId_' + notiId
+        if(dicValue[searchNotiId]){
+          return true
+        }
+        return false
+      }catch (exception_var) {
+        this.beforeNotiList = exception_var
         return false
       }
-      this.beforeNotiList = dicValue
-      let searchNotiId = 'notificationId_' + notiId
-      if(dicValue[searchNotiId]){
-        return true
-      }
-      return false
     },
 
     getData(params) {
