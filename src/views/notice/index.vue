@@ -7,7 +7,7 @@
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
               <div>
-                {{ this.beforeNotiList }} |||||||||||||| {{ this.notiList }}
+                접속한 User의 Profile ID :::::::: {{ this.beforeNotiList }}
               </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
@@ -250,36 +250,29 @@ export default {
     },
 
     pushIsNew(notiList){
-      this.beforeNotiList = "#############  1  #############"
       for (const [key, value] of Object.entries(notiList)) {
         value['isNew'] = false
 
-        this.beforeNotiList = "#############  2  #############"
         // 날짜 비교를 위한 값 세팅
         const today = new Date()
         const compareDate = new Date(today)
         compareDate.setDate(compareDate.getDate())
-        this.beforeNotiList = "#############  3  #############"
         let dateTime = new Date(value.notiDatatime)
         dateTime = new Date(dateTime.setDate(dateTime.getDate() + 1));	// 어제
 
-        this.beforeNotiList = "#############  4  #############"
         // 날짜 비교 진행
         this.beforeNotiList = "" + dateTime + " | " + compareDate + " | " + value['isNew'] + " | " + value.notiId
         if (dateTime >= compareDate){
           value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
-        this.beforeNotiList = "#############  5  #############"
       }
       this.notiList = notiList
     },
 
     isInLocalStorage(notiId){
-      this.beforeNotiList = "#############  4-1  #############"
-      this.beforeNotiList = "#############  4-1  #############    " + this.profileId
+      this.beforeNotiList = this.profileId
       let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
-      this.beforeNotiList = "#############  4-2  #############"
       if(dicString){
         dic = JSON.parse(dicString)
       } else {
@@ -287,10 +280,8 @@ export default {
       }
       let searchNotiId = 'notificationId_' + notiId
       if(dic[searchNotiId]){
-        this.beforeNotiList = "#############  4-3  #############"
         return true
       }
-      this.beforeNotiList = "#############  4-4  #############"
       return false
     },
 
