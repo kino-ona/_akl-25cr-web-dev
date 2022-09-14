@@ -265,6 +265,7 @@ export default {
 
         this.beforeNotiList = "#############  4  #############"
         // 날짜 비교 진행
+        this.beforeNotiList = "" + dateTime + " | " + compareDate + " | " + value['isNew'] + " | " + value.notiId
         if (dateTime >= compareDate){
           value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
@@ -274,8 +275,10 @@ export default {
     },
 
     isInLocalStorage(notiId){
+      this.beforeNotiList = "#############  4-1  #############"
       let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
+      this.beforeNotiList = "#############  4-2  #############"
       if(dicString){
         dic = JSON.parse(dicString)
       } else {
@@ -283,8 +286,10 @@ export default {
       }
       let searchNotiId = 'notificationId_' + notiId
       if(dic[searchNotiId]){
+        this.beforeNotiList = "#############  4-3  #############"
         return true
       }
+      this.beforeNotiList = "#############  4-4  #############"
       return false
     },
 
