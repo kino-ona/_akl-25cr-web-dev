@@ -6,9 +6,6 @@
         <div class="container p14">
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
-              <div>
-                접속한 User의 Profile ID :::::::: {{ this.notiList }}
-              </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
                   <div class="notice__question-wrap">
@@ -94,7 +91,6 @@
 export default {
   data () {
     return {
-      notiList: [],
       result: {
         noticeList: [],
         topList: []
@@ -264,7 +260,6 @@ export default {
           value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
       }
-      this.notiList = notiList
     },
 
     isInLocalStorage(notiId){
