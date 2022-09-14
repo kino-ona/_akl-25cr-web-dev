@@ -9,7 +9,7 @@
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
                   <div class="notice__question-wrap">
-                    {{ this.notiList }}
+                    {{ this.beforeNotiList }} |||||||||||||| {{ this.notiList }}
                     <p class="notice__title mb-0">{{ notice.notiTitle }} |||||||| {{ notice.isNew }} |||| {{ notice.notiType }} </p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
                     <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
@@ -92,6 +92,7 @@
 export default {
   data () {
     return {
+      beforeNotiList: [],
       notiList: [],
       result: {
         noticeList: [],
@@ -247,6 +248,7 @@ export default {
     },
 
     pushIsNew(notiList){
+      this.beforeNotiList = notiList
       for (const [key, value] of Object.entries(notiList)) {
         value['isNew'] = false
 
@@ -262,7 +264,7 @@ export default {
           value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
       }
-      this.notiList
+      this.notiList = notiList
     },
 
     isInLocalStorage(notiId){
