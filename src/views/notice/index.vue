@@ -12,7 +12,7 @@
                     <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
                     <div class="notice__text-wrap " :class="{'new':  notice.isNew  }"> {{ notice.isNew }}
-                      <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
+                      <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span> {{ notice.notiType }}
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
                       <span class="notice__text sub">{{ getTime(notice.notiDatatime) }}</span>
@@ -248,7 +248,7 @@ export default {
 
     pushIsNew(notiList){
       for (const [key, value] of Object.entries(notiList)) {
-        value.isNew = false
+        value['isNew'] = false
 
         // 날짜 비교를 위한 값 세팅
         const today = new Date()
@@ -259,7 +259,7 @@ export default {
 
         // 날짜 비교 진행
         if (dateTime >= compareDate){
-          value.isNew = (!this.isInLocalStorage(value.notiId))
+          value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
       }
     },
