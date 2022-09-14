@@ -11,8 +11,8 @@
                   <div class="notice__question-wrap">
                     <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
-                    <div class="notice__text-wrap " :class="{'new':  notice.isNew  }"> {{ notice.isNew }}
-                      <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span> {{ notice.notiType }}
+                    <div class="notice__text-wrap " :class="{'new':  notice.isNew  }"> {{ notice.isNew }} |||| {{ notice.notiType }}
+                      <span class="notice__text sub" v-if="notice.notiType == 'N'">공지</span>
                       <span class="notice__text sub" v-else-if="notice.notiType == 'E'">이벤트</span>
                       <span class="notice-bar"></span>
                       <span class="notice__text sub">{{ getTime(notice.notiDatatime) }}</span>
