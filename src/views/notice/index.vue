@@ -279,7 +279,7 @@ export default {
       } else {
         return false
       }
-      this.beforeNotiList = this.profileId
+      this.beforeNotiList = dicValue
       let searchNotiId = 'notificationId_' + notiId
       if(dicValue[searchNotiId]){
         return true
