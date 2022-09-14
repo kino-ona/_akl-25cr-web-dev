@@ -7,7 +7,7 @@
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
               <div>
-                접속한 User의 Profile ID :::::::: {{ this.beforeNotiList }}
+                접속한 User의 Profile ID :::::::: {{ this.profileId }} >>>> {{ this.beforeNotiList }}
               </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
@@ -210,7 +210,8 @@ export default {
       const objString = JSON.stringify(dic);
 
       // 업데이트된 오브젝트로 기존 값 치환
-      window.localStorage.setItem(this.profileId, objString);
+      this.beforeNotiList = objString
+      window.localStorage.setItem(this.profileId, objString)
     },
 
     expiredTimeCheck(){
