@@ -276,6 +276,7 @@ export default {
 
     isInLocalStorage(notiId){
       this.beforeNotiList = "#############  4-1  #############"
+      this.beforeNotiList = "#############  4-1  #############    " + this.profileId
       let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
       this.beforeNotiList = "#############  4-2  #############"
