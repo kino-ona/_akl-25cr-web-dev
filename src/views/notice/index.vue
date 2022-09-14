@@ -196,10 +196,12 @@ export default {
       tomorrow.setDate(tomorrow.getDate() + 1)
 
       // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
-      let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
-      if(dicString) {
+      try{
+        let dicString = window.localStorage.getItem(this.profileId);
         dic = JSON.parse(dicString)
+      }catch(e){
+        this.beforeNotiList = e
       }
 
       // 각 공지사항별 시청 이력 저장하기
@@ -222,24 +224,24 @@ export default {
       let expiredDate = ""
 
       // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
-      let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
+      try{
+        let dicString = window.localStorage.getItem(this.profileId)
+        dic = JSON.parse(dicString)
+      }catch(e){
+        this.beforeNotiList = e
+      }
 
       // 값이 존재하지 않는다면 비교하지 않고 리턴
-      if(dicString) {
-        dic = JSON.parse(dicString)
-        for (const [key, value] of Object.entries(dic)) {
-          if(value){
-            expiredDate = new Date(value)
+      for (const [key, value] of Object.entries(dic)) {
+        if(value){
+          expiredDate = new Date(value)
 
-            // 날짜 비교 진행
-            if (expiredDate < compareDate){
-              delete dic[key]
-            }
+          // 날짜 비교 진행
+          if (expiredDate < compareDate){
+            delete dic[key]
           }
         }
-      } else {
-        return
       }
 
       // 업데이트한 객체를 JSON 문자열로 변환
@@ -271,23 +273,19 @@ export default {
     },
 
     isInLocalStorage(notiId){
-      try {
+      let dic = {}
+      try{
         let dicString = window.localStorage.getItem(this.profileId);
-        let dicValue = {}
-        if(dicString){
-          dicValue = JSON.parse(dicString)
-        } else {
-          return false
-        }
-        let searchNotiId = 'notificationId_' + notiId
-        if(dicValue[searchNotiId]){
-          return true
-        }
-        return false
-      }catch (exception_var) {
-        this.beforeNotiList = exception_var
-        return false
+        dic = JSON.parse(dicString)
+      }catch(e){
+        this.beforeNotiList = e
       }
+
+      let searchNotiId = 'notificationId_' + notiId
+      if(dicValue[searchNotiId]){
+        return true
+      }
+      return false
     },
 
     getData(params) {
