@@ -12,7 +12,7 @@
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
                   <div class="notice__question-wrap">
-                    <p class="notice__title mb-0">{{ notice.notiTitle }} |||||||| {{ notice.isNew }} |||| {{ notice.notiType }} </p>
+                    <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                     <!--  todo: notice__text-wrap에 new 클래스 추가 시 새로운 글 표시 -->
                     <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
                       <span class="notice__text sub">{{ notice.notiType }}</span>
@@ -48,7 +48,7 @@
             <li class="notice__cont" v-for="(notice, index) in this.result.noticeList" :class="{open: handleMenuNormal === index}" :key="index" @click="handleMenuNormal(notice.notiId, index)">
               <div class="notice__question">
                 <div class="notice__question-wrap">
-                  <p class="notice__title mb-0">{{ notice.notiTitle }} |||||||  {{ notice.isNew }} |||| {{ notice.notiType }}</p>
+                  <p class="notice__title mb-0">{{ notice.notiTitle }}</p>
                   <div class="notice__text-wrap " :class="{'new':  notice.isNew  }">
                     <span class="notice__text sub">{{ notice.notiType }}</span>
                     <span class="notice-bar"></span>
