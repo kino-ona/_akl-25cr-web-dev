@@ -7,7 +7,7 @@
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
               <div>
-                접속한 User의 Profile ID :::::::: {{ this.profileId }} >>>> {{ this.beforeNotiList }}
+                접속한 User의 Profile ID :::::::: {{ this.beforeNotiList }}
               </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
@@ -196,12 +196,10 @@ export default {
       tomorrow.setDate(tomorrow.getDate() + 1)
 
       // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
+      let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
-      try{
-        let dicString = window.localStorage.getItem(this.profileId);
+      if(dicString) {
         dic = JSON.parse(dicString)
-      }catch(e){
-        this.beforeNotiList = e
       }
 
       // 각 공지사항별 시청 이력 저장하기
@@ -212,8 +210,7 @@ export default {
       const objString = JSON.stringify(dic);
 
       // 업데이트된 오브젝트로 기존 값 치환
-      this.beforeNotiList = objString
-      window.localStorage.setItem(this.profileId, objString)
+      window.localStorage.setItem(this.profileId, objString);
     },
 
     expiredTimeCheck(){
@@ -224,24 +221,24 @@ export default {
       let expiredDate = ""
 
       // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
+      let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
-      try{
-        let dicString = window.localStorage.getItem(this.profileId)
-        dic = JSON.parse(dicString)
-      }catch(e){
-        this.beforeNotiList = e
-      }
 
       // 값이 존재하지 않는다면 비교하지 않고 리턴
-      for (const [key, value] of Object.entries(dic)) {
-        if(value){
-          expiredDate = new Date(value)
+      if(dicString) {
+        dic = JSON.parse(dicString)
+        for (const [key, value] of Object.entries(dic)) {
+          if(value){
+            expiredDate = new Date(value)
 
-          // 날짜 비교 진행
-          if (expiredDate < compareDate){
-            delete dic[key]
+            // 날짜 비교 진행
+            if (expiredDate < compareDate){
+              delete dic[key]
+            }
           }
         }
+      } else {
+        return
       }
 
       // 업데이트한 객체를 JSON 문자열로 변환
@@ -273,16 +270,16 @@ export default {
     },
 
     isInLocalStorage(notiId){
+      this.beforeNotiList = this.profileId
+      let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
-      try{
-        let dicString = window.localStorage.getItem(this.profileId);
+      if(dicString){
         dic = JSON.parse(dicString)
-      }catch(e){
-        this.beforeNotiList = e
+      } else {
+        return false
       }
-
       let searchNotiId = 'notificationId_' + notiId
-      if(dicValue[searchNotiId]){
+      if(dic[searchNotiId]){
         return true
       }
       return false
