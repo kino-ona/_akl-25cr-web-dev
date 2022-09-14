@@ -7,7 +7,7 @@
           <div class="notice__accordion-wrap">
             <ul class="notice__list list-style-none">
               <div>
-                접속한 User의 Profile ID :::::::: {{ this.beforeNotiList }}
+                접속한 User의 Profile ID :::::::: {{ this.notiList }}
               </div>
               <li class="notice__cont" v-for="(notice, index) in this.result.topList" :class="{open: selectedMenu === index}" :key="index" @click="handleMenu(notice.notiId, index)">
                 <div class="notice__question">
@@ -94,7 +94,6 @@
 export default {
   data () {
     return {
-      beforeNotiList: [],
       notiList: [],
       result: {
         noticeList: [],
@@ -261,7 +260,6 @@ export default {
         dateTime = new Date(dateTime.setDate(dateTime.getDate() + 1));	// 어제
 
         // 날짜 비교 진행
-        this.beforeNotiList = "" + dateTime + " | " + compareDate + " | " + value['isNew'] + " | " + value.notiId
         if (dateTime >= compareDate){
           value['isNew'] = (!this.isInLocalStorage(value.notiId))
         }
@@ -270,7 +268,6 @@ export default {
     },
 
     isInLocalStorage(notiId){
-      this.beforeNotiList = this.profileId
       let dicString = window.localStorage.getItem(this.profileId);
       let dic = {}
       if(dicString){
