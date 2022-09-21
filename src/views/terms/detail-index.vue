@@ -97,9 +97,11 @@ export default {
 
     // API 서버로부터 데이터 요청
     getData(params) {
-      console.log("요청 URL : ", "front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
+      console.log("Data Check : ", params.termsId, params.termsType, params.termsVersion)
+      let url = "front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion
+      console.log("요청 URL : ", url)
       let _this = this;
-      this.$http.post("front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
+      this.$http.post(url)
           .then((response) => {
             console.log("Response Data ::::::::::: ", response.data.result[0])
             _this.result = response.data.result[0];
