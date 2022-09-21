@@ -76,7 +76,7 @@ export default {
         let webToAppUrl = "{'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}"
         window.getData(webToAppUrl);
       }
-      let url = "/terms?termsId=" + termsId + "termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
+      let url = "/terms?termsId=" + termsId + "&termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
       this.$router.push({
         path: url
       }).catch(()=>{
