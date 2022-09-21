@@ -53,7 +53,8 @@ export default {
   created() {
     let result = {
       termsType: this.$route.query.termsType,
-      termsVersion: this.$route.query.termsVersion
+      termsVersion: this.$route.query.termsVersion,
+      termsId: this.$route.query.termsId
     }
     const isProfile = this.$route.query.isProfile
     console.log("isProfile ::::::::::::: ", isProfile)
@@ -96,9 +97,9 @@ export default {
 
     // API 서버로부터 데이터 요청
     getData(params) {
-      console.log("요청 URL : ", "front/getTermsDetail?termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
+      console.log("요청 URL : ", "front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
       let _this = this;
-      this.$http.post("front/getTermsDetail?termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
+      this.$http.post("front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion)
           .then((response) => {
             console.log("Response Data ::::::::::: ", response.data.result[0])
             _this.result = response.data.result[0];

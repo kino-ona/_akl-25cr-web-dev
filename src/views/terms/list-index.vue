@@ -12,7 +12,7 @@
                 </div>
 <!--                <router-link class="detail-link" to="/policy-detail">-->
 
-                  <div v-if="!isMobile" class="cont-detail" @click="goDetail(term.termsType, term.termsVersion)">
+                  <div v-if="!isMobile" class="cont-detail" @click="goDetail(term.termsId, term.termsType, term.termsVersion)">
                     <p class="detail-text mb-0">
                       Web에서 상세 보기 테스트
                     </p>
@@ -68,7 +68,7 @@ export default {
             console.log(error);
           })
     },
-    goDetail(termsType, termsVersion){
+    goDetail(termsId, termsType, termsVersion){
       if (window.isMobile.iOS()){
         let webToAppUrl = {'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}
         window.getData(webToAppUrl);
@@ -76,7 +76,7 @@ export default {
         let webToAppUrl = "{'func' : 'setTitle', 'callback' : 'null', 'param' : {'title' : '이용 약관 상세'}}"
         window.getData(webToAppUrl);
       }
-      let url = "/terms?termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
+      let url = "/terms?termsId=" + termsId + "termsType=" + termsType + "&termsVersion=" + termsVersion + "&isProfile=true"
       this.$router.push({
         path: url
       }).catch(()=>{
