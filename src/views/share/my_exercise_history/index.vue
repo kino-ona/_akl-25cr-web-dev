@@ -1,11 +1,11 @@
 <template>
   <section class="exercise-share">
+    <div>
+      리스트 길이는 ????? {{ this.result }}
+    </div>
     <div class="container">
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
-        <div>
-          리스트 길이는 ????? {{ this.result }}
-        </div>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
       <div class="exercise-share__body">
