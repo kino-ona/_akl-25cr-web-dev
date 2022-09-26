@@ -62,6 +62,13 @@ const iconCodeTitle = {
     "03": "미션 성공"
 }
 
+const contentTypeData = {
+    "LL": {"iconData": require("@/assets/icons/icon-live.png"), "altData": "라이브 아이콘"},
+    "RV": {"iconData": require("@/assets/icons/icon-rerun.png"), "altData": "재방송 아이콘"},
+    "VV": {"iconData": require("@/assets/icons/icon-vod.svg"), "altData": "VOD 아이콘"},
+    "라이트 모드": {"iconData": "@/assets/icons/icon-light-mode.svg", "altData": "라이트 모드 아이콘"}
+}
+
 export default function getEnumData(enumType, value) {
     const allEnums = {
         "notiType": notiType, 
@@ -73,7 +80,8 @@ export default function getEnumData(enumType, value) {
         "exeType": exeType,
         "exeTypeUnit": exeTypeUnit,
         "term": term,
-        "termType": termType
+        "termType": termType,
+        "contentTypeData": contentTypeData
     }
     if (allEnums[enumType][value]){
         return allEnums[enumType][value]

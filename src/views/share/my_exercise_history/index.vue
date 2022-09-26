@@ -1,5 +1,5 @@
 <template>
-  <section class="exercise-share">
+  <section class="exercise-share" v-if="isLoading">
     <div class="container">
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
@@ -93,47 +93,17 @@
         <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
           <ul  v-if="this.isInClubTaolaData != 0" class="exercise-share__record-box list-style-none">
-            <li v-if="this.result.recentlyVod.classNm">
+            <li v-for="(classItem, index) in this.result.recentlyClassList">
               <div class="record__item">
                 <div class="record__detail">
-                  <img src="@/assets/icons/icon-live.png" class="w-34" alt="라이브 아이콘" />
+                  <img :src="(getEnumData('contentTypeData', classItem.contentsType)).iconData" class="w-34" :alt="(getEnumData('contentTypeData', classItem.contentsType)).altData" />
                   <div class="line-height-1">
-                    <h3 class="detail__title">{{this.result.recentlyVod.classNm}}</h3>
-                    <span class="detail__text">{{this.result.recentlyVod.lectureName}}</span>
+                    <h3 class="detail__title">{{classItem.classNm}}</h3>
+                    <span class="detail__text">{{classItem.lectureName}}</span>
                   </div>
                 </div>
                 <div class="record__point">
-                  <span class="point__value">{{this.result.recentlyVod.calories}}</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-            <li v-if="this.result.recentlyLive.classNm">
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-vod.svg" class="w-34" alt="VOD 아이콘" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">{{this.result.recentlyLive.classNm}}</h3>
-                    <span class="detail__text">{{this.result.recentlyLive.lectureName}}</span>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">{{this.result.recentlyLive.calories}}</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-            <!-- TODO 추후 라이트모드에 대한 데이터를 API에서 내려주게 될 경우 추가 -->
-            <li v-if="false">
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-light-mode.svg" class="w-34" alt="라이트모드 아이콘" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">라이트 모드</h3>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">55</span>
+                  <span class="point__value">{{classItem.calories}}</span>
                   <span class="point__unit">kcal</span>
                 </div>
               </div>
@@ -183,23 +153,28 @@ export default {
         totCalories: 0,
         totDistance: 0,
         totExerciseTime: "",
-        recentlyVod: "",
-        recentlyLive: "",
+        recentlyClassList: []
       },
       isMobile: window.isMobile.any(),
-      isInClubTaolaData: false
+      isInClubTaolaData: false,
+      isLoading: false
     }
   },
-  mounted(){
+  created(){
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
-    this.isInClubTaolaData = (this.result.recentlyLive.classId || this.result.recentlyVod.classId)
+    console.log(this.result.recentlyClassList)
+    console.log(this.result.recentlyClassList.length)
+    this.isInClubTaolaData = (this.result.recentlyClassList.length > 0)
+  },
+  mounted() {
+    this.isLoading = true
   },
   methods : {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
-    }
+    },
   },
   // setData를 통한 데이터 변화 감지
   computed:{
