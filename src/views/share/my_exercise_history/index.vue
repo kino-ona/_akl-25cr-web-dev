@@ -169,7 +169,7 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     this.lengVal = typeof(this.result);
-    this.lengVal = typeof(this.result.recentlyClassList);
+    this.lengVal = typeof(this.result['recentlyClassList']);
     console.log(this.result.recentlyClassList)
     this.lengVal = this.result.recentlyClassList.length
     this.isInClubTaolaData = true
