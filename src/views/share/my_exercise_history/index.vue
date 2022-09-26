@@ -1,7 +1,7 @@
 <template>
   <section class="exercise-share">
     <div>
-      리스트 길이는 ????? {{ this.result }}
+      {{ this.lengVal }} 리스트 길이는 ????? {{ this.result }}
     </div>
     <div class="container">
       <header class="exercise-share__header">
@@ -168,6 +168,7 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     console.log(this.result.recentlyClassList)
+    this.lengVal = this.result.recentlyClassList.length
     this.isInClubTaolaData = true
     // try{
     //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
