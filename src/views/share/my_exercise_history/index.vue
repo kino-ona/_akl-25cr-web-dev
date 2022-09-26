@@ -160,15 +160,13 @@ export default {
       isLoading: false
     }
   },
-  created(){
+  mounted(){
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     console.log(this.result.recentlyClassList)
     console.log(this.result.recentlyClassList.length)
     this.isInClubTaolaData = (this.result.recentlyClassList.length > 0)
-  },
-  mounted() {
     this.isLoading = true
   },
   methods : {
