@@ -3,6 +3,9 @@
     <div class="container">
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
+        <div>
+          리스트 길이는 ????? {{ this.lengVal }}
+        </div>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
       <div class="exercise-share__body">
@@ -156,7 +159,8 @@ export default {
         recentlyClassList: []
       },
       isMobile: window.isMobile.any(),
-      isInClubTaolaData: false
+      isInClubTaolaData: false,
+      lengVal: -1
     }
   },
   mounted(){
@@ -164,8 +168,13 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     console.log(this.result.recentlyClassList)
-    console.log(this.result.recentlyClassList.length)
-    this.isInClubTaolaData = (this.result.recentlyClassList.length > 0)
+    this.lengVal = this.result.recentlyClassList.length
+    this.isInClubTaolaData = true
+    // try{
+    //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
+    // }catch (e) {
+    //
+    // }
   },
   methods : {
     getEnumData(enumType, value) {
