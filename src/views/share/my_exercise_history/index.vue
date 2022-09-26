@@ -168,7 +168,7 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     console.log(this.result.recentlyClassList)
-    this.lengVal = this.result.recentlyClassList.length
+    this.lengVal = this.result
     this.isInClubTaolaData = true
     // try{
     //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
