@@ -4,7 +4,7 @@
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
         <div>
-          리스트 길이는 ????? {{ this.lengVal }}
+          리스트 길이는 ????? {{ this.result }}
         </div>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
@@ -168,7 +168,6 @@ export default {
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
     console.log(this.result.recentlyClassList)
-    this.lengVal = this.result
     this.isInClubTaolaData = true
     // try{
     //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
