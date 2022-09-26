@@ -1,5 +1,5 @@
 <template>
-  <section class="exercise-share" v-if="isLoading">
+  <section class="exercise-share">
     <div class="container">
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
@@ -156,8 +156,7 @@ export default {
         recentlyClassList: []
       },
       isMobile: window.isMobile.any(),
-      isInClubTaolaData: false,
-      isLoading: false
+      isInClubTaolaData: false
     }
   },
   mounted(){
@@ -167,7 +166,6 @@ export default {
     console.log(this.result.recentlyClassList)
     console.log(this.result.recentlyClassList.length)
     this.isInClubTaolaData = (this.result.recentlyClassList.length > 0)
-    this.isLoading = true
   },
   methods : {
     getEnumData(enumType, value) {
