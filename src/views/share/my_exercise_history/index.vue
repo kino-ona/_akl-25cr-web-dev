@@ -156,7 +156,8 @@ export default {
         totCalories: 0,
         totDistance: 0,
         totExerciseTime: "",
-        recentlyClassList: []
+        recentlyClassList: [],
+        shareType: 1
       },
       isMobile: window.isMobile.any(),
       isInClubTaolaData: false,
@@ -167,6 +168,8 @@ export default {
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
+    this.lengVal = typeof(this.result);
+    this.lengVal = typeof(this.result.recentlyClassList);
     console.log(this.result.recentlyClassList)
     this.lengVal = this.result.recentlyClassList.length
     this.isInClubTaolaData = true
