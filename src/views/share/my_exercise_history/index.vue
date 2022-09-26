@@ -96,7 +96,7 @@
         <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
           <ul  v-if="this.isInClubTaolaData" class="exercise-share__record-box list-style-none">
-            <li v-for="(classItem, index) in this.result.recentlyClassList">
+            <li v-for="(classItem, index) in this.result['recentlyClassList']">
               <div class="record__item">
                 <div class="record__detail">
                   <img :src="(getEnumData('contentTypeData', classItem.contentsType)).iconData" class="w-34" :alt="(getEnumData('contentTypeData', classItem.contentsType)).altData" />
@@ -168,10 +168,7 @@ export default {
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
     console.log("mainData ::::::::::::::::::::: ", this.result);
-    this.lengVal = typeof(this.result);
-    this.lengVal = typeof(this.result['recentlyClassList']);
-    console.log(this.result.recentlyClassList)
-    this.lengVal = this.result.recentlyClassList.length
+    console.log(this.result['recentlyClassList'])
     this.isInClubTaolaData = true
     // try{
     //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
