@@ -162,6 +162,7 @@ export default {
   mounted(){
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
+    this.lengVal = (this.result) ? true : false;
     if(this.result){
       this.isInClubTaolaData = true;
     }
@@ -189,6 +190,7 @@ export default {
   watch:{
     getMainData(val){
       this.result = val
+      this.isInClubTaolaData = true;
     }
   },
 }
