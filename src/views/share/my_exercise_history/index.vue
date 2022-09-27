@@ -2,6 +2,7 @@
   <section class="exercise-share">
     <div>
       {{ this.lengVal }} 리스트 길이는 ????? {{ this.result }}
+      {{ this.result['recentlyClassList'] }} 리스트 길이는 ????? {{ this.result.recentlyClassList }}
     </div>
     <div class="container">
       <header class="exercise-share__header">
