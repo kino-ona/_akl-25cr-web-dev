@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">{{ this.result.totExerciseTime }}</span>
+                  <span class="text-20 font-weight-800">{{ getTime(this.result.totExerciseTime) }}</span>
                 </div>
               </div>
             </li>
@@ -181,6 +181,17 @@ export default {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
     },
+    getTime(minuteValue){
+      let hour = Math.floor(minuteValue / 60)
+      let min = minuteValue % 60
+      let timeStr = ""
+      if(hour >= 1){
+        timeStr = hour + "시 " + min + "분"
+      } else {
+        timeStr = min + "분"
+      }
+      return timeStr
+    }
   },
   // setData를 통한 데이터 변화 감지
   computed:{
