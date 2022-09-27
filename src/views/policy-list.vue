@@ -48,7 +48,7 @@
   .policy-list {
     .list-cont {
       padding: 18px 0;
-      border-bottom: 1px solid #535d6d;
+      border-bottom: 1px solid rgba(83, 93, 109, 0.2);
     }
     .cont-item {
       display: flex;
@@ -64,6 +64,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      margin-bottom: 5px;
     }
     .item-text {
       font-size: 14px;
@@ -74,11 +75,13 @@
       width: 50px;
       text-align: right;
     }
+    .detail-link {
+      text-decoration: none;
+    }
     .detail-text {
       font-size: 14px;
       line-height: 21px;
       color: #9ea2ab;
-      text-decoration: none;
     }
   }
 </style>

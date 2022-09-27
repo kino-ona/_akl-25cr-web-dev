@@ -162,12 +162,8 @@ export default {
   align-items: flex-start;
 }
 .notice-fixed {
-  position: sticky;
-  top: 0;
-  left: 0;
   width: 100%;
   background-color: #0c172e;
-  z-index: 100;
 }
 .notice__question-wrap {
   width: calc(100% - 40px);
