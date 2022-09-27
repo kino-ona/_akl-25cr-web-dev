@@ -165,13 +165,11 @@ export default {
     getTime(minuteValue){
       let hour = Math.floor(minuteValue / 60)
       let min = minuteValue % 60
-      let timeStr = ""
       if(hour >= 1){
-        timeStr = hour + "시 " + min + "분"
+        return hour + "시 " + min + "분"
       } else {
-        timeStr = min + "분"
+        return min + "분"
       }
-      return timeStr
     }
   },
   // setData를 통한 데이터 변화 감지
