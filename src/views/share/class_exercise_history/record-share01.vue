@@ -77,8 +77,13 @@ export default {
 
   data(){
     return {
+      result: "",
       isMobile: window.isMobile.any()
     }
+  },
+
+  mounted() {
+    this.result = this.$store.state.mainData;
   },
 
   methods : {
@@ -92,6 +97,27 @@ export default {
         return hour + "시 " + min + "분"
       } else {
         return min + "분"
+      }
+    }
+  },
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch: {
+    getMainData(val) {
+      this.result = val
+      if (isLightMode) {
+        this.$router.push({
+          path: "/share/exercise/class-exercise-history/light-mode"
+        }).catch((reason) => {
+          console.log("페이지 이동에 실패했습니다.")
+        });
+      } else {
+        this.$router.push({
+          path: "/share/exercise/class-exercise-history/normal"
+        }).catch((reason) => {
+          console.log("페이지 이동에 실패했습니다.")
+        });
       }
     }
   }

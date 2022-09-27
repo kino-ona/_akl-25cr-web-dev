@@ -8,9 +8,8 @@
           <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
-              <img src="@/assets/icons/icon-rerun.png" />
               <img :src="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).iconData" :alt="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).altData" />
-              {{ getEnumData('exerciseModeCode', this.result.exerciseModeCode) }}
+              <p class="exercise__mode__name">{{ getEnumData('exerciseModeCode', this.result.exerciseModeCode) }}&nbsp;&nbsp;</p>
             </span>
             <span class="base-badge" v-if="this.result.isFree == true">FREE</span>
           </div>
@@ -87,8 +86,12 @@ export default {
 
   data(){
     return {
+      result: "",
       isMobile: window.isMobile.any()
     }
+  },
+  mounted() {
+    this.result = this.$store.state.mainData;
   },
 
   methods : {
@@ -102,6 +105,27 @@ export default {
         return hour + "시 " + min + "분"
       } else {
         return min + "분"
+      }
+    }
+  },
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch: {
+    getMainData(val) {
+      this.result = val
+      if (isLightMode) {
+        this.$router.push({
+          path: "/share/exercise/class-exercise-history/light-mode"
+        }).catch((reason) => {
+          console.log("페이지 이동에 실패했습니다.")
+        });
+      } else {
+        this.$router.push({
+          path: "/share/exercise/class-exercise-history/normal"
+        }).catch((reason) => {
+          console.log("페이지 이동에 실패했습니다.")
+        });
       }
     }
   }

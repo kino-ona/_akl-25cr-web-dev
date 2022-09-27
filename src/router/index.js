@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Loading from "@/views/share/loading/index.vue"
 import GetIcon from "@/views/share/get_icon/index.vue"
 import MyExerciseHistory from "@/views/share/my_exercise_history/index.vue"
-import ClassExerciseHistory from "@/views/share/class_exercise_history/index.vue"
+import ClassExerciseHistoryLightMode from "@/views/share/class_exercise_history/record-share01"
+import ClassExerciseHistoryNormal from "@/views/share/class_exercise_history/record-share02"
 import Statistics from "@/views/share/statistics/index.vue"
 import Terms from "@/views/terms/detail-index.vue"
 import TermsList from "@/views/terms/list-index.vue"
@@ -30,9 +31,14 @@ const routes = [
     component: MyExerciseHistory,
   },
   {
-    path: "/share/exercise/class-exercise-history",
-    name: "ClassExerciseHistory",
-    component: ClassExerciseHistory,
+    path: "/share/exercise/class-exercise-history/normal",
+    name: "ClassExerciseHistoryNormal",
+    component: ClassExerciseHistoryNormal,
+  },
+  {
+    path: "/share/exercise/class-exercise-history/light-mode",
+    name: "ClassExerciseHistoryLightMode",
+    component: ClassExerciseHistoryLightMode,
   },
   {
     path: "/share/exercise/statistics",
