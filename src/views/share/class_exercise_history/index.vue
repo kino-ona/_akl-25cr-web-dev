@@ -1,6 +1,6 @@
 <template>
-  <recordShare01Vue v-if="this.result.exerciseModeCode != '04'" :result="this.result"></recordShare01Vue>
-  <recordShare02Vue v-else-if="this.result.exerciseModeCode == '04'" :result="this.result"></recordShare02Vue>
+  <recordShare01Vue :result="this.result"></recordShare01Vue>
+  <recordShare02Vue :result="this.result"></recordShare02Vue>
 </template>
 
 <script>
