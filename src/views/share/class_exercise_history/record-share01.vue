@@ -1,6 +1,6 @@
 <template>
   <!-- 라이트 모드 공유 ASH_04_05 -->
-  <div class="record-share" v-if="this.result.exerciseModeCode != '04'">
+  <div class="record-share">
     {{ this.result.exerciseModeCode }}
     <div class="container">
       <header class="record-share__header">
