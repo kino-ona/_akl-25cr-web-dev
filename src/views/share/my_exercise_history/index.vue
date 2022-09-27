@@ -3,7 +3,9 @@
     <div>
       {{ this.lengVal }} 리스트 길이는 ????? {{ this.result }}
     </div>
-    <br/><br/>
+    <br/>
+    {{ this.isInClubTaolaData }}
+    <br/>
     <div>
       {{ this.result['recentlyClassList'] }} 리스트 길이는 ????? {{ this.result.recentlyClassList }}
     </div>
@@ -151,18 +153,7 @@
 export default {
   data(){
     return {
-      result: {
-        date: "",
-        totMusclePoint: 0,
-        maxMusclePoint: 0,
-        maxRpm: 0,
-        avgRpm: 0,
-        totCalories: 0,
-        totDistance: 0,
-        totExerciseTime: "",
-        recentlyClassList: [],
-        shareType: 1
-      },
+      result: "",
       isMobile: window.isMobile.any(),
       isInClubTaolaData: false,
       lengVal: -1
@@ -171,14 +162,9 @@ export default {
   mounted(){
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
-    console.log("mainData ::::::::::::::::::::: ", this.result);
-    console.log(this.result['recentlyClassList'])
-    this.isInClubTaolaData = true
-    // try{
-    //   this.isInClubTaolaData = (this.result.recentlyClassList[0] > 0)
-    // }catch (e) {
-    //
-    // }
+    if(this.result){
+      this.isInClubTaolaData = true;
+    }
   },
   methods : {
     getEnumData(enumType, value) {
