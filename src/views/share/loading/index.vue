@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       mainData: "로딩중입니다",
-      interval1 : null
+      interval1 : null,
     }
   },
   mounted() {
@@ -34,10 +34,9 @@ export default {
         window.setData(mainData);
       }
       if(result.path == "/share/exercise/class-exercise-history"){
-        this.result = this.$store.state.mainData;
-        this.mainData = this.result;
-        console.log("결과입니다. ", (this.result.exerciseModeCode == '04'))
-        if(this.result.exerciseModeCode == '04') {
+        this.mainData = this.$store.state.mainData;
+        console.log("결과입니다. ", (this.mainData.exerciseModeCode == '04'))
+        if(this.mainData.exerciseModeCode == '04') {
           result.path = result.path + "/light-mode"
         } else {
           result.path = result.path + "/normal"
