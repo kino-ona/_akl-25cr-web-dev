@@ -1,6 +1,6 @@
-<template>
-  <recordShare01Vue :result="this.result"></recordShare01Vue>
-  <recordShare02Vue :result="this.result"></recordShare02Vue>
+<template v-if="isLoading">
+  <recordShare01Vue v-if="this.result.exerciseModeCode != '04'" :result="this.result"></recordShare01Vue>
+  <recordShare02Vue v-else-if="this.result.exerciseModeCode == '04'" :result="this.result"></recordShare02Vue>
 </template>
 
 <script>
@@ -28,7 +28,8 @@ export default {
         exerciseTime: "",
         calories: 0,
         avgSpeed: 0 // 라이트모드일 경우만 제공
-      }
+      },
+      isLoading: false
     }
   },
   mounted(){
@@ -42,6 +43,7 @@ export default {
   watch:{
     getMainData(val){
       this.result = val
+      this.isLoading = true
     }
   },
 
