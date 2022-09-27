@@ -35,6 +35,7 @@ export default {
       }
       if(result.path == "/share/exercise/class-exercise-history"){
         this.result = this.$store.state.mainData;
+        this.mainData = this.result;
         console.log("결과입니다. ", (this.result.exerciseModeCode == '04'))
         if(this.result.exerciseModeCode == '04') {
           result.path = result.path + "/light-mode"
