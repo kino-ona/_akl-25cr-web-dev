@@ -1,14 +1,5 @@
 <template>
   <section class="exercise-share">
-    <div>
-      {{ this.lengVal }} 리스트 길이는 ????? {{ this.result }}
-    </div>
-    <br/>
-    {{ this.isInClubTaolaData }}
-    <br/>
-    <div>
-      {{ this.result['recentlyClassList'] }} 리스트 길이는 ????? {{ this.result.recentlyClassList }}
-    </div>
     <div class="container">
       <header class="exercise-share__header">
         <h2 class="header__title">{{ this.result.date }}</h2>
@@ -190,7 +181,7 @@ export default {
   watch:{
     getMainData(val){
       this.result = val
-      this.isInClubTaolaData = true;
+      this.isInClubTaolaData = true
     }
   },
 }
