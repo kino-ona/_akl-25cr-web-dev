@@ -1,6 +1,6 @@
 <template>
   <recordShare01Vue v-if="this.result.exerciseModeCode != '04'" :result="this.result"></recordShare01Vue>
-  <recordShare02Vue v-else :result="this.result"></recordShare02Vue>
+  <recordShare02Vue v-else-if="this.result.exerciseModeCode == '04'" :result="this.result"></recordShare02Vue>
 </template>
 
 <script>
@@ -34,8 +34,6 @@ export default {
   mounted(){
     // this.result = JSON.parse(sessionStorage.getItem("mainData"));
     this.result = this.$store.state.mainData;
-    this.result.isFree = true;
-    console.log("mainData ::::::::::::::::::::: ", this.result);
   },
   // setData를 통한 데이터 변화 감지
   computed:{

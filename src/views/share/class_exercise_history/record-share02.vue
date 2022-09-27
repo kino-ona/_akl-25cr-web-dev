@@ -1,6 +1,7 @@
 <template>
   <!-- 라이트 모드 공유 ASH_04_06 -->
   <div class="record-share">
+    {{ this.result.exerciseModeCode }}
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
@@ -8,7 +9,8 @@
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
               <img src="@/assets/icons/icon-rerun.png" />
-              재방송
+              <img :src="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).iconData" :alt="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).altData" />
+              {{ getEnumData('exerciseModeCode', this.result.exerciseModeCode) }}
             </span>
             <span class="base-badge" v-if="this.result.isFree == true">FREE</span>
           </div>
@@ -54,9 +56,8 @@
                 <img src="@/assets/icons/icon-exercise-time.svg" class="w-20 mr-10" />
                 <span class="text-16 font-weight-800">운동 시간</span>
               </div>
-
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">{{ this.result.exerciseTime }}</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getTime(this.result.exerciseTime) }}</span>
               </div>
             </div>
           </li>
@@ -93,6 +94,15 @@ export default {
   methods : {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
+    },
+    getTime(minuteValue){
+      let hour = Math.floor(minuteValue / 60)
+      let min = minuteValue % 60
+      if(hour >= 1){
+        return hour + "시 " + min + "분"
+      } else {
+        return min + "분"
+      }
     }
   }
 }
