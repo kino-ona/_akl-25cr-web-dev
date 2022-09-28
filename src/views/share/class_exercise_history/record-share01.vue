@@ -106,19 +106,6 @@ export default {
   watch: {
     getMainData(val) {
       this.result = val
-      if (isLightMode) {
-        this.$router.push({
-          path: "/share/exercise/class-exercise-history/light-mode"
-        }).catch((reason) => {
-          console.log("페이지 이동에 실패했습니다.")
-        });
-      } else {
-        this.$router.push({
-          path: "/share/exercise/class-exercise-history/normal"
-        }).catch((reason) => {
-          console.log("페이지 이동에 실패했습니다.")
-        });
-      }
     }
   }
 }
