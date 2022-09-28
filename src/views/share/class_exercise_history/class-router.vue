@@ -1,5 +1,7 @@
 <template>
-  Class Router 로딩중입니다. {{ this.result }}
+  <div>
+    Class Router 로딩중입니다. {{ this.result }}
+  </div>
 </template>
 
 <script>
