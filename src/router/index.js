@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Loading from "@/views/share/loading/index.vue"
 import GetIcon from "@/views/share/get_icon/index.vue"
 import MyExerciseHistory from "@/views/share/my_exercise_history/index.vue"
+import ClassExerciseHistoryRouter from "@/views/share/class_exercise_history/class-router"
 import ClassExerciseHistoryLightMode from "@/views/share/class_exercise_history/record-share01"
 import ClassExerciseHistoryNormal from "@/views/share/class_exercise_history/record-share02"
 import Statistics from "@/views/share/statistics/index.vue"
@@ -29,6 +30,11 @@ const routes = [
     path: "/share/exercise/my-exercise-history",
     name: "MyExerciseHistory",
     component: MyExerciseHistory,
+  },
+  {
+    path: "/share/exercise/class-exercise-history",
+    name: "ClassExerciseHistoryRouter",
+    component: ClassExerciseHistoryRouter,
   },
   {
     path: "/share/exercise/class-exercise-history/normal",
