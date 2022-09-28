@@ -1,6 +1,6 @@
 <template>
   <!-- 라이트 모드 공유 ASH_04_05 -->
-  <div class="record-share">
+  <div class="record-share" >
     {{ this.result.exerciseModeCode }}
     <div class="container">
       <header class="record-share__header">
@@ -73,8 +73,6 @@
 
 <script>
 export default {
-  props: ["result"],
-
   data(){
     return {
       result: "",

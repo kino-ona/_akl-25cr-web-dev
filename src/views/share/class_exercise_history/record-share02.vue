@@ -82,8 +82,6 @@
 
 <script>
 export default {
-  props: ["result"],
-
   data(){
     return {
       result: "",
