@@ -7,7 +7,7 @@ export default function windowCapture() {
             extra_canvas.setAttribute('height',canvas.height);
 
             var ctx = extra_canvas.getContext('2d');
-            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvas.width - 10,canvas.height - 10);
+            ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,canvas.width + 10,canvas.height + 10);
             window.captureData =  extra_canvas.toDataURL();
             console.log("######### window.captureData #########")
             console.log(window.captureData)
