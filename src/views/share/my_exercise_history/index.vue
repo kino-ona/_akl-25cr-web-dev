@@ -163,13 +163,15 @@ export default {
       return this.$getEnumData(enumType, value)
     },
     getTime(minuteValue){
-      let hour = Math.floor(minuteValue / 60)
-      let min = minuteValue % 60
-      if(hour >= 1){
-        return hour + "시 " + min + "분"
-      } else {
-        return min + "분"
+      let hour = this.makeStrTime(Math.floor(minuteValue / 60))
+      let min = this.makeStrTime(minuteValue % 60)
+      if(hour >= 10){
+        return hour + ":" + min
       }
+    },
+    makeStrTime(timeValue) {
+      if(timeValue >= 10) return "" + timeValue
+      return "0" + timeValue
     }
   },
   // setData를 통한 데이터 변화 감지
