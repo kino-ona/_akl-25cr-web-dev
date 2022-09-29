@@ -1,7 +1,6 @@
 <template>
   <!-- 라이트 모드 공유 ASH_04_06 -->
   <div class="record-share">
-    {{ this.result.exerciseModeCode }}
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
@@ -98,11 +97,15 @@ export default {
     },
     getTime(secondValue){
       if(!secondValue) return "00:00:00"
+
       let hourInt = Math.floor(secondValue / 3600)
       let hour = this.makeStrTime(hourInt)
-      if (hourInt == 0) hourInt = secondValue
-      let min = this.makeStrTime(Math.floor(hourInt / 60))
-      let sec = this.makeStrTime(hourInt % 60)
+      secondValue = secondValue - (3600 * hourInt)
+      console.log("secondValue 1 : ", secondValue)
+
+      let min = this.makeStrTime(Math.floor(secondValue / 60))
+      let sec = this.makeStrTime(secondValue % 60)
+
       return hour + ":" + min + ":" + sec
     },
     makeStrTime(timeValue) {

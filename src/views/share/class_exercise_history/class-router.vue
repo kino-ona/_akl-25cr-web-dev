@@ -1,6 +1,6 @@
 <template>
   <div>
-    Class Router 로딩중입니다. {{ this.result }}
+    Class Exercise Router 중입니다. {{ this.result }}
   </div>
 </template>
 
@@ -8,9 +8,13 @@
 export default {
   data(){
     return {
-      result: "",
+      result: "데이터 로딩 중",
       path: "/share/exercise/class-exercise-history"
     }
+  },
+
+  mounted() {
+    this.result = this.$store.state.mainData;
   },
 
   methods : {
