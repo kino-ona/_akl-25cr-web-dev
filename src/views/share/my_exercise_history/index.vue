@@ -163,11 +163,12 @@ export default {
       return this.$getEnumData(enumType, value)
     },
     getTime(minuteValue){
-      let hour = this.makeStrTime(Math.floor(minuteValue / 60))
-      let min = this.makeStrTime(minuteValue % 60)
-      if(hour >= 10){
+      if(minuteValue) {
+        let hour = this.makeStrTime(Math.floor(minuteValue / 60))
+        let min = this.makeStrTime(minuteValue % 60)
         return hour + ":" + min
       }
+      return "00:00"
     },
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
