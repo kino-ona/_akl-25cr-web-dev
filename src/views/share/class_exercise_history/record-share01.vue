@@ -94,7 +94,7 @@ export default {
         let min = this.makeStrTime(minuteValue % 60)
         return hour + ":" + min
       }
-      return "00:00:00"
+      return "00:00"
     },
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
