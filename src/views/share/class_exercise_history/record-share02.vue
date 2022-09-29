@@ -97,14 +97,13 @@ export default {
       return this.$getEnumData(enumType, value)
     },
     getTime(secondValue){
-      if(secondValue){
-        let hourInt = Math.floor(secondValue / 3600)
-        let hour = this.makeStrTime(hourInt)
-        let min = this.makeStrTime(Math.floor(hourInt / 60))
-        let sec = this.makeStrTime(hourInt % 60)
-        return hour + ":" + min + ":" + sec
-      }
-      return "00:00:00"
+      if(!secondValue) return "00:00:00"
+      let hourInt = Math.floor(secondValue / 3600)
+      let hour = this.makeStrTime(hourInt)
+      if (hourInt == 0) hourInt = secondValue
+      let min = this.makeStrTime(Math.floor(hourInt / 60))
+      let sec = this.makeStrTime(hourInt % 60)
+      return hour + ":" + min + ":" + sec
     },
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
