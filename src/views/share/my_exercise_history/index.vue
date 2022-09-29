@@ -357,13 +357,22 @@ export default {
         font-weight: 800;
         line-height: 23px;
         letter-spacing: -.3px;
+        width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
       .detail__text {
+        display: block;
         font-size: 14px;
         font-weight: 400;
         line-height: 21px;
         letter-spacing: -.3px;
         color: $gray02;
+        width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
     .record__point {
