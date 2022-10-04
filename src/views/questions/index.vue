@@ -73,12 +73,11 @@
       }
       this.selectedMenu = null;
       this.getFirstData(params)
-      // TODO 만약 무한 스크롤 기능이 구현되어 있지 않을 시 아래 이벤트리스너 주석 2개 해제
-      // window.addEventListener('scroll', this.handleNotificationListScroll())
+      window.addEventListener('scroll', this.handleNotificationListScroll())
     },
 
     destroyed() {
-      // window.removeEventListener('scroll', this.handleNotificationListScroll())
+      window.removeEventListener('scroll', this.handleNotificationListScroll())
     },
 
     methods: {
