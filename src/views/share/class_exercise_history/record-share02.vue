@@ -30,7 +30,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">{{ (this.result.musclePoint).toFixed(1) }}</span>
+            <span class="text-40 font-weight-700">{{ getFloatValue(this.result.musclePoint) }}</span>
             <span class="text-16 font-weight-600 ml-4">점</span>
           </div>
         </div>
@@ -111,6 +111,9 @@ export default {
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
       return "0" + timeValue
+    },
+    getFloatValue(numVal){
+      return numVal.toFixed(1)
     }
   },
   computed:{
