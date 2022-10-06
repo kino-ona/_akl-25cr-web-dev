@@ -5,6 +5,7 @@
       <header class="record-share__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
+          데이터 체크! : {{ this.temp }}
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
               <img :src="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).iconData" :alt="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).altData" />
@@ -84,7 +85,8 @@ export default {
   data(){
     return {
       result: "",
-      isMobile: window.isMobile.any()
+      isMobile: window.isMobile.any(),
+      temp: ""
     }
   },
   mounted() {
@@ -114,6 +116,7 @@ export default {
     },
     getFloatValue(numVal){
       let strNum = "" + numVal
+      this.temp = strNum
       if(strNum.includes(".")){
         return strNum
       }
