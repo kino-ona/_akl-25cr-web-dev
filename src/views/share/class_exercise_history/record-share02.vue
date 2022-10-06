@@ -14,7 +14,7 @@
           </div>
           <h1 class="header__title">{{ this.result.classTitle }}</h1>
           <p class="header__text">
-            {{ this.result.lectureName }} | {{ getEnumData("classWorkoutCategoryCode", this.result.classWorkoutCategoryCode) }} {{ this.result.classLevelCode }}
+            {{ this.result.lectureName }} | {{ getEnumData("classWorkoutCategoryCode", this.result.classWorkoutCategoryCode) }} &#183; {{ getEnumData("classLevelCode", this.result.classLevelCode) }}
           </p>
         </div>
 
@@ -30,7 +30,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">{{this.result.musclePoint}}</span>
+            <span class="text-40 font-weight-700">{{ (this.result.musclePoint).toFixed(1) }}</span>
             <span class="text-16 font-weight-600 ml-4">점</span>
           </div>
         </div>
