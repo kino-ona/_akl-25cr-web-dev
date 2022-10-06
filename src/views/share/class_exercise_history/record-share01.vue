@@ -20,7 +20,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">{{ this.result.distence }}</span>
+            <span class="text-40 font-weight-700">{{ getFloatValue(this.result.distence) }}</span>
             <span class="text-16 font-weight-600 ml-4">km</span>
           </div>
         </div>
@@ -45,7 +45,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">{{ this.result.calories }}</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.calories) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">kcal</span>
               </div>
             </div>
@@ -58,7 +58,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">{{ this.result.avgSpeed }}</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.avgSpeed) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">km/h</span>
               </div>
             </div>
@@ -103,6 +103,13 @@ export default {
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
       return "0" + timeValue
+    },
+    getFloatValue(numVal){
+      let strNum = "" + numVal
+      if(strNum.includes(".")){
+        return strNum
+      }
+      return strNum + ".0"
     }
   },
   computed:{
