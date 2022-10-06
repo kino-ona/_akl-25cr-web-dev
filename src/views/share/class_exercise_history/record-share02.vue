@@ -43,7 +43,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">{{ this.result.distence }}</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.distence) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">km</span>
               </div>
             </div>
@@ -67,7 +67,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">{{ this.result.calories }}</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.calories) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">kcal</span>
               </div>
             </div>
@@ -113,7 +113,11 @@ export default {
       return "0" + timeValue
     },
     getFloatValue(numVal){
-      return numVal.toFixed(1)
+      let strNum = "" + numVal
+      if(strNum.includes(".")){
+        return strNum
+      }
+      return strNum + ".0"
     }
   },
   computed:{
