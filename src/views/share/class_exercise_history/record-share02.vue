@@ -5,7 +5,6 @@
       <header class="record-share__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
-          데이터 체크! : {{ this.temp }}
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
               <img :src="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).iconData" :alt="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).altData" />
@@ -85,8 +84,7 @@ export default {
   data(){
     return {
       result: "",
-      isMobile: window.isMobile.any(),
-      temp: ""
+      isMobile: window.isMobile.any()
     }
   },
   mounted() {
@@ -116,7 +114,6 @@ export default {
     },
     getFloatValue(numVal){
       let strNum = "" + numVal
-      this.temp = strNum
       if(strNum.includes(".")){
         return strNum
       }
@@ -156,12 +153,21 @@ export default {
       line-height: 18px;
       margin-bottom: 4px;
       color: $gray02;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
     }
     .header__title {
       font-size: 18px;
       font-weight: 800;
       line-height: 25px;
       margin-bottom: 4px;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .logo {
       position: absolute;

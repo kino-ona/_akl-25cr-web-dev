@@ -135,10 +135,20 @@ export default {
       font-size: 12px;
       margin-bottom: 4px;
       color: $gray02;
+
+      display: block;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .header__title {
       font-size: 18px;
       font-weight: 900;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .logo {
       position: absolute;
