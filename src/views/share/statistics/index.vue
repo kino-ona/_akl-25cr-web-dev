@@ -239,11 +239,7 @@ export default {
           formatter: (value, context) =>{
             if(_this){
               const index = context.dataIndex;
-              if(_this.checkData == false){
-                _this.checkData = (context.dataset.backgroundColor[index] == '#AEEA16')
-              }
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
-                _this.checkData = value
                 return _this.setValueFormat(value, _this);
               } else {
                 return '';
@@ -357,6 +353,7 @@ export default {
     },
     getHourMin(secondData){
       const date = new Date(0)
+      this.checkData = secondData
       date.setSeconds(secondData)
       return date.toISOString().substring(11, 16)
     },
