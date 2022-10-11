@@ -238,9 +238,10 @@ export default {
           color: '#AEEA16',
           formatter: (value, context) =>{
             if(_this){
-              _this.checkData = "_this를 인식하긴해"
               const index = context.dataIndex;
-              if (context.dataset.backgroundColor[index] === '#AEEA16') {
+              _this.checkData = index
+              // _this.checkData = (context.dataset.backgroundColor[index] == '#AEEA16')
+              if (context.dataset.backgroundColor[index] == '#AEEA16') {
                 return _this.setValueFormat(value, _this);
               } else {
                 return '';
