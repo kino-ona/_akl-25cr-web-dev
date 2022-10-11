@@ -332,10 +332,9 @@ export default {
       }
 
       if(this.result.exeType == "T") {
-
+        this.checkData = this.totalAvgData + ":" + this.result.avgData + ":" + this.result.maxData + ":" + this.nowData.data
         this.totalAvgData = this.getHourMin(this.totalAvgData)
         this.result.avgData = this.getHourMin(this.result.avgData)
-        this.checkData = this.result.avgData
         this.result.maxData = this.getHourMin(this.result.maxData)
         this.nowData.data = this.getHourMin(this.nowData.data)
       } else {
