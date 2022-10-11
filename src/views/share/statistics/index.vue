@@ -15,7 +15,7 @@
       </header>
       <section class="exercise-stats__section">
         <div class="exercise-stats__chart">
-          <Bar
+          <Bar v-if="chartOptions"
             :chart-options="this.chartOptions"
             :chart-data="this.chartData"
             chart-id="bar-chart"
@@ -83,8 +83,8 @@ export default {
   components: { Bar },
   data() {
     return {
-      checkData: "",
       nowData: "",
+      selectData: "",
       isRenderingCheck: false,
       totalAvgData: 0,
       totalData: 0,
@@ -144,72 +144,78 @@ export default {
         ]
       },
       chartOptionsLabel: "",
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          tooltip: false,
-          legend: {
-            display: false,
-          },
-          // dot 평균 라인
-          annotation: {
-            annotations: {
-              line1: {
-                type: 'line',
-                yMin: 400,
-                yMax: 400,
-                borderColor: '#aeea16',
-                borderWidth: 1,
-                borderDash: [2,2]
+      chartOptions: null
+    }
+  },
+  mounted() {
+    const _this = this
+    this.chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: false,
+        legend: {
+          display: false,
+        },
+        // dot 평균 라인
+        annotation: {
+          annotations: {
+            line1: {
+              type: 'line',
+              yMin: 400,
+              yMax: 400,
+              borderColor: '#aeea16',
+              borderWidth: 1,
+              borderDash: [2,2]
+            }
+          }
+        },
+        // Bar 상단 점수
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: '#AEEA16',
+          formatter: (value, context) =>{
+            if(_this){
+              const index = context.dataIndex;
+              if (context.dataset.backgroundColor[index] === '#AEEA16') {
+                return _this.setValueFormat(value, _this);
+              } else {
+                return '';
               }
             }
           },
-          // Bar 상단 점수
-          datalabels: {
-            anchor: 'end',
-            align: 'top',
-            color: '#AEEA16',
-            formatter: function(value, context) {
-              // const index = context.dataIndex;
-              // if (context.dataset.backgroundColor[index] === '#AEEA16') {
-              //   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-              // } else {
-                return '';
-              // }
-            },
-            font: {
-              size: '14',
-              weight: 'bold',
-            }
-          },
-        },
-        scales: {
-          x: {
-            // 하단 날짜
-            ticks: {
-              color: [
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA164C',
-                // '#AEEA16',
-              ],
-              autoSkip: false,
-              maxRotation: 0,
-              minRotation: 0
-            },
-          },
-          y: {
-            display: false,
+          font: {
+            size: '14',
+            weight: 'bold',
           }
         },
-      }
+      },
+      scales: {
+        x: {
+          // 하단 날짜
+          ticks: {
+            color: [
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA164C',
+              // '#AEEA16',
+            ],
+            autoSkip: false,
+            maxRotation: 0,
+            minRotation: 0
+          },
+        },
+        y: {
+          display: false,
+        }
+      },
     }
   },
   methods: {
@@ -239,12 +245,11 @@ export default {
           dateData = exeData.date.split("\n")
         }
 
-        this.checkData = dateData
         labels.push(dateData)
 
         this.totalData = this.totalData + exeData.data;
         if(exeData.isSelected){
-          this.nowData = exeData
+          this.selectData = exeData
           colors.push('#AEEA16');
           if(this.result.exeType != 'K' && this.result.exeType != 'T'){
             this.totalAvgData = parseFloat(exeData.data).toFixed(1);
@@ -282,8 +287,8 @@ export default {
       this.chartData.datasets[0].backgroundColor = colors;
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
-
       this.isRenderingCheck = true
+      // this.chartOptions.plugins.datalabels.formatter(this.selectData.data, "", this.result.exeType)
     },
     getHourMin(secondData){
       const date = new Date(0)
@@ -300,11 +305,11 @@ export default {
     setComma(numVal){
       return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     },
-    setValueFormat(numVal){
-      if (this.result.exeType('T')){
-        return this.getHourMin(numVal)
+    setValueFormat(numVal, _this){
+      if (_this.result.exeType == 'T'){
+        return _this.getHourMin(numVal)
       } else {
-        return this.getFloatValue(this.setComma(numVal))
+        return _this.getFloatValue(_this.setComma(numVal))
       }
     }
   },
