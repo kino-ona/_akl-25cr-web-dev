@@ -332,8 +332,10 @@ export default {
       }
 
       if(this.result.exeType == "T") {
+
         this.totalAvgData = this.getHourMin(this.totalAvgData)
         this.result.avgData = this.getHourMin(this.result.avgData)
+        this.checkData = this.result.avgData
         this.result.maxData = this.getHourMin(this.result.maxData)
         this.nowData.data = this.getHourMin(this.nowData.data)
       } else {
@@ -354,7 +356,6 @@ export default {
     getHourMin(minutesData){
       const date = new Date(0)
       date.setMinutes(minutesData)
-      this.checkData = date.toISOString()
       return date.toISOString().substring(11, 16)
     },
     getFloatValue(numVal){
