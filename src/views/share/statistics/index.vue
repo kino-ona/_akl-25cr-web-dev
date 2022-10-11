@@ -3,7 +3,7 @@
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
-          {{ this.checkData }}
+          _this 체크하기 : {{ this.checkData }}
           <p class="header__text">{{ this.result.date }}</p>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
