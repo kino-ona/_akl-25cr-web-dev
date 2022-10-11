@@ -12,11 +12,9 @@ export default {
       path: "/share/exercise/class-exercise-history"
     }
   },
-
   mounted() {
     this.result = this.$store.state.mainData;
   },
-
   methods : {
     goClassComp() {
       console.log("결과입니다. ", (this.result.exerciseModeCode == '04'))
