@@ -59,7 +59,6 @@ export default {
       termsId: this.$route.query.termsId
     }
     const isProfile = this.$route.query.isProfile
-    console.log("isProfile ::::::::::::: ", isProfile)
     if (isProfile){
       this.isProfile = true
     }
@@ -83,7 +82,6 @@ export default {
     // 버전 변경 요청 시 해당 버전 데이터 조회
     versionChange() {
       this.result.termsVersion = this.onePick
-      console.log("versionChange :::::::::::: ")
       this.getData(this.result)
     },
 
@@ -100,9 +98,7 @@ export default {
 
     // API 서버로부터 데이터 요청
     getData(params) {
-      console.log("Data Check : ", params.termsId, params.termsType, params.termsVersion)
       let url = "front/getTermsDetail?termsId=" + params.termsId + "&termsType=" + params.termsType + "&termsVersion="+ params.termsVersion
-      console.log("요청 URL : ", url)
       let _this = this;
       this.$http.post(url)
           .then((response) => {
