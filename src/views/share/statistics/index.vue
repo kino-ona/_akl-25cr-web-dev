@@ -171,12 +171,12 @@ export default {
             align: 'top',
             color: '#AEEA16',
             formatter: function(value, context) {
-              const index = context.dataIndex;
-              if (context.dataset.backgroundColor[index] === '#AEEA16') {
-                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-              } else {
+              // const index = context.dataIndex;
+              // if (context.dataset.backgroundColor[index] === '#AEEA16') {
+              //   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              // } else {
                 return '';
-              }
+              // }
             },
             font: {
               size: '14',
@@ -215,9 +215,6 @@ export default {
   methods: {
     getEnumData(enumType, value) {
       return this.$getEnumData(enumType, value)
-    },
-    setComma(numVal){
-      return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     },
     setResult(){
       if (this.isRenderingCheck){
@@ -272,10 +269,12 @@ export default {
         this.totalAvgData = this.getHourMin(this.totalAvgData)
         this.result.avgData = this.getHourMin(this.result.avgData)
         this.result.maxData = this.getHourMin(this.result.maxData)
+        this.nowData.data = this.getHourMin(this.nowData.data)
       } else {
-        this.totalAvgData = this.setComma(this.totalAvgData)
-        this.result.avgData = this.setComma(this.result.avgData)
-        this.result.maxData = this.setComma(this.result.maxData)
+        this.totalAvgData = this.getFloatValue(this.setComma(this.totalAvgData))
+        this.result.avgData = this.getFloatValue(this.setComma(this.result.avgData))
+        this.result.maxData = this.getFloatValue(this.setComma(this.result.maxData))
+        this.nowData.data = this.getFloatValue(this.setComma(this.nowData.data))
       }
 
       // Chart에 반영
@@ -290,6 +289,23 @@ export default {
       const date = new Date(0)
       date.setSeconds(secondData)
       return date.toISOString().substring(11, 16)
+    },
+    getFloatValue(numVal){
+      let strNum = "" + numVal
+      if(strNum.includes(".")){
+        return strNum
+      }
+      return strNum + ".0"
+    },
+    setComma(numVal){
+      return numVal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    },
+    setValueFormat(numVal){
+      if (this.result.exeType('T')){
+        return this.getHourMin(numVal)
+      } else {
+        return this.getFloatValue(this.setComma(numVal))
+      }
     }
   },
 
