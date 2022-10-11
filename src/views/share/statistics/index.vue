@@ -354,9 +354,13 @@ export default {
     },
     getHourMin(minutesData){
       if(!minutesData) return "00:00"
-      let hour = Math.floor(minutesData / 60)
-      let min = minutesData % 60
+      let hour = this.makeStrTime(Math.floor(minutesData / 60))
+      let min = this.makeStrTime(minutesData % 60)
       return hour + ":" + min
+    },
+    makeStrTime(timeValue) {
+      if(timeValue >= 10) return "" + timeValue
+      return "0" + timeValue
     },
     getFloatValue(numVal){
       let strNum = "" + numVal
