@@ -3,6 +3,7 @@
     <div class="container">
       <header class="exercise-stats__header">
         <div class="header__div">
+          {{ this.checkData }}
           <p class="header__text">{{ this.result.date }}</p>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
@@ -85,6 +86,7 @@ export default {
     return {
       nowData: "",
       selectData: "",
+      checkData: "",
       isRenderingCheck: false,
       totalAvgData: 0,
       totalData: 0,
@@ -236,6 +238,7 @@ export default {
           color: '#AEEA16',
           formatter: (value, context) =>{
             if(_this){
+              _this.checkData = "_this를 인식하긴해"
               const index = context.dataIndex;
               if (context.dataset.backgroundColor[index] === '#AEEA16') {
                 return _this.setValueFormat(value, _this);
