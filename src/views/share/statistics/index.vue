@@ -144,10 +144,69 @@ export default {
         ]
       },
       chartOptionsLabel: "",
-      chartOptions: null
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: false,
+          legend: {
+            display: false,
+          },
+          // dot 평균 라인
+          annotation: {
+            annotations: {
+              line1: {
+                type: 'line',
+                yMin: 400,
+                yMax: 400,
+                borderColor: '#aeea16',
+                borderWidth: 1,
+                borderDash: [2,2]
+              }
+            }
+          },
+          // Bar 상단 점수
+          datalabels: {
+            anchor: 'end',
+            align: 'top',
+            color: '#AEEA16',
+            formatter: (value, context) =>{
+            },
+            font: {
+              size: '14',
+              weight: 'bold',
+            }
+          },
+        },
+        scales: {
+          x: {
+            // 하단 날짜
+            ticks: {
+              color: [
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA164C',
+                // '#AEEA16',
+              ],
+              autoSkip: false,
+              maxRotation: 0,
+              minRotation: 0
+            },
+          },
+          y: {
+            display: false,
+          }
+        },
+      }
     }
   },
-  mounted() {
+  created() {
     const _this = this
     this.chartOptions = {
       responsive: true,
@@ -177,6 +236,7 @@ export default {
           color: '#AEEA16',
           formatter: (value, context) =>{
             if(_this){
+              console.log("_this :::::::: ", _this)
               const index = context.dataIndex;
               if (context.dataset.backgroundColor[index] === '#AEEA16') {
                 return _this.setValueFormat(value, _this);
