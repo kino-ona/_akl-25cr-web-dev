@@ -239,6 +239,7 @@ export default {
           formatter: (value, context) =>{
             if(_this){
               const index = context.dataIndex;
+              _this.checkData = context.dataset.backgroundColor[index]
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
                 _this.checkData = "comin" + value
                 return _this.setValueFormat(value, _this);
