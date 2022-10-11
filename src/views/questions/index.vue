@@ -122,8 +122,9 @@
 
       // 자주묻는질문 카테고리 클릭 시 데이터 조회
       selectCate(cateCode) {
-        this.result.questionList = []
-        //this.selectedMenu = 0;
+        this.result.questionList = [] ;
+        this.selectedMenu = null;  //상세내용숨기기 
+
         this.nowCateCode = cateCode
         let params = {
           "questionTypeCode": cateCode,
