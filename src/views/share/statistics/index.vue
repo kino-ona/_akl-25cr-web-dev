@@ -354,9 +354,10 @@ export default {
       // this.chartOptions.plugins.datalabels.formatter(this.selectData.data, "", this.result.exeType)
     },
     getHourMin(minutesData){
-      const date = new Date(0)
-      date.setMinutes(minutesData)
-      return date.toISOString().substring(11, 16)
+      if(!minutesData) return "00:00"
+      let hour = Math.floor(minutesData / 60)
+      let min = minutesData % 60
+      return hour + ":" + min
     },
     getFloatValue(numVal){
       let strNum = "" + numVal
