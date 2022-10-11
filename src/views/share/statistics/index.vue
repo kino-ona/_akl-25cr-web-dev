@@ -1,12 +1,13 @@
 <template>
   <section class="exercise-stats" v-if="this.isRenderingCheck">
     <div class="container">
+      테스트를 위한 임시 데이터 삽입입니다. {{ this.result }}
       <header class="exercise-stats__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
-            <span class="point__value">{{ this.totalAvgData }}</span>
+            <span class="point__value">{{ this.result.maxData }}</span>
             <span class="point__unit">{{ this.getEnumData("exeTypeUnit", this.result.exeType) }}</span>
           </div>
           <img class="logo" src="@/assets/logo.png" alt="로고" />
