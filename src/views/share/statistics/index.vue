@@ -239,9 +239,8 @@ export default {
           formatter: (value, context) =>{
             if(_this){
               const index = context.dataIndex;
-              _this.checkData = index
-              // _this.checkData = (context.dataset.backgroundColor[index] == '#AEEA16')
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
+                _this.checkData = "comin"
                 return _this.setValueFormat(value, _this);
               } else {
                 return '';
