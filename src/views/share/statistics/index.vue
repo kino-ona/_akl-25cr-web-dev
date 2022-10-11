@@ -7,7 +7,7 @@
           <p class="header__text">{{ this.result.date }}</p>
           <h2 class="header__title">{{ this.getEnumData("term", this.result.term) }} {{ this.getEnumData("exeType", this.result.exeType) }}</h2>
           <div class="exercise-stats__point text-primary">
-            <span class="point__value">{{ this.result.maxData }}</span>
+            <span class="point__value">{{ this.nowData.data }}</span>
             <span class="point__unit">{{ this.getEnumData("exeTypeUnit", this.result.exeType) }}</span>
           </div>
           <img class="logo" src="@/assets/logo.png" alt="로고" />
@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       checkData: "",
+      nowData: "",
       isRenderingCheck: false,
       totalAvgData: 0,
       totalData: 0,
@@ -229,6 +230,7 @@ export default {
       let colors = []
       let datas = []
 
+      this.nowData = this.result.dataList[this.result.dataList.length-1]
       for(var exeIndex = 0; exeIndex < this.result.dataList.length; exeIndex++){
         let exeData = this.result.dataList[exeIndex]
 
