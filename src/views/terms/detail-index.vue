@@ -2,6 +2,7 @@
   <div class="policy-detail">
     <div class="container p14">
       <header class="policy-detail__header">
+        잠시 데이터 확인을 위한 테스트입니다. {{ this.result }}
         <h1 class="mb-0 policy-detail__title" v-if="!this.isProfile">
           {{ this.result.termsTitle }}
         </h1>
