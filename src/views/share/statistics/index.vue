@@ -243,7 +243,7 @@ export default {
                 _this.checkData = (context.dataset.backgroundColor[index] == '#AEEA16')
               }
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
-                _this.checkData = "comin" + value
+                _this.checkData = value
                 return _this.setValueFormat(value, _this);
               } else {
                 return '';
