@@ -1,7 +1,6 @@
 <template>
   <section class="exercise-stats" v-if="this.isRenderingCheck">
     <div class="container">
-      테스트를 위한 임시 데이터 삽입입니다. {{ this.result }}
       <header class="exercise-stats__header">
         <div class="header__div">
           <p class="header__text">{{ this.result.date }}</p>
@@ -248,6 +247,7 @@ export default {
 
         this.totalData = this.totalData + exeData.data;
         if(exeData.isSelected){
+          this.nowData = exeData
           colors.push('#AEEA16');
           if(this.result.exeType != 'K' && this.result.exeType != 'T'){
             this.totalAvgData = parseFloat(exeData.data).toFixed(1);
