@@ -351,10 +351,10 @@ export default {
       this.isRenderingCheck = true
       // this.chartOptions.plugins.datalabels.formatter(this.selectData.data, "", this.result.exeType)
     },
-    getHourMin(secondData){
+    getHourMin(minutesData){
       const date = new Date(0)
-      this.checkData = secondData
-      date.setSeconds(secondData)
+      date.setMinutes(minutesData)
+      this.checkData = date.toISOString()
       return date.toISOString().substring(11, 16)
     },
     getFloatValue(numVal){
