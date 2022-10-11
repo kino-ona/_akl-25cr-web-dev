@@ -206,7 +206,7 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
     const _this = this
     this.chartOptions = {
       responsive: true,
@@ -236,7 +236,6 @@ export default {
           color: '#AEEA16',
           formatter: (value, context) =>{
             if(_this){
-              console.log("_this :::::::: ", _this)
               const index = context.dataIndex;
               if (context.dataset.backgroundColor[index] === '#AEEA16') {
                 return _this.setValueFormat(value, _this);
