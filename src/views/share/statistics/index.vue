@@ -86,7 +86,7 @@ export default {
     return {
       nowData: "",
       selectData: "",
-      checkData: "",
+      checkData: false,
       isRenderingCheck: false,
       totalAvgData: 0,
       totalData: 0,
@@ -239,7 +239,9 @@ export default {
           formatter: (value, context) =>{
             if(_this){
               const index = context.dataIndex;
-              _this.checkData = context.dataset.backgroundColor[index]
+              if(_this.checkData == false){
+                _this.checkData = (context.dataset.backgroundColor[index] == '#AEEA16')
+              }
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
                 _this.checkData = "comin" + value
                 return _this.setValueFormat(value, _this);
