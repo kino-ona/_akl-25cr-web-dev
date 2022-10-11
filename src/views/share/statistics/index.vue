@@ -240,7 +240,7 @@ export default {
             if(_this){
               const index = context.dataIndex;
               if (context.dataset.backgroundColor[index] == '#AEEA16') {
-                _this.checkData = "comin"
+                _this.checkData = "comin" + value
                 return _this.setValueFormat(value, _this);
               } else {
                 return '';
