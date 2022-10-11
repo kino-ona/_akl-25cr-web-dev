@@ -11,7 +11,8 @@
                   <p class="item-text sub">{{ term.applyStartDate }}</p>
                 </div>
 <!--                <router-link class="detail-link" to="/policy-detail">-->
-
+                  {{ term }}
+                  약관정보를 보기 위한 임시 데이터 조회 테스트입니다. : {{ term.termsId }} / {{ term.termsType }} / {{ term.termsVersion }}
                   <div v-if="!isMobile" class="cont-detail" @click="goDetail(term.termsId, term.termsType, term.termsVersion)">
                     <p class="detail-text mb-0">
                       Web에서 상세 보기 테스트
