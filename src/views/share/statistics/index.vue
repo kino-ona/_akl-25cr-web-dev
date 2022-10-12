@@ -365,6 +365,7 @@ export default {
       if(timeValue >= 10) return "" + timeValue
       return "0" + timeValue
     },
+
     getFloatValue(numVal){
       let strNum = "" + numVal
       if(strNum.includes(".")){
