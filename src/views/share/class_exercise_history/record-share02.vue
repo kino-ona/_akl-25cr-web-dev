@@ -4,7 +4,6 @@
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
-          값이 넘어오지 않아 테스트 진행합니다. : {{ this.result }}
           <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
@@ -90,6 +89,7 @@ export default {
   },
   mounted() {
     this.result = this.$store.state.mainData;
+    console.log(this.result)
   },
 
   methods : {
@@ -99,8 +99,8 @@ export default {
     getTime(secondValue){
       if(!secondValue) return "00:00:00"
 
-      let hour = this.makeStrTime(Math.floor(secondsData / 3600))
-      let min = this.makeStrTime(Math.floor((secondsData % 3600) / 60 ))
+      let hour = this.makeStrTime(Math.floor(secondValue / 3600))
+      let min = this.makeStrTime(Math.floor((secondValue % 3600) / 60 ))
       let sec = this.makeStrTime(secondValue % 60)
 
       return hour + ":" + min + ":" + sec
