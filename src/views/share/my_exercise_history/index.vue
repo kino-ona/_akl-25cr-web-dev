@@ -30,14 +30,14 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">{{ this.result.maxRpm }}</span>
+                  <span class="point__value">{{ Math.round(this.result.maxRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
               <div class="record__panel">
                 <h2 class="panel__title">평균 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">{{ this.result.avgRpm }}</span>
+                  <span class="point__value">{{ Math.round(this.result.avgRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
