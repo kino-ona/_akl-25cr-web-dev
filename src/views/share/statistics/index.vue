@@ -350,14 +350,17 @@ export default {
       this.chartData.datasets[0].data = datas;
       this.chartOptions.scales.x.ticks.color = colors;
       this.isRenderingCheck = true
-      // this.chartOptions.plugins.datalabels.formatter(this.selectData.data, "", this.result.exeType)
     },
-    getHourMin(minutesData){
-      if(!minutesData) return "00:00"
-      let hour = this.makeStrTime(Math.floor(minutesData / 60))
-      let min = this.makeStrTime(minutesData % 60)
-      return hour + ":" + min
+
+    getHourMin(secondsData){
+      if(!secondsData) return "00:00"
+      let hourInt = Math.floor(secondsData / 3600)
+      let hourStr = this.makeStrTime(hourInt)
+      let tempSecondsData = secondsData - hourInt
+      let minStr = this.makeStrTime(Math.floor(tempSecondsData / 60))
+      return hourStr + ":" + minStr
     },
+
     makeStrTime(timeValue) {
       if(timeValue >= 10) return "" + timeValue
       return "0" + timeValue
