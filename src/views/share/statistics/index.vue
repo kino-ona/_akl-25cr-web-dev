@@ -354,11 +354,9 @@ export default {
 
     getHourMin(secondsData){
       if(!secondsData) return "00:00"
-      let hourInt = Math.floor(secondsData / 3600)
-      let hourStr = this.makeStrTime(hourInt)
-      let tempSecondsData = secondsData - hourInt
-      let minStr = this.makeStrTime(Math.floor(tempSecondsData / 60))
-      return hourStr + ":" + minStr
+      let hour = this.makeStrTime(Math.floor(secondsData / 3600))
+      let min = this.makeStrTime(Math.floor((secondsData % 3600) / 60 ))
+      return hour + ":" + min
     },
 
     makeStrTime(timeValue) {

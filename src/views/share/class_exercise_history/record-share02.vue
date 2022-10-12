@@ -98,12 +98,8 @@ export default {
     getTime(secondValue){
       if(!secondValue) return "00:00:00"
 
-      let hourInt = Math.floor(secondValue / 3600)
-      let hour = this.makeStrTime(hourInt)
-      secondValue = secondValue - (3600 * hourInt)
-      console.log("secondValue 1 : ", secondValue)
-
-      let min = this.makeStrTime(Math.floor(secondValue / 60))
+      let hour = this.makeStrTime(Math.floor(secondsData / 3600))
+      let min = this.makeStrTime(Math.floor((secondsData % 3600) / 60 ))
       let sec = this.makeStrTime(secondValue % 60)
 
       return hour + ":" + min + ":" + sec
