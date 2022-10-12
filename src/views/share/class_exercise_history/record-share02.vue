@@ -4,6 +4,7 @@
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
+          값이 넘어오지 않아 테스트 진행합니다. : {{ this.result }}
           <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
             <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
