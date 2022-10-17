@@ -255,6 +255,6 @@
   color:#6d7381;
 }
 .answer__cont-text li {
-  margin-left: 20px;
+  margin-left: 25px;
 }
 </style>
