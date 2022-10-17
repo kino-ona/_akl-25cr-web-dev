@@ -254,4 +254,7 @@
   letter-spacing: -.09;
   color:#6d7381;
 }
+.answer__cont-text li {
+  margin-left: 20px;
+}
 </style>
