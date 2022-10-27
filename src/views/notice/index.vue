@@ -111,10 +111,7 @@ export default {
     }
     this.selectedMenuNormal = null;
     this.selectedMenu = null;
-    await this.getData(params)
-    console.log("this.result.noticeList.length : ", this.result.noticeList.length)
-    console.log("this.result.topList.length : ", this.result.topList.length)
-    this.isNone = (this.result.noticeList.length != 0 || this.result.topList.length != 0)
+    this.getFirstData(params)
     window.addEventListener('scroll', this.handleNotificationListScroll())
     this.profileId = this.$route.query.profileId;
     this.expiredTimeCheck();
@@ -288,6 +285,25 @@ export default {
             this.pushIsNew(_this.result.noticeList);
 
             _this.noticeSize =  response.data.result.noticeList.length;
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+    },
+
+    getFirstData(params) {
+      let _this = this;
+      this.$http.post("guest/notice?pagingStart=" + params.pagingStart)
+          .then((response) => {
+            _this.result.topList = response.data.result.topList
+            _this.result.noticeList = _this.result.noticeList.concat(response.data.result.noticeList)
+            this.pushIsNew(_this.result.topList);
+            this.pushIsNew(_this.result.noticeList);
+
+            _this.noticeSize =  response.data.result.noticeList.length;
+            console.log("this.result.noticeList.length : ", _this.result.noticeList)
+            console.log("this.result.topList.length : ", _this.result.topList)
+            this.isNone = (_this.result.noticeList.length != 0 || _this.result.topList.length != 0)
           })
           .catch((error) => {
             console.log(error);
