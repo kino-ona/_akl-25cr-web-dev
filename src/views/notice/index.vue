@@ -105,13 +105,13 @@ export default {
       profileId: ""
     }
   },
-  created(){
+  async created(){
     let params = {
       "pagingStart": 0
     }
     this.selectedMenuNormal = null;
     this.selectedMenu = null;
-    this.getData(params)
+    await this.getData(params)
     console.log("this.result.noticeList.length : ", this.result.noticeList.length)
     console.log("this.result.topList.length : ", this.result.topList.length)
     this.isNone = (this.result.noticeList.length != 0 || this.result.topList.length != 0)
