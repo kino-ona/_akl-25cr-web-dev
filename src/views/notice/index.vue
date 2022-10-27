@@ -1,7 +1,6 @@
 <template>
   <div class="notice">
-    <!-- todo: isNotice -> 데이터 생성이후 데이터.length > 0로 v-if 변환하기 -->
-    <div class="notice-contents" v-if="isNotice">
+    <div class="notice-contents" v-if="isNone">
       <div class="notice-fixed">
         <div class="container p14">
           <div class="notice__accordion-wrap">
@@ -97,11 +96,10 @@ export default {
       },
       nowPage: 0,
       isBottom: false,
-      isNone: true,
+      isNone: false,
       currentTab: 0,
       selectedMenu: 0,
       selectedMenuNormal: 0,
-      isNotice: true,
       maxSize: this.$route.query.maxSize,
       noticeSize: 0,
       profileId: ""
@@ -287,7 +285,7 @@ export default {
             this.pushIsNew(_this.result.noticeList);
 
             _this.noticeSize =  response.data.result.noticeList.length;
-            _this.isNone = (!_this.result.topList || !_this.result.topList)
+            _this.isNone = (_this.result.topList || _this.result.topList)
           })
           .catch((error) => {
             console.log(error);
