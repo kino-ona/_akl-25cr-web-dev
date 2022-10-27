@@ -112,7 +112,7 @@ export default {
     this.selectedMenuNormal = null;
     this.selectedMenu = null;
     this.getData(params)
-    this.isNone = (this.result.topList.length != 0 || this.result.topList.length != 0)
+    this.isNone = (this.result.noticeList.length != 0 || this.result.topList.length != 0)
     window.addEventListener('scroll', this.handleNotificationListScroll())
     this.profileId = this.$route.query.profileId;
     this.expiredTimeCheck();
