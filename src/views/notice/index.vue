@@ -112,6 +112,8 @@ export default {
     this.selectedMenuNormal = null;
     this.selectedMenu = null;
     this.getData(params)
+    console.log("this.result.noticeList.length : ", this.result.noticeList.length)
+    console.log("this.result.topList.length : ", this.result.topList.length)
     this.isNone = (this.result.noticeList.length != 0 || this.result.topList.length != 0)
     window.addEventListener('scroll', this.handleNotificationListScroll())
     this.profileId = this.$route.query.profileId;
