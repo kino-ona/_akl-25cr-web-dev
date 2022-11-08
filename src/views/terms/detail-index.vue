@@ -100,7 +100,9 @@ export default {
             console.log("Response Data ::::::::::: ", response.data.result[0])
             _this.result = response.data.result[0];
             let tempList = _this.result.versionList.split(',');
+            console.log("tempList ::::::::::: ", tempList)
             _this.versionList = tempList.reverse();
+            console.log("_this.versionList ::::::::::: ", _this.versionList)
             _this.newestVersion();
           })
           .catch((error) => {
