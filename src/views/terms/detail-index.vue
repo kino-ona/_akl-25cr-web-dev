@@ -13,10 +13,10 @@
             <div class="detail__select-box--list">
               <perfect-scrollbar>
                 <div class="list__item"
-                     :class="{active: list === onePick}"
-                     v-for="(list, index) in this.versionList"
-                     @click="handleVersion(index)"
-                >V{{list}}</div>
+                     :class="{active: version === onePick}"
+                     v-for="(version, index) in this.versionList"
+                     @click="handleVersion(version)"
+                >V{{version}}</div>
               </perfect-scrollbar>
             </div>
             <div v-if="isSelectOpen" @click="isSelectOpen = false" class="detail__select-box--backdrop"></div>
@@ -64,19 +64,15 @@ export default {
     this.tempResult = result
     this.getData(result)
   },
-  watch: {
-    // 질문이 변경될 때 마다 이 기능이 실행됩니다.
-    onePick: function () {
-      this.versionChange();
-    }
-  },
   methods : {
     handleSelect() {
       this.isSelectOpen = !this.isSelectOpen;
     },
-    handleVersion(index) {
+    handleVersion(version) {
       this.isSelectOpen = false;
-      this.onePick = this.versionList[index];
+      this.onePick = version;
+      console.log("선택된 버전 입니다. : ", this.onePick)
+      this.versionChange()
     },
     // 버전 변경 요청 시 해당 버전 데이터 조회
     versionChange() {
@@ -103,7 +99,8 @@ export default {
           .then((response) => {
             console.log("Response Data ::::::::::: ", response.data.result[0])
             _this.result = response.data.result[0];
-            _this.versionList = _this.result.versionList.split(',');
+            let tempList = _this.result.versionList.split(',');
+            _this.versionList = tempList.reverse();
             _this.newestVersion();
           })
           .catch((error) => {
