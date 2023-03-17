@@ -87,6 +87,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
   data () {
     return {
@@ -184,8 +186,10 @@ export default {
     // localStorage 내 조회 이력 저장
     saveWatchedNotification(notificationId){
       // 만료일 생성
-      const today = new Date()
-      const tomorrow = new Date(today)
+      //const today =   new Date();
+      const tomorrow =  new Date() ;
+     // const today =   moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+     // const tomorrow = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
       tomorrow.setDate(tomorrow.getDate() + 1)
 
       // localStorage 내 현재 Profile의 공지사항 조회 리스트 불러오기. 없다면 빈값 생성
@@ -197,8 +201,8 @@ export default {
 
       // 각 공지사항별 시청 이력 저장하기
       const keyValue = "notificationId_" + notificationId;
-      dic[keyValue] = tomorrow
-
+      //dic[keyValue] = tomorrow
+      dic[keyValue] = moment(tomorrow).format("YYYY-MM-DD HH:mm:ss")
       // 객체를 JSON 문자열로 변환
       const objString = JSON.stringify(dic);
 
@@ -223,7 +227,6 @@ export default {
         for (const [key, value] of Object.entries(dic)) {
           if(value){
             expiredDate = new Date(value)
-
             // 날짜 비교 진행
             if (expiredDate < compareDate){
               delete dic[key]
@@ -239,7 +242,6 @@ export default {
 
       // 업데이트된 오브젝트로 기존 값 치환
       window.localStorage.setItem(this.profileId, objString);
-      console.log("expiredTimeCheck End >>>>>> ", window.localStorage.getItem(this.profileId));
     },
 
     pushIsNew(notiList){
@@ -247,11 +249,11 @@ export default {
         value['isNew'] = false
 
         // 날짜 비교를 위한 값 세팅
-        const today = new Date()
-        const compareDate = new Date(today)
+        //const today = new Date()
+        const compareDate = new Date() ;
         compareDate.setDate(compareDate.getDate())
         let dateTime = new Date(value.notiDatatime)
-        dateTime = new Date(dateTime.setDate(dateTime.getDate() + 1));	// 어제
+        dateTime = new Date(dateTime.setDate(dateTime.getDate() + 1));	// 하루뒤
 
         // 날짜 비교 진행
         if (dateTime >= compareDate){
@@ -301,8 +303,6 @@ export default {
             this.pushIsNew(_this.result.noticeList);
 
             _this.noticeSize =  response.data.result.noticeList.length;
-            console.log("this.result.noticeList.length : ", _this.result.noticeList)
-            console.log("this.result.topList.length : ", _this.result.topList)
             this.isNone = (_this.result.noticeList.length != 0 || _this.result.topList.length != 0)
           })
           .catch((error) => {
@@ -311,11 +311,13 @@ export default {
     },
 
     getTime(timeValue){
-      let date = new Date(timeValue);
-      return date.getFullYear() + "년 "
-          + this.setTime(date.getMonth()) + "월 "
-          + this.setTime(date.getDate()) + "일 "
-          + this.setTime(date.getHours()) + ":" + this.setTime(date.getMinutes())
+      let cellDateVal = moment(timeValue).format("YYYY-MM-DD HH:mm:ss");
+      return cellDateVal
+      // let date = new Date(timeValue);
+      // return date.getFullYear() + "년 "
+      //     + this.setTime(date.getMonth()) + "월 "
+      //     + this.setTime(date.getDate()) + "일 "
+      //     + this.setTime(date.getHours()) + ":" + this.setTime(date.getMinutes())
     },
     setTime(timeValue){
       return timeValue >= 10 ? timeValue : ("0" + timeValue)

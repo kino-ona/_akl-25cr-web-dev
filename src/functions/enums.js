@@ -12,8 +12,8 @@ const exerciseModeCode = {
 
 const classWorkoutCategoryCode = {
     "01": "스피닝", 
-    "02": "EMS",
-    "03": "스피닝+EMS"
+    "02": "머슬온",
+    "03": "스피닝+머슬온"
 }
 
 const classLevelCode = {
@@ -66,14 +66,14 @@ const contentTypeData = {
     "LL": {"iconData": require("@/assets/icons/icon-live.png"), "altData": "라이브 아이콘"},
     "RV": {"iconData": require("@/assets/icons/icon-rerun.png"), "altData": "재방송 아이콘"},
     "VV": {"iconData": require("@/assets/icons/icon-vod.svg"), "altData": "VOD 아이콘"},
-    "라이트 모드": {"iconData": "@/assets/icons/icon-light-mode.svg", "altData": "라이트 모드 아이콘"}
+    "LM": {"iconData": require("@/assets/icons/icon-light-mode.svg"), "altData": "라이트 모드 아이콘"}
 }
 
 const contentTypeDataWithCode = {
     "01": {"iconData": require("@/assets/icons/icon-live.png"), "altData": "라이브 아이콘"},
     "02": {"iconData": require("@/assets/icons/icon-rerun.png"), "altData": "재방송 아이콘"},
     "03": {"iconData": require("@/assets/icons/icon-vod.svg"), "altData": "VOD 아이콘"},
-    "04": {"iconData": "@/assets/icons/icon-light-mode.svg", "altData": "라이트 모드 아이콘"}
+    "04": {"iconData": require("@/assets/icons/icon-light-mode.svg"), "altData": "라이트 모드 아이콘"}
 }
 
 export default function getEnumData(enumType, value) {
