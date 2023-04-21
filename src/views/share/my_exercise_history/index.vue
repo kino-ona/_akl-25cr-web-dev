@@ -380,7 +380,7 @@ export default {
       align-items: baseline;
       line-height: 1;
       .point__value {
-        font-size: 26px;
+        font-size: 22px;
         letter-spacing: -.3px;
       }
       .point__unit {
