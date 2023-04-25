@@ -155,7 +155,7 @@ export default {
       line-height: 18px;
       margin-bottom: 4px;
       color: $gray02;
-      width: 180px;
+      width: 220px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
