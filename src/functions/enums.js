@@ -17,6 +17,7 @@ const classWorkoutCategoryCode = {
 }
 
 const classLevelCode = {
+    "S": "입문",
     "L": "초급",
     "M": "중급",
     "H": "상급"
