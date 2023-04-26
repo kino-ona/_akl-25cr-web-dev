@@ -380,11 +380,11 @@ export default {
       align-items: baseline;
       line-height: 1;
       .point__value {
-        font-size: 22px;
+        font-size: 20px;
         letter-spacing: -.3px;
       }
       .point__unit {
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: -.1px;
         margin-left: 4px;
       }
