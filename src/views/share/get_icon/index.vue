@@ -3,26 +3,61 @@
   <section class="share-template">
     <div class="container">
       <header class="share-template__header">
-        <h1 class="header__title">머슬핀 달성</h1>
+        <h1 class="header__title">{{this.getEnumData("iconCodeTitle", this.result.iconCode)}}</h1>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
 
       <div class="">
         <figure class="share-template__img">
-          <img src="@/assets/imgs/dummy-musclepin.png" alt="마크" />
+          <img :src="this.result.image" alt="마크" />
         </figure>
 
         <p class="share-template__text">
-          스피닝조와김연재님,<br />
-          축하합니다!
+          {{ this.result.celebrityMessage }}
         </p>
         <p class="share-template__text02">
-          FOUNDERS CROWN AMBASSADOR 40
+          {{ this.result.title }}
         </p>
       </div>
     </div>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </section>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      result: {
+        image: "",
+        iconCode: "", // 01: 배지 or 02: 머슬핀 or 03: 미션
+        celebrityMessage: "",
+        title: ""
+      },
+      isMobile: window.isMobile.any()
+    }
+  },
+  mounted(){
+    // this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    this.result = this.$store.state.mainData;
+    console.log("mainData ::::::::::::::::::::: ", this.result);
+  },
+  methods : {
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
+    }
+  },
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 .share-template {

@@ -1,60 +1,81 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Loading from "@/views/share/loading/index.vue"
+import GetIcon from "@/views/share/get_icon/index.vue"
+import MyExerciseHistory from "@/views/share/my_exercise_history/index.vue"
+import ClassExerciseHistoryRouter from "@/views/share/class_exercise_history/class-router"
+import ClassExerciseHistoryLightMode from "@/views/share/class_exercise_history/record-share01"
+import ClassExerciseHistoryNormal from "@/views/share/class_exercise_history/record-share02"
+import Statistics from "@/views/share/statistics/index.vue"
+import Terms from "@/views/terms/detail-index.vue"
+import TermsList from "@/views/terms/list-index.vue"
+import Notice from "@/views/notice/index.vue"
+import Questions from "@/views/questions/index.vue"
+import NotFound from "@/views/not-found/index.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/share/loading",
+    name: "Loading",
+    component: Loading,
   },
   {
-    path: '/record-share-light',
-    name: 'record-share-light',
-    component: () => import('@/views/record-share01.vue')
+    path: "/share/get-icon",
+    name: "GetIcon",
+    component: GetIcon,
   },
   {
-    path: '/record-share',
-    name: 'record-share',
-    component: () => import('@/views/record-share02.vue')
+    path: "/share/exercise/my-exercise-history",
+    name: "MyExerciseHistory",
+    component: MyExerciseHistory,
   },
   {
-    path: '/share-template',
-    name: 'share-template',
-    component: () => import('@/views/share-template.vue')
+    path: "/share/exercise/class-exercise-history",
+    name: "ClassExerciseHistoryRouter",
+    component: ClassExerciseHistoryRouter,
   },
   {
-    path: '/exercise-share',
-    name: 'exercise-share',
-    component: () => import('@/views/exercise-share.vue')
+    path: "/share/exercise/class-exercise-history/normal",
+    name: "ClassExerciseHistoryNormal",
+    component: ClassExerciseHistoryNormal,
   },
   {
-    path: '/exercise-stats',
-    name: 'exercise-stats',
-    component: () => import('@/views/exercise-stats.vue')
+    path: "/share/exercise/class-exercise-history/light-mode",
+    name: "ClassExerciseHistoryLightMode",
+    component: ClassExerciseHistoryLightMode,
   },
   {
-    path: '/faq',
-    name: 'faq',
-    component: () => import('@/views/faq.vue')
+    path: "/share/exercise/statistics",
+    name: "Statistics",
+    component: Statistics,
   },
   {
-    path: '/notice',
-    name: 'notice',
-    component: () => import('@/views/notice.vue')
+    path: "/terms",
+    name: "Terms",
+    component: Terms,
   },
   {
-    path: '/policy-list',
-    name: 'policy-list',
-    component: () => import('@/views/policy-list.vue')
+    path: "/terms/list",
+    name: "TermsList",
+    component: TermsList,
   },
   {
-    path: '/policy-detail/:pid',
-    name: 'policy-detail',
-    component: () => import('@/views/policy-detail.vue')
-  }
+    path: "/notice",
+    name: "Notice",
+    component: Notice,
+  },
+  {
+    path: "/questions",
+    name: "Questions",
+    component: Questions,
+  },
+  {
+    path: "/*",
+    name: "NotFound",
+    component: NotFound,
+  },
 ]
 
 const router = new VueRouter({

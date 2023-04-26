@@ -4,18 +4,17 @@
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
-          <p class="header__text">2022년 1월 10일 오후 9:30</p>
+          <p class="header__text">{{ this.result.date }}</p>
           <div class="header__badge-group">
-            <!-- Todo: 재방송일 때 띄우기 -->
-            <span v-show="false" class="badge-rerun">
-              <img src="@/assets/icons/icon-rerun.png" />
-              재방송
+            <span v-if="this.result.exerciseModeCode == '02'" class="badge-rerun">
+              <img :src="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).iconData" :alt="(getEnumData('contentTypeDataWithCode', this.result.exerciseModeCode)).altData" />
+              <p class="exercise__mode__name">{{ getEnumData('exerciseModeCode', this.result.exerciseModeCode) }}&nbsp;&nbsp;</p>
             </span>
-            <span class="base-badge">FREE</span>
+            <span class="base-badge" v-if="this.result.isFree == true">FREE</span>
           </div>
-          <h1 class="header__title">스피닝 크루 파이터</h1>
+          <h1 class="header__title">{{ this.result.classTitle }}</h1>
           <p class="header__text">
-            암웨이 강사님 | 스피닝 + EMS 초급
+            {{ this.result.lectureName }} | {{ getEnumData("classWorkoutCategoryCode", this.result.classWorkoutCategoryCode) }} &#183; {{ getEnumData("classLevelCode", this.result.classLevelCode) }}
           </p>
         </div>
 
@@ -31,7 +30,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">2,200.5</span>
+            <span class="text-40 font-weight-700">{{ getFloatValue(this.result.musclePoint) }}</span>
             <span class="text-16 font-weight-600 ml-4">점</span>
           </div>
         </div>
@@ -44,7 +43,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">5.2</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.distence) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">km</span>
               </div>
             </div>
@@ -55,9 +54,8 @@
                 <img src="@/assets/icons/icon-exercise-time.svg" class="w-20 mr-10" />
                 <span class="text-16 font-weight-800">운동 시간</span>
               </div>
-
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">02:23:45</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getTime(this.result.exerciseTime) }}</span>
               </div>
             </div>
           </li>
@@ -69,7 +67,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">2,645</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.calories) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">kcal</span>
               </div>
             </div>
@@ -77,11 +75,61 @@
         </ul>
       </div>
     </div>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return {
+      result: "",
+      isMobile: window.isMobile.any()
+    }
+  },
+  mounted() {
+    this.result = this.$store.state.mainData;
+    console.log(this.result)
+  },
+
+  methods : {
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
+    },
+    getTime(secondValue){
+      if(!secondValue) return "00:00"
+
+      let hour = Math.floor(secondValue / 3600)
+      if(hour > 0){
+        hour = this.makeStrTime(hour) + ":"
+      } else {
+        hour = ""
+      }
+      let min = this.makeStrTime(Math.floor((secondValue % 3600) / 60 ))
+      let sec = this.makeStrTime(secondValue % 60)
+
+      return hour + min + ":" + sec
+    },
+    makeStrTime(timeValue) {
+      if(timeValue >= 10) return "" + timeValue
+      return "0" + timeValue
+    },
+    getFloatValue(numVal){
+      let strNum = "" + numVal
+      if(strNum.includes(".")){
+        return strNum
+      }
+      return strNum + ".0"
+    }
+  },
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch: {
+    getMainData(val) {
+      this.result = val
+    }
+  }
 }
 </script>
 
@@ -107,12 +155,21 @@ export default {
       line-height: 18px;
       margin-bottom: 4px;
       color: $gray02;
+      width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
     }
     .header__title {
       font-size: 18px;
       font-weight: 800;
       line-height: 25px;
       margin-bottom: 4px;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .logo {
       position: absolute;

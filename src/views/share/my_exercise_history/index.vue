@@ -2,18 +2,17 @@
   <section class="exercise-share">
     <div class="container">
       <header class="exercise-share__header">
-        <h2 class="header__title">2022년 1월 13일 목요일</h2>
+        <h2 class="header__title">{{ this.result.date }}</h2>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
-
       <div class="exercise-share__body">
-        <section class="exercise-share__section">
+        <section v-if="(this.result.shareType != 3)" class="exercise-share__section">
           <h1 class="exercise-share__title">
-            <img src="@/assets/icons/icon-coin.svg" class="w-26" />
+            <img src="@/assets/icons/icon-coin.svg" class="w-26" alt="총 머슬 포인트 아이콘" />
             <span>총 머슬 포인트</span>
           </h1>
           <div class="exercise-share__point">
-            <span class="point__value">10,800</span>
+            <span class="point__value">{{ this.result.totMusclePoint }}</span>
             <span class="point__unit">점</span>
           </div>
 
@@ -22,7 +21,7 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 머슬 포인트</h2>
                 <div class="panel__point text-primary">
-                  <span class="point__value">2,600.5</span>
+                  <span class="point__value">{{ this.result.maxMusclePoint }}</span>
                   <span class="point__unit">점</span>
                 </div>
               </div>
@@ -31,14 +30,14 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">120</span>
+                  <span class="point__value">{{ Math.round(this.result.maxRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
               <div class="record__panel">
                 <h2 class="panel__title">평균 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">88</span>
+                  <span class="point__value">{{ Math.round(this.result.avgRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
@@ -49,12 +48,12 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-fire.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-fire.svg" class="w-34 mr-10" alt="소모칼로리 아이콘"/>
                   <span class="text-16 font-weight-800">소모 칼로리</span>
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">475</span>
+                  <span class="text-20 font-weight-800">{{ this.result.totCalories }}</span>
                   <span class="text-14 font-weight-800 ml-4">kcal</span>
                 </div>
               </div>
@@ -62,12 +61,12 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-exercise-distance.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-exercise-distance.svg" class="w-34 mr-10" alt="운동 거리 아이콘" />
                   <span class="text-16 font-weight-800">운동 거리</span>
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">12.34</span>
+                  <span class="text-20 font-weight-800">{{ this.result.totDistance }}</span>
                   <span class="text-14 font-weight-800 ml-4">km/h</span>
                 </div>
               </div>
@@ -75,12 +74,12 @@
             <li>
               <div class="record-share__item">
                 <div class="d-flex align-items-center">
-                  <img src="@/assets/icons/icon-exercise-time.svg" class="w-34 mr-10" />
+                  <img src="@/assets/icons/icon-exercise-time.svg" class="w-34 mr-10" alt="운동 시간 아이콘" />
                   <span class="text-16 font-weight-800">운동 시간</span>
                 </div>
 
                 <div class="d-flex align-items-end line-height-1">
-                  <span class="text-20 font-weight-800">01:23</span>
+                  <span class="text-20 font-weight-800">{{ getTime(this.result.totExerciseTime) }}</span>
                 </div>
               </div>
             </li>
@@ -91,59 +90,30 @@
             합산 운동 이력입니다.
           </p>
         </section>
-        <section class="exercise-share__section">
+        <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
-          <div v-if="false" class="exercise-share__empty-data">
-            클럽타올라 기록이 없습니다.
-          </div>
-          <ul v-else class="exercise-share__record-box list-style-none">
-            <li>
+          <ul  v-if="this.isInClubTaolaData" class="exercise-share__record-box list-style-none">
+            <li v-for="(classItem, index) in this.result['recentlyClassList']" :key="index">
               <div class="record__item">
                 <div class="record__detail">
-                  <img src="@/assets/icons/icon-live.png" class="w-34" />
+                  <img :src="(getEnumData('contentTypeData', classItem.contentsType)).iconData" class="w-34" :alt="(getEnumData('contentTypeData', classItem.contentsType)).altData" />
                   <div class="line-height-1">
-                    <h3 class="detail__title">스피닝 크루 파이터</h3>
-                    <span class="detail__text">암웨이 강사님</span>
+                    <h3 class="detail__title">{{classItem.classNm}}</h3>
+                    <span class="detail__text">{{classItem.lectureName}}</span>
                   </div>
                 </div>
                 <div class="record__point">
-                  <span class="point__value">325</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-vod.svg" class="w-34" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">스피닝 크루 파이터</h3>
-                    <span class="detail__text">암웨이 강사님</span>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">100</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-light-mode.svg" class="w-34" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">라이트 모드</h3>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">55</span>
+                  <span class="point__value">{{classItem.calories}}</span>
                   <span class="point__unit">kcal</span>
                 </div>
               </div>
             </li>
           </ul>
+          <div v-else class="exercise-share__empty-data">
+            클럽타올라 기록이 없습니다.
+          </div>
         </section>
-        <section class="exercise-share__section">
+        <section class="exercise-share__section" v-if="false">
           <h2 class="section__title">
             클럽타올라 배지
             <span>15</span>
@@ -166,8 +136,57 @@
         </section>
       </div>
     </div>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </section>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      result: "",
+      isMobile: window.isMobile.any(),
+      isInClubTaolaData: false,
+      lengVal: -1
+    }
+  },
+  mounted(){
+    // this.result = JSON.parse(sessionStorage.getItem("mainData"));
+    this.result = this.$store.state.mainData;
+    this.lengVal = (this.result) ? true : false;
+    if(this.result){
+      this.isInClubTaolaData = true;
+    }
+  },
+  methods : {
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value)
+    },
+    getTime(minuteValue){
+      if(minuteValue) {
+        let hour = this.makeStrTime(Math.floor(minuteValue / 60))
+        let min = this.makeStrTime(minuteValue % 60)
+        return hour + ":" + min
+      }
+      return "00:00"
+    },
+    makeStrTime(timeValue) {
+      if(timeValue >= 10) return "" + timeValue
+      return "0" + timeValue
+    }
+  },
+  // setData를 통한 데이터 변화 감지
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch:{
+    getMainData(val){
+      this.result = val
+      this.isInClubTaolaData = true
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 .exercise-share {
@@ -361,11 +380,11 @@
       align-items: baseline;
       line-height: 1;
       .point__value {
-        font-size: 26px;
+        font-size: 20px;
         letter-spacing: -.3px;
       }
       .point__unit {
-        font-size: 16px;
+        font-size: 14px;
         letter-spacing: -.1px;
         margin-left: 4px;
       }

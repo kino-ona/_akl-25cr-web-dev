@@ -1,10 +1,10 @@
 <template>
   <!-- 라이트 모드 공유 ASH_04_05 -->
-  <div class="record-share">
+  <div class="record-share" >
     <div class="container">
       <header class="record-share__header">
         <div class="header__div">
-          <p class="header__text">2022년 1월 10일 오후 9:30</p>
+          <p class="header__text">{{ this.result.date }}</p>
           <h1 class="header__title">라이트 모드</h1>
         </div>
 
@@ -20,7 +20,7 @@
           </div>
 
           <div class="d-flex align-items-end line-height-1">
-            <span class="text-40 font-weight-700">5.34</span>
+            <span class="text-40 font-weight-700">{{ getFloatValue(this.result.distence) }}</span>
             <span class="text-16 font-weight-600 ml-4">km</span>
           </div>
         </div>
@@ -33,7 +33,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">02:23:45</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getTime(this.result.exerciseTime) }}</span>
               </div>
             </div>
           </li>
@@ -45,7 +45,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">345</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.calories) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">kcal</span>
               </div>
             </div>
@@ -58,7 +58,7 @@
               </div>
 
               <div class="d-flex align-items-end line-height-1">
-                <span class="text-20 font-weight-800 text-blue">5.2</span>
+                <span class="text-20 font-weight-800 text-blue">{{ getFloatValue(this.result.avgSpeed) }}</span>
                 <span class="text-14 font-weight-800 text-blue ml-4">km/h</span>
               </div>
             </div>
@@ -66,11 +66,60 @@
         </ul>
       </div>
     </div>
+    <button v-if="!isMobile" @click="$sendCaptureImage()">Image 전송</button>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return {
+      result: "",
+      isMobile: window.isMobile.any()
+    }
+  },
+
+  mounted() {
+    this.result = this.$store.state.mainData;
+  },
+
+  methods : {
+    getEnumData(enumType, value) {
+      return this.$getEnumData(enumType, value);
+    },
+    getTime(secondValue){
+      if(!secondValue) return "00:00:00"
+
+      let hourInt = Math.floor(secondValue / 3600)
+      let hour = this.makeStrTime(hourInt)
+      secondValue = secondValue - (3600 * hourInt)
+      console.log("secondValue 1 : ", secondValue)
+
+      let min = this.makeStrTime(Math.floor(secondValue / 60))
+      let sec = this.makeStrTime(secondValue % 60)
+
+      return hour + ":" + min + ":" + sec
+    },
+    makeStrTime(timeValue) {
+      if(timeValue >= 10) return "" + timeValue
+      return "0" + timeValue
+    },
+    getFloatValue(numVal){
+      let strNum = "" + numVal
+      if(strNum.includes(".")){
+        return strNum
+      }
+      return strNum + ".0"
+    }
+  },
+  computed:{
+    getMainData(){return this.$store.getters.getMainData}
+  },
+  watch: {
+    getMainData(val) {
+      this.result = val
+    }
+  }
 }
 </script>
 
@@ -86,10 +135,20 @@ export default {
       font-size: 12px;
       margin-bottom: 4px;
       color: $gray02;
+
+      display: block;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .header__title {
       font-size: 18px;
       font-weight: 900;
+      width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .logo {
       position: absolute;
