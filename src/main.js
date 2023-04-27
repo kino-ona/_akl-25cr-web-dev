@@ -11,6 +11,7 @@ import windowCapture from './functions/windowCapture'
 import windowCaptureFirst from './functions/windowCaptureFirst'
 import setData from './functions/setData'
 import getData from './functions/getData'
+import getDataCall from './functions/getDataCall'
 import "@/assets/scss/global.scss";
 
 Vue.config.productionTip = false
@@ -26,6 +27,7 @@ Vue.prototype.$windowCaptureFirst = windowCaptureFirst;
 window.sendCaptureImage = sendCaptureImage;
 window.setData = setData;
 window.getData = getData;
+window.getDataCall = getDataCall;
 window.windowCapture = windowCapture;
 window.windowCaptureFirst = windowCaptureFirst;
 window.getNoticeLastIndex = getNoticeLastIndex;

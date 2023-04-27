@@ -14,7 +14,7 @@ export default function windowCapture() {
 
             //window.getData('webImageCaptureFinish');
             //function호출
-             getData({
+            getDataCall({
                  'func': 'webImageCaptureFinish'
              });
 
