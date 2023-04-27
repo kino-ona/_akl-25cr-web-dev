@@ -159,7 +159,7 @@ export default {
     if(this.result){
       this.isInClubTaolaData = true;
     }
-    sendCaptureImageFirst();
+    sendCaptureImage();
   },
   methods : {
     getEnumData(enumType, value) {
