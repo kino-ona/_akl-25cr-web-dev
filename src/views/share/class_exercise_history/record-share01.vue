@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import sendCaptureImageFirst from "@/functions/sendCaptureImageFirst";
 
 export default {
   data(){
