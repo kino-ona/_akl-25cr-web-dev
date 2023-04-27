@@ -92,7 +92,7 @@ export default {
   mounted() {
     this.result = this.$store.state.mainData;
     //console.log("result : "+this.result);
-    sendCaptureImageFirst();
+    sendCaptureImage();
   },
 
   methods : {
