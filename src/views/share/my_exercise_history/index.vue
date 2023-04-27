@@ -141,6 +141,8 @@
 </template>
 
 <script>
+import sendCaptureImageFirst from "@/functions/sendCaptureImageFirst";
+
 export default {
   data(){
     return {
@@ -157,6 +159,7 @@ export default {
     if(this.result){
       this.isInClubTaolaData = true;
     }
+    sendCaptureImageFirst();
   },
   methods : {
     getEnumData(enumType, value) {
