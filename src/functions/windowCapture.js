@@ -11,6 +11,18 @@ export default function windowCapture() {
             window.captureData =  extra_canvas.toDataURL();
             console.log("######### window.captureData #########")
             console.log(window.captureData)
+
+            //window.getData('webImageCaptureFinish');
+            //function호출
+             getData({
+                 'func': 'webImageCaptureFinish'
+             });
+
+            //let webToAppUrl = {'func' : 'webImageCaptureFinish', 'callback' : 'null', 'param' : 'null'}
+            //window.getData(webToAppUrl);
+            //window.getData('webImageCaptureFinish');
+
         });
     }, 1000)
+
 }

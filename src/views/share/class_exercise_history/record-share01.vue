@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import sendCaptureImageFirst from "@/functions/sendCaptureImageFirst";
+
 export default {
   data(){
     return {
@@ -81,6 +83,7 @@ export default {
 
   mounted() {
     this.result = this.$store.state.mainData;
+    sendCaptureImageFirst();
   },
 
   methods : {
