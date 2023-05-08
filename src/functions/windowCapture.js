@@ -12,7 +12,6 @@ export default function windowCapture() {
             console.log("######### window.captureData #########")
             console.log(window.captureData)
 
-            //window.getData('webImageCaptureFinish');
             //function호출
             getDataCall({
                  'func': 'webImageCaptureFinish'
