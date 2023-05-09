@@ -80,6 +80,7 @@
 </template>
 
 <script>
+
 export default {
   data(){
     return {
@@ -89,7 +90,8 @@ export default {
   },
   mounted() {
     this.result = this.$store.state.mainData;
-    console.log(this.result)
+    //console.log("result : "+this.result);
+    sendCaptureImage();
   },
 
   methods : {

@@ -277,6 +277,9 @@ export default {
         }
       },
     }
+    //이미지만들기
+    sendCaptureImage();     //이미지만들기
+    
   },
   methods: {
     getEnumData(enumType, value) {

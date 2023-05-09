@@ -10,6 +10,7 @@ import getNoticeLastIndex from './functions/getNoticeLastIndex'
 import windowCapture from './functions/windowCapture'
 import setData from './functions/setData'
 import getData from './functions/getData'
+import getDataCall from './functions/getDataCall'
 import "@/assets/scss/global.scss";
 
 Vue.config.productionTip = false
@@ -24,6 +25,7 @@ Vue.prototype.$windowCapture = windowCapture;
 window.sendCaptureImage = sendCaptureImage;
 window.setData = setData;
 window.getData = getData;
+window.getDataCall = getDataCall;
 window.windowCapture = windowCapture;
 window.getNoticeLastIndex = getNoticeLastIndex;
 window.setTimeout = setTimeout;
