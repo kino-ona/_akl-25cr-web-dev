@@ -369,6 +369,16 @@ export default {
     .record__panel + .record__panel {
       margin-top: 4px;
     }
+
+    @media screen and (max-width: 320px) {
+      .record__panel {
+        .panel__point {
+          .point__value {
+            font-size: 25px;
+          }
+        }
+      }
+    }
   }
 
   .record-share__ul {
@@ -388,10 +398,11 @@ export default {
         align-items: baseline;
       }
       .record-share__text {
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 21px;
-      letter-spacing: -.1px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: -.1px;
+        word-break: keep-all;
       }
       .record-share__data {
         font-weight: 800;
@@ -536,6 +547,7 @@ export default {
         line-height: 21px;
         letter-spacing: -.3px;
         text-align: center;
+        word-break: keep-all;
       }
     }
   }
