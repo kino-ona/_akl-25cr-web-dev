@@ -2,7 +2,7 @@
   <section class="exercise-share">
     <div class="container">
       <header class="exercise-share__header">
-        <h2 class="header__title">2022년 1월 13일 목요일{{ this.result.date }}</h2>
+        <h2 class="header__title">{{ this.result.date }}</h2>
         <img class="logo" src="@/assets/logo.png" alt="로고" />
       </header>
       <div class="exercise-share__body">
@@ -12,7 +12,7 @@
             <span>총 머슬 포인트</span>
           </h1>
           <div class="exercise-share__point">
-            <span class="point__value">10,800{{ this.result.totMusclePoint }}</span>
+            <span class="point__value">{{ this.result.totMusclePoint }}</span>
             <span class="point__unit">점</span>
           </div>
 
@@ -30,14 +30,14 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">120<!-- {{ Math.round(this.result.maxRpm) }} --></span>
+                  <span class="point__value">{{ Math.round(this.result.maxRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
               <div class="record__panel">
                 <h2 class="panel__title">평균 케이던스</h2>
                 <div class="panel__point text-blue">
-                  <span class="point__value">120<!-- {{ Math.round(this.result.avgRpm) }} --></span>
+                  <span class="point__value">{{ Math.round(this.result.avgRpm) }}</span>
                   <span class="point__unit">rpm</span>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="record-share__right">
-                  <span class="record-share__data">9,9999{{ this.result.totCalories }}</span>
+                  <span class="record-share__data">{{ this.result.totCalories }}</span>
                   <span class="record-share__text">kcal</span>
                 </div>
               </div>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="record-share__right">
-                  <span class="record-share__data">99999.99{{ this.result.totDistance }}</span>
+                  <span class="record-share__data">{{ this.result.totDistance }}</span>
                   <span class="record-share__text">km/h</span>
                 </div>
               </div>
@@ -90,7 +90,7 @@
             합산 운동 이력입니다.
           </p>
         </section>
-        <!-- <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
+        <section class="exercise-share__section" v-if="(this.result.shareType != 2)">
           <h2 class="section__title">클럽타올라 기록</h2>
           <ul v-if="this.isInClubTaolaData" class="exercise-share__record-box list-style-none">
             <li v-for="(classItem, index) in this.result['recentlyClassList']" :key="index">
@@ -112,43 +112,9 @@
           <div v-else class="exercise-share__empty-data">
             클럽타올라 기록이 없습니다.
           </div>
-        </section> -->
-        <section class="exercise-share__section">
-          <h2 class="section__title">클럽타올라 기록</h2>
-          <ul class="exercise-share__record-box list-style-none">
-            <li>
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-vod.svg" class="w-34" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">22’ 5월 3일 SPINNING LIVE CLASS ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅁㄹ</h3>
-                    <span class="detail__text">디파이, 암웨이 강사님 ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ</span>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">9,999</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="record__item">
-                <div class="record__detail">
-                  <img src="@/assets/icons/icon-vod.svg" class="w-34" />
-                  <div class="line-height-1">
-                    <h3 class="detail__title">22’ 5월 3일 SPINNING LIVE CLASS ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅁㄹ</h3>
-                    <span class="detail__text">디파이, 암웨이 강사님 ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ</span>
-                  </div>
-                </div>
-                <div class="record__point">
-                  <span class="point__value">9,999</span>
-                  <span class="point__unit">kcal</span>
-                </div>
-              </div>
-            </li>
-          </ul>
         </section>
-        <!-- <section class="exercise-share__section" v-if="false">
+        
+        <section class="exercise-share__section" v-if="false">
           <h2 class="section__title">
             클럽타올라 배지
             <span>15</span>
@@ -159,48 +125,6 @@
           <div v-else class="exercise-share__badge-group">
             <ul class="list-style-none">
               <li v-for="(list, index) in 4" :key="index">
-                <div class="badge__item">
-                  <figure class="badge__figure">
-                    <img src="@/assets/imgs/dummy-musclepin.png" alt="뱃지" />
-                  </figure>
-                  <p class="badge__text">미션 달성 1회</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section> -->
-        <section class="exercise-share__section">
-          <h2 class="section__title">
-            클럽타올라 배지
-            <span>15</span>
-          </h2>
-          <div class="exercise-share__badge-group">
-            <ul class="list-style-none">
-              <li>
-                <div class="badge__item">
-                  <figure class="badge__figure">
-                    <img src="@/assets/imgs/dummy-musclepin.png" alt="뱃지" />
-                  </figure>
-                  <p class="badge__text">미션 달성 1회</p>
-                </div>
-              </li>
-              <li>
-                <div class="badge__item">
-                  <figure class="badge__figure">
-                    <img src="@/assets/imgs/dummy-musclepin.png" alt="뱃지" />
-                  </figure>
-                  <p class="badge__text">미션 달성 1회</p>
-                </div>
-              </li>
-              <li>
-                <div class="badge__item">
-                  <figure class="badge__figure">
-                    <img src="@/assets/imgs/dummy-musclepin.png" alt="뱃지" />
-                  </figure>
-                  <p class="badge__text">미션 달성 1회</p>
-                </div>
-              </li>
-              <li>
                 <div class="badge__item">
                   <figure class="badge__figure">
                     <img src="@/assets/imgs/dummy-musclepin.png" alt="뱃지" />
