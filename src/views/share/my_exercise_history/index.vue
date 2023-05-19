@@ -21,7 +21,7 @@
               <div class="record__panel">
                 <h2 class="panel__title">최고 머슬 포인트</h2>
                 <div class="panel__point text-primary">
-                  <span class="point__value">2,600.5{{ this.result.maxMusclePoint }}</span>
+                  <span class="point__value">{{ this.result.maxMusclePoint }}</span>
                   <span class="point__unit">점</span>
                 </div>
               </div>
