@@ -201,11 +201,16 @@ export default {
     justify-content: space-between;
     height: 60px;
     margin-bottom: 20px;
+		padding-left: 9px;
+		padding-right: 9px;
     .header__title {
       font-size: 16px;
       font-weight: 700;
       line-height: 23px;
       letter-spacing: -.1px;
+			@media screen and (max-width: 320px) {
+				font-size: 14px;
+			}
     }
     .logo {
       position: absolute;
@@ -220,6 +225,8 @@ export default {
     font-size: 16px;
     font-weight: 800;
     line-height: 24px;
+		padding-left: 9px;
+		padding-right: 9px;
     img {
       margin-right: 6px;
     }
@@ -232,6 +239,8 @@ export default {
     align-items: baseline;
     line-height: 1;
     margin-bottom: 14px;
+		padding-left: 9px;
+		padding-right: 9px;
     .point__value {
       font-size: 40px;
       font-weight: 700;
@@ -271,6 +280,7 @@ export default {
         line-height: 23px;
         letter-spacing: -.26px;
         margin-bottom: 16px;
+				word-break: keep-all;
       }
       .panel__point {
         display: flex;
@@ -298,7 +308,7 @@ export default {
       .record__panel {
         .panel__point {
           .point__value {
-            font-size: 25px;
+            font-size: 20px;
           }
         }
       }

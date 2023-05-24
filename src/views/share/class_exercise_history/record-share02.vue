@@ -192,6 +192,14 @@ export default {
     img {
       margin-right: 8px;
     }
+		.align-items-center {
+			word-break: keep-all;
+		}
+		.text-40 {
+			@media screen and (max-width: 320px) {
+				font-size: 30px;
+			}
+		}
   }
 
   .record-share__ul {
